@@ -4478,7 +4478,7 @@
   </Settlement>
   <Settlement id="castle_village_OL2_1" name="{=Settlements.Settlement.name.castle_village_OL2_1}Eichewaldchen" posX="1468.339" posY="1191.801" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL2_1}Eichewaldchen is a small village on the banks of the River Lachtbech. Much of its economy is in servicing Castle Lenkster just to its north.">
     <Components>
-      <Village id="castle_village_comp_OL2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_OL1" bound="Settlement.castle_OL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_OL2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_OL1" bound="Settlement.castle_OL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_004" />
