@@ -121,7 +121,10 @@ namespace TOR_Core.Models
                     {
                         var choices = Hero.MainHero.GetAllCareerChoices();
 
-                        if (choices.Contains("MartiallePassive4") || choices.Contains("NightRiderPassive4") || choices.Contains("TeachingsOfTheWinterFatherPassive3"))
+                        if (choices.Contains("MartiallePassive4") || 
+                            choices.Contains("NightRiderPassive4") || 
+                            choices.Contains("TeachingsOfTheWinterFatherPassive3")||
+                            choices.Contains("IronPricePassive2"))
                         {
                             weaponComponentData.WeaponFlags |= WeaponFlags.BonusAgainstShield;
                         }
@@ -307,12 +310,15 @@ namespace TOR_Core.Models
                              }
                          }
                          //range damage Propotions
-                         var weaponProperty = weapon.GetTorSpecificData().DamageProportions;
+
+                         var ammoTuple  = ammoItem.GetTorSpecificData().DamageProportions;
+                         
+                         var weaponProperty = ammoTuple;
                          if (weaponProperty != null)
                          {
                              foreach (var tuple in weaponProperty)
                              {
-                                 damageProportions[(int)tuple.DamageType] = tuple.Percent;
+                                 damageProportions[(int)tuple.DamageType] = 1f;
                              }
                          }
                      }

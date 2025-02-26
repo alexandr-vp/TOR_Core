@@ -345,6 +345,7 @@
     <Compile Include="AbilitySystem\Scripts\BombardmentScript.cs" />
     <Compile Include="AbilitySystem\Scripts\CareerAbilityMissleScript.cs" />
     <Compile Include="AbilitySystem\Scripts\CareerAbilityScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\ImpenetrableScript.cs" />
     <Compile Include="AbilitySystem\Scripts\MindControlScript.cs" />
     <Compile Include="AbilitySystem\Scripts\HealScript.cs" />
     <Compile Include="AbilitySystem\Scripts\HexScript.cs" />
@@ -550,9 +551,11 @@
     <Compile Include="CharacterDevelopment\CareerAbilityChargeSupplier.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\BlackGrailKnightCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\CareerButtonBehaviorBase.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\CareerButtonHelper.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\CareerButtons.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\GrailKnightCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\ImperialMagisterCareerButtonBehavior.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\IronbreakerCareerButton.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\KnightOldWorldCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\MercenaryCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerAbilityEffectVM.cs" />
@@ -578,6 +581,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\GrailDamselCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\GreyLordCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\ImperialMagisterCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\IronbreakerCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\KnightOldWorldCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\MercenaryCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\NecrarchCareerChoices.cs" />
