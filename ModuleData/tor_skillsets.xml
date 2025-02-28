@@ -391,4 +391,225 @@
 		<skill id="Throwing"
 			   value="270" />
 	</SkillSet>
+	
+	<!--Dwarf Skill sets-->
+	<!--Tier 0-->
+	<SkillSet id="tor_skills_dwarf_commoner">
+		<skill id="Athletics"
+			   value="60" />
+		<skill id="OneHanded"
+			   value="50" />
+		<skill id="TwoHanded"
+			   value="50" />
+	</SkillSet>
+	
+	<!--Tier 1-->
+	<SkillSet id="tor_skills_dwarf_dawi">
+		<skill id="Athletics"
+			   value="75" />
+		<skill id="OneHanded"
+			   value="60" />
+		<skill id="TwoHanded"
+			   value="60" />
+	</SkillSet>
+	
+	<!--Tier 2-->
+	<SkillSet id="tor_skills_dwarf_militia">
+		<skill id="Athletics"
+			   value="100" />
+		<skill id="OneHanded"
+			   value="100" />
+		<skill id="TwoHanded"
+			   value="100" />
+	</SkillSet>
+	
+	<!--Tier 3-->
+	<SkillSet id="tor_skills_dwarf_miner">
+		<skill id="Athletics"
+			   value="130" />
+		<skill id="OneHanded"
+			   value="100" />
+		<skill id="TwoHanded"
+			   value="140" />
+	</SkillSet>
+	
+	<SkillSet id="tor_skills_dwarf_scout">
+		<skill id="Athletics"
+			   value="120" />
+		<skill id="OneHanded"
+			   value="115" />
+		<skill id="TwoHanded"
+			   value="115" />
+		<skill id="Crossbow"
+			   value="140" />
+	</SkillSet>
+	
+	<SkillSet id="tor_skills_dwarf_slayer">
+		<skill id="Athletics"
+			   value="160" />
+		<skill id="OneHanded"
+			   value="160" />
+		<skill id="TwoHanded"
+			   value="160" />
+	</SkillSet>
+	
+	<!--Tier 4-->
+	<SkillSet id="tor_skills_dwarf_prospector">
+		<skill id="Athletics"
+			   value="140" />
+		<skill id="OneHanded"
+			   value="100" />
+		<skill id="TwoHanded"
+			   value="140" />
+		<skill id="Throwing"
+			   value="160" />
+	</SkillSet>
+			   
+	<SkillSet id="tor_skills_dwarf_warrior">
+		<skill id="Athletics"
+			   value="160" />
+		<skill id="OneHanded"
+			   value="160" />
+		<skill id="TwoHanded"
+			   value="160" />
+	</SkillSet>
+	
+	<SkillSet id="tor_skills_dwarf_quarreller">
+		<skill id="Athletics"
+			   value="130" />
+		<skill id="OneHanded"
+			   value="130" />
+		<skill id="TwoHanded"
+			   value="130" />
+		<skill id="Crossbow"
+			   value="180" />
+	</SkillSet>
+			   
+	<SkillSet id="tor_skills_dwarf_thunderer">
+		<skill id="Athletics"
+			   value="130" />
+		<skill id="OneHanded"
+			   value="130" />
+		<skill id="TwoHanded"
+			   value="130" />
+		<skill id="Gunpowder"
+			   value="180" />
+	</SkillSet>
+
+	<!--Tier 5-->
+	<SkillSet id="tor_skills_dwarf_veteran_quarreller">
+		<skill id="Athletics"
+			   value="150" />
+		<skill id="OneHanded"
+			   value="150" />
+		<skill id="TwoHanded"
+			   value="150" />
+		<skill id="Crossbow"
+			   value="225" />
+	</SkillSet>
+	
+	<SkillSet id="tor_skills_dwarf_sharpshooter">
+		<skill id="Athletics"
+			   value="150" />
+		<skill id="OneHanded"
+			   value="150" />
+		<skill id="TwoHanded"
+			   value="150" />
+		<skill id="Gunpowder"
+			   value="225" />
+	</SkillSet>
+	
+	<SkillSet id="tor_skills_dwarf_oldguard">
+		<skill id="Athletics"
+			   value="180" />
+		<skill id="OneHanded"
+			   value="180" />
+		<skill id="TwoHanded"
+			   value="180" />
+	</SkillSet>
+	
+	<!--Tier 6-->
+	<SkillSet id="tor_skills_dwarf_longbeard">
+		<skill id="Athletics"
+			   value="225" />
+		<skill id="OneHanded"
+			   value="225" />
+		<skill id="TwoHanded"
+			   value="225" />
+	</SkillSet>
+	
+	<SkillSet id="tor_skills_dwarf_troll_slayer">
+		<skill id="Athletics"
+			   value="225" />
+		<skill id="OneHanded"
+			   value="250" />
+		<skill id="TwoHanded"
+			   value="250" />
+	</SkillSet>
+	
+	<!--Tier 7-->
+	
+	<!--Tier 8-->
+	<SkillSet id="tor_skills_dwarf_ironbreaker">
+		<skill id="Athletics"
+			   value="280" />
+		<skill id="OneHanded"
+			   value="280" />
+		<skill id="TwoHanded"
+			   value="225" />
+		<skill id="Throwing"
+			   value="280" />
+	</SkillSet>
+	
+	<SkillSet id="tor_skills_dwarf_hammerer">
+		<skill id="Athletics"
+			   value="280" />
+		<skill id="OneHanded"
+			   value="225" />
+		<skill id="TwoHanded"
+			   value="280" />
+	</SkillSet>
+	
+	<!--Tier 9-->
+	<SkillSet id="tor_skills_dwarf_ironbeard">
+		<skill id="Athletics"
+			   value="300" />
+		<skill id="OneHanded"
+			   value="300" />
+		<skill id="TwoHanded"
+			   value="225" />
+		<skill id="Gunpowder"
+			   value="300" />
+	</SkillSet>
+	
+	<SkillSet id="tor_skills_dwarf_irondrake">
+		<skill id="Athletics"
+			   value="300" />
+		<skill id="OneHanded"
+			   value="300" />
+		<skill id="TwoHanded"
+			   value="225" />
+		<skill id="Gunpowder"
+			   value="300" />
+	</SkillSet>
+	
+	<SkillSet id="tor_skills_dwarf_irondrake_trollhammer">
+		<skill id="Athletics"
+			   value="300" />
+		<skill id="OneHanded"
+			   value="300" />
+		<skill id="TwoHanded"
+			   value="225" />
+		<skill id="Gunpowder"
+			   value="300" />
+	</SkillSet>
+	
+	<SkillSet id="tor_skills_dwarf_gatekeeper">
+		<skill id="Athletics"
+			   value="300" />
+		<skill id="OneHanded"
+			   value="225" />
+		<skill id="TwoHanded"
+			   value="300" />
+	</SkillSet>
 </SkillSets>
