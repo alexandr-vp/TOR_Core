@@ -594,6 +594,24 @@
       <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_stirland_first_8" default_group="ranged" name="{=str_tor_emp_lord_stirland_first_8}Otto Bachrach" occupation="Special" culture="Culture.empire" voice="ironic" age="33" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="33" weight="0.2782" build="0.732" key="0002A40400441308373B969575796C4E5A82B9387D9269928C766894A896CC8D5AC786030746D4D5B4593547867973790000000000000007000000004ADC8002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="1" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="2" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_lord_companion_witch_hunter_template" />
+      <EquipmentSet id="tor_lord_companion_witch_hunter_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_stirland_second_1" default_group="cavalry" name="{=str_tor_emp_lord_stirland_second_1}Count Petr von Stolpe" occupation="Lord" culture="Culture.empire" voice="curt" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="37" weight="0.3642" build="0.75" key="0002CC01400026C37A762B89A2A34FEA7947866254C69443C4B667198C95A68100AB56030AB7877700000000000000000000000000000000000000003B3C7000" />
@@ -844,6 +862,24 @@
     <Equipments>
       <EquipmentSet id="tor_generic_empire_lord_heavyblack_template" />
       <EquipmentSet id="tor_generic_empire_lord_heavyblack_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wissenland_first_8" default_group="ranged" name="{=str_tor_emp_lord_wissenland_first_8}Bastian von Liebwitz" occupation="Special" culture="Culture.empire" voice="curt" age="28" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="28" weight="0.0838" build="0.377" key="0002940C40FC29065A9925759C86456A98658B4B79787737D3D8675C77D77A66879936030877B7136168A77D84A3B4730000000000000008000000001F047142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="3" />
+      <Trait id="Commander" value="1" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_lord_companion_engineer_template" />
+      <EquipmentSet id="tor_lord_companion_engineer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_wissenland_second_1" default_group="cavalry" name="{=str_tor_emp_lord_wissenland_second_1}Countess Molly Toppenheimer" occupation="Lord" culture="Culture.empire" voice="softspoken" age="42" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
@@ -2286,6 +2322,24 @@
       <EquipmentSet id="tor_generic_empire_lord_huntsman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_ostermark_first_11" default_group="infantry" name="{=str_tor_emp_lord_ostermark_first_11}Albin Eberhart" occupation="Special" culture="Culture.empire" voice="ironic" age="33" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="33" weight="0.4996" build="0.3435" key="0002BC0812583680472848BCC65B667BE7509398C847653C66299B67599952EC1A83E6030634987C578676636D83F88700000000000000060000000028C40082" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Honor" value="5" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_warrior_priest_template" />
+      <EquipmentSet id="tor_warrior_priest_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_ostermark_second_1" default_group="cavalry" name="{=str_tor_emp_lord_ostermark_second_1}Baron Stefan Husserl" occupation="Lord" culture="Culture.empire" voice="softspoken" age="41" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="40" weight="0.0432" build="1" key="0005A40D1A003100AB546779869597289AAA7A4868C6B8D7FFFF0F39ACBBA1790077763509FFFEEFF1FFFFEEFF0000000000000000000039000000003B2C6042" />
@@ -2878,6 +2932,24 @@
     <Equipments>
       <EquipmentSet id="tor_generic_empire_lord_medium_template" />
       <EquipmentSet id="tor_generic_empire_lord_medium_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_nordland_first_7" default_group="ranged" name="{=str_tor_emp_lord_nordland_first_7}Albrecht Schipbreuk" occupation="Special" culture="Culture.empire" voice="curt" age="47" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="47" weight="0.6478" build="0.3168" key="002B8000001411413569EE887EC89D7D9B7216E473896B4447A567634F9176868956560309D68AA35A89B3E8B4B8ADCA0000000000000009000000004B347142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="3" />
+      <Trait id="Commander" value="1" />
+      <Trait id="Politician" value="1" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_lord_companion_engineer_template" />
+      <EquipmentSet id="tor_lord_companion_engineer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_nordland_second_1" default_group="cavalry" name="{=str_tor_emp_lord_nordland_second_1}Baron Ludolf Köhler the Younger" occupation="Lord" culture="Culture.empire" voice="earnest" age="32" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -3544,6 +3616,24 @@
     <Equipments>
       <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" />
       <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_emp_lord_wasteland_first_8" default_group="ranged" name="{=str_tor_emp_lord_wasteland_first_8}Kanon meister Dirk-Jan" occupation="Special" culture="Culture.empire" voice="curt" age="56" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="56" weight="0.5" build="0.1093" key="0010600400582B0095AC5A8AD3BB28686815867D1B7288B8A47C45A58C79C48B397DB603079A84A32758B777147DA9AC0000000000000007000000003CE49142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="3" />
+      <Trait id="Commander" value="1" />
+      <Trait id="Politician" value="1" />
+      <Trait id="Manager" value="2" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Mercy" value="0" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_lord_companion_engineer_template" />
+      <EquipmentSet id="tor_lord_companion_engineer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_wasteland_second_1" default_group="cavalry" name="{=str_tor_emp_lord_wasteland_second_1}Arch-Priest Wouter Berkhout" occupation="Lord" culture="Culture.empire" voice="curt" age="47" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -4518,6 +4608,24 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_parravon_first_8" default_group="infantry" name="{=str_tor_br_lord_parravon_first_8}Annfleur la Charitable" occupation="Special" culture="Culture.vlandia" voice="softspoken" age="22" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.017" build="0.2762" key="0008A0081388200B94B2623B35488A8677769558995687799A669E6B986583677ED61603043696AB40487799B8954B8A000000000000000400000000347C1003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="6" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="2" />
+      <Trait id="Manager" value="1" />
+      <Trait id="Honor" value="3" />
+      <Trait id="Mercy" value="2" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_damsel_template_3" />
+      <EquipmentSet id="tor_damsel_template_3" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_br_lord_montfort_factionleader" default_group="cavalry" name="{=str_tor_br_lord_montfort_factionleader}Duke Folcard de Montfort" occupation="Lord" culture="Culture.vlandia" voice="curt" age="31" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.7946" build="0.5927" key="0010700F0088020EAA5B4BCA68A232D65738A5A8C7575869664B876857B754940049C60304D7779B00000000000000000000000000000000000000004C846102" />
@@ -4930,6 +5038,24 @@
     <Equipments>
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" />
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_bordeleaux_first_8" default_group="infantry" name="{=str_tor_br_lord_bordeleaux_first_8}Mathilde L'etincelle" occupation="Special" culture="Culture.vlandia" voice="softspoken" age="22" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.3532" build="0.7209" key="0002EC04D058100E54D2A886AA787C7E38CB3BB59768C6AE99EBA83D889AB8ABD6F7060309944866B506D6BB1DC98F280000000000000009000000003D340083" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="2" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="2" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Generosity" value="7" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_damsel_template_2" />
+      <EquipmentSet id="tor_damsel_template_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_br_lord_carcassonne_factionleader" default_group="cavalry" name="{=str_tor_br_lord_carcassonne_factionleader}Duke Huebald of Carcassonne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -5688,6 +5814,24 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_couronne_first_10" default_group="infantry" name="{=str_tor_br_lord_couronne_first_10}Ophelia LeRoi" occupation="Special" culture="Culture.vlandia" voice="softspoken" age="22" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.3532" build="0.7209" key="0002EC0FD058100E54D2A886AA787C7E38CB3BB59768C6AE99EBA83D889AB8ABD6F7060309944866B506D6BB1DC98F280000000000000009000000003D340083" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="4" />
+      <Trait id="Commander" value="2" />
+      <Trait id="Politician" value="4" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="7" />
+      <Trait id="Mercy" value="4" />
+      <Trait id="Generosity" value="2" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_damsel_template_2" />
+      <EquipmentSet id="tor_damsel_template_2" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_br_lord_couronne_second_1" default_group="cavalry" name="{=str_tor_br_lord_couronne_second_1}Baron Farabus of Couronne" occupation="Lord" culture="Culture.vlandia" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="50" weight="0.4699" build="0.3321" key="000A9400008837025767667CA8A8CBEE7698586894998CD66C5184A535658C6C44755603087999575788AA5A4A58E7850000000000000008000000004F142102" />
@@ -6030,6 +6174,24 @@
       <EquipmentSet id="tor_bretonnian_monk_lord_template_1" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_lyonesse_first_8" default_group="infantry" name="{=str_tor_br_lord_lyonesse_first_8}Bertha du Contremoulins" occupation="Special" culture="Culture.vlandia" voice="softspoken" age="22" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.4385" build="0.2762" key="0005940E5100200EB8978AB33A417C578D5C8344579A68556456AAA9A644A10894F9060306897C2847786475128770560000000000000006000000003ABC0003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="1" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="4" />
+      <Trait id="Mercy" value="5" />
+      <Trait id="Generosity" value="3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_damsel_template_3" />
+      <EquipmentSet id="tor_damsel_template_3" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_br_lord_artois_factionleader" default_group="cavalry" name="{=str_tor_br_lord_artois_factionleader}Duke Chilfroy of Artois" occupation="Lord" culture="Culture.vlandia" voice="curt" age="37" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="40" weight="0.2207" build="0.9537" key="000A4C054000100E5DC5EE0E29D8483659FF8085A0108100DFF9CF8CBB23F476EFCE06350F6AEB37E3EEFFC499E8F0BE000000000000003F000000003FFC9002" />
@@ -6262,6 +6424,24 @@
     <Equipments>
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" />
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_lord_gisoreux_first_7" default_group="infantry" name="{=str_tor_br_lord_gisoreux_first_7}Brigitte le vert" occupation="Special" culture="Culture.vlandia" voice="softspoken" age="23" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="23" weight="0.4957" build="0.1312" key="001BB4041158300452B3A54B7C73B9CBDB6A6AB47496D8C978C6644887A4BB895CF366030257266727C8848785988F31000000000000000200000000364C20C3" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="4" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="2" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="4" />
+      <Trait id="Mercy" value="3" />
+      <Trait id="Generosity" value="3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_damsel_template_3" />
+      <EquipmentSet id="tor_damsel_template_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_factionleader" default_group="cavalry" name="{=str_tor_m_lord_mousillon_factionleader}The Serpent of Mousillon" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
