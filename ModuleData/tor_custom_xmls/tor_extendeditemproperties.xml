@@ -52,19 +52,19 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_head_mask_gold_wizard_001">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance as well as 10% fire damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_balthazar_gelt">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Lightning Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% lightning resistance as well as 10% lightning damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Lightning" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance as well as 10% fire damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
@@ -515,6 +515,15 @@
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_accessories_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_orc_boyz_helmet_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_orc_boyz_helmet_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_orc_boyz_helmet_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_mask_savage_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -542,10 +551,45 @@
   <ExtendedItemObjectProperties ItemStringId="tor_he_head_helm_queens_guard_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_militia_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_miner_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_miner_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_miner_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_warrior_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_slayer_adept_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_slayer_deamon_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_ungrim_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_longbeard_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_ironbreaker_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_irondrake_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Fire Resistance" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_noble_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_infantry_001">
@@ -664,19 +708,19 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_shoulder_cape_balthazar_gelt">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance as well as 10% fire damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_shoulder_cape_gold_wizard_001">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance as well as 10% fire damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
@@ -914,7 +958,48 @@
   <ExtendedItemObjectProperties ItemStringId="tor_eo_shoulder_shoulderpads_envoy_scale_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_shoulderpads_militia_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_shoulderpads_miner_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_shoulderpads_warrior_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_shoulder_shoulderpads_dwarf_ornate_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_shoulder_shoulderpads_ungrim_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_shoulder_shoulderpads_longbeard_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_shoulder_shoulderpads_ironbreaker_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_shoulder_shoulderpads_irondrake_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Fire Resistance" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_shoulder_shoulderpads_noble_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_infantry_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_shoulderpads_orc_boyz_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_shoulderpads_orc_boyz_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_shoulderpads_orc_boyz_003">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_shoulderpads_goblin_001">
@@ -1015,19 +1100,19 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_body_robe_balthazar_gelt">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance as well as 10% fire damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_body_robe_gold_wizard_001">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance as well as 10% fire damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
@@ -1421,13 +1506,51 @@
   <ExtendedItemObjectProperties ItemStringId="tor_he_body_armour_phoenix_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_basic_dawi_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_basic_dawi_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_militia_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_miner_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_warrior_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_warrior_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_slayer_novice_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_slayer_adept_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_slayer_legend_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_ungrim_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_longbeard_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_ironbreaker_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_irondrake_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Fire Resistance" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_noble_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_infantry_001">
@@ -1449,6 +1572,9 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_estalia_body_armor_noble_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_body_armour_orc_boyz_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_body_armour_savage_001">
@@ -1754,6 +1880,15 @@
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_bracers_orc_boyz_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_bracers_orc_boyz_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_bracers_orc_boyz_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_bracers_savage_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -1778,6 +1913,12 @@
   <ExtendedItemObjectProperties ItemStringId="tor_he_arm_bracers_infantry_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_arm_bracers_militia_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_arm_bracers_miner_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_arm_bracers_warrior_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -1785,6 +1926,26 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_arm_bracers_slayer_adept_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_arm_bracers_slayer_legend_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_arm_bracers_longbeard_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_arm_bracers_ironbreaker_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_arm_bracers_irondrake_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Fire Resistance" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_arm_bracers_noble_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_de_arm_bracers_infantry_001">
@@ -1862,10 +2023,10 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_balthazar_gelt">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance as well as 10% fire damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
@@ -1939,10 +2100,10 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_gold_wizard_001">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance as well as 10% fire damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
@@ -2150,10 +2311,42 @@
   <ExtendedItemObjectProperties ItemStringId="tor_he_leg_boots_spearmen_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_leg_boots_basic_dawi_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_leg_boots_militia_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_leg_boots_miner_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_leg_boots_warrior_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_leg_boots_slayer_adept_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_leg_boots_slayer_legend_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_leg_boots_longbeard_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_leg_boots_ironbreaker_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_leg_boots_irondrake_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Fire Resistance" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_leg_boots_noble_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_boots_orc_boyz_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_boots_savage_001">
@@ -2686,6 +2879,66 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_1h_axe_002">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_1h_axe_003">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_1h_axe_004">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_1h_axe_005">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_1h_axe_006">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_1h_axe_007">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_1h_axe_008">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_1h_axe_009">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_1h_axe_010">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_1h_axe_of_grimnir">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_weapon_axe_savage_001">
     <ItemTraits />
     <DamageProportions>
@@ -2727,6 +2980,12 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_bret_axe_of_brionne">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_weapon_2h_axe_001">
     <ItemTraits />
     <DamageProportions>
@@ -2740,6 +2999,66 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_weapon_greataxe_minotaur_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_greataxe_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_greataxe_002_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_greataxe_002_002">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_greataxe_002_003">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_greataxe_002_004">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_greataxe_005">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_greataxe_troll_slayer_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_greataxe_giant_slayer_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_greataxe_deamon_slayer_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_greataxe_ungrim_001">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -2896,6 +3215,18 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_hammer_of_angrund">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_chaos_weapon_mace_flail_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_chaos_weapon_mace_nurgle_001">
     <ItemTraits />
     <DamageProportions>
@@ -2967,6 +3298,42 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.80" />
       <DamageProportionTuple DamageType="Holy" Percent="0.20" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_klad_brakak">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_mace_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_mace_002">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_mace_003">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_mace_004">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_mace_005">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_weapon_thmace_vampire_001">
@@ -3312,8 +3679,9 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_staff_lw_001">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Holy Amplification" IconName="blessing_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+      <ItemTrait ItemTraitName="Holy Resistance and Amplification" IconName="blessing_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% holy resistance as well as 10% holy damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="0.10" />
         <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
@@ -3324,8 +3692,9 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_staff_lw_002">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Holy Amplification" IconName="blessing_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+      <ItemTrait ItemTraitName="Holy Resistance and Amplification" IconName="blessing_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% holy resistance as well as 10% holy damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="0.10" />
         <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
@@ -3336,8 +3705,9 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_staff_lw_003">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Holy Amplification" IconName="blessing_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+      <ItemTrait ItemTraitName="Holy Resistance and Amplification" IconName="blessing_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% holy resistance as well as 10% holy damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="0.10" />
         <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
@@ -3778,6 +4148,91 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_neutral_weapon_ammo_musket_ball">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_neutral_weapon_ammo_stone_musket_ball">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_neutral_weapon_ammo_steel_musket_ball">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_neutral_weapon_ammo_silver_bullet">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Holy" Percent="0.75" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.25" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_neutral_weapon_ammo_musket_ball_scatter">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_neutral_weapon_ammo_cannonball">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_neutral_weapon_ammo_broken_weapon">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_ammo_grenade">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="AmberSpear">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="TheGreenEye">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_tournament_arrows">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_arrows_ofpotency">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_drakegun_canister">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Fire" Percent="1.00" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_weapon_grenade_hand_grenade">
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Fire" Percent="1.00" />
+    </DamageProportions>
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_banner_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -4026,6 +4481,12 @@
   <ExtendedItemObjectProperties ItemStringId="tor_de_weapon_shield_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_shield_005">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_shield_004">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dwarf_weapon_shield_003">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -4076,28 +4537,25 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_staff_lw_001_combined">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Holy Additional Damage" IconName="blessing_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
+        <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_staff_lw_002_combined">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Holy Additional Damage" IconName="blessing_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
+        <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_staff_lw_003_combined">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Holy Additional Damage" IconName="blessing_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
+        <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
@@ -4111,10 +4569,10 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_staff_gelt">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance as well as 10% fire damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
