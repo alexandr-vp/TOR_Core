@@ -479,17 +479,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_quicksilver_swords" };
                 trait.AdditionalDamageTuple = additionalDamage;
                 trait.OnHitScriptName = "none";
-                var trait2 = new ItemTrait();
-                
-                var additionalDamage2 = new DamageProportionTuple();
-                additionalDamage2.DamageType = DamageType.Magical;
-                additionalDamage2.Percent = 0.25f;
-                
-                trait.ItemTraitName = "Quick silver Weapon Enchantment";
-                trait.ItemTraitDescription = "Quicksilver surrounds your weapons.";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_quicksilver_swords" };
-                trait.AdditionalDamageTuple = additionalDamage;
-                trait.OnHitScriptName = "none";
 
                 foreach (Agent agent in triggeredAgents)
                 {
@@ -497,7 +486,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     if(comp != null)
                     {
                         comp.AddTraitToWieldedWeapon(trait, duration);
-                        comp.AddTraitToWieldedWeapon(trait2, duration);
                     }
                 }
             }
