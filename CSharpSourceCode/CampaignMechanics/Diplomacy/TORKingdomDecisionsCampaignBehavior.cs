@@ -174,7 +174,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 {
                     cancelList.Add(kingdomDecision);
                 }
-                else if (kingdomDecision.TriggerTime.IsPast && !kingdomDecision.NeedsPlayerResolution)
+                else if (kingdomDecision.TriggerTime.IsPast && kingdomDecision.Kingdom != Clan.PlayerClan.Kingdom)
                 {
                     electionList.Add(kingdomDecision);
                 }
