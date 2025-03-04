@@ -32,6 +32,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerObject _greyLord;
         private CareerObject _knightOldWorld;
         private CareerObject _ironbreaker;
+        private CareerObject _slayer;
         public TORCareers()
         {
             Instance = this;
@@ -78,6 +79,8 @@ namespace TOR_Core.CharacterDevelopment
         public static CareerObject KnightOldWorld => Instance._knightOldWorld;
 
         public static CareerObject Ironbreaker => Instance._ironbreaker;
+        
+        public static CareerObject Slayer => Instance._slayer;
 
         private void RegisterAll()
         {
@@ -99,6 +102,7 @@ namespace TOR_Core.CharacterDevelopment
             _greyLord = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("GreyLord"));
             _knightOldWorld = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("KnightOldWorld"));
             _ironbreaker = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Ironbreaker"));
+            _slayer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Slayer"));
             
             _allCareers =
             [
@@ -118,7 +122,8 @@ namespace TOR_Core.CharacterDevelopment
                 _spellsinger,
                 _greyLord,
                 _knightOldWorld,
-                _ironbreaker
+                _ironbreaker,
+                _slayer
             ];
         }
 
@@ -141,6 +146,7 @@ namespace TOR_Core.CharacterDevelopment
             _greyLord.Initialize("Grey Lord Wizard", null, "MindControl",CareerAbilityChargeSupplier.GreyLordCareerCharge, 1000, typeof(MindControlScript));
             _knightOldWorld.Initialize("Knight of the Old World", null,"KnightlyStrike", CareerAbilityChargeSupplier.KnightOldWorldChargeSupplier, 500);
             _ironbreaker.Initialize("Ironbreaker", null,"Impenetrable", CareerAbilityChargeSupplier.IronbreakerChargeSupplier, 500, typeof(ImpenetrableScript));
+            _slayer.Initialize("Slayer", null,"Impenetrable", CareerAbilityChargeSupplier.IronbreakerChargeSupplier, 500, typeof(ImpenetrableScript));
         }
     }
 }

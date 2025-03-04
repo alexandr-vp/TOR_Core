@@ -169,6 +169,16 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _gromrilArmor;
         private CareerChoiceGroupObject _runeWeapons;
         
+        //Slayer
+        
+        private CareerChoiceGroupObject _axeOfGrimnir;
+        private CareerChoiceGroupObject _shameOfTheAncestors;
+        private CareerChoiceGroupObject _deadlyDetermination;
+        private CareerChoiceGroupObject _urkSlayer;
+        private CareerChoiceGroupObject _giantSlayer;
+        private CareerChoiceGroupObject _baneOfChaos;
+        private CareerChoiceGroupObject _lastJourney;
+
         public TORCareerChoiceGroups()
         {
             Instance = this;
@@ -325,6 +335,7 @@ namespace TOR_Core.CharacterDevelopment
             _wrathAgainstChaos = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_wrathAgainstChaos).UnderscoreFirstCharToUpper()));
             _pathOfGlory = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_pathOfGlory).UnderscoreFirstCharToUpper()));
             
+            //Ironbreaker
             _nestCleansing = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_nestCleansing).UnderscoreFirstCharToUpper()));
             _tunnelWatch = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_tunnelWatch).UnderscoreFirstCharToUpper()));
             _ironPrice = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_ironPrice).UnderscoreFirstCharToUpper()));
@@ -332,6 +343,14 @@ namespace TOR_Core.CharacterDevelopment
             _ironDrakes = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_ironDrakes).UnderscoreFirstCharToUpper()));
             _gromrilArmor = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_gromrilArmor).UnderscoreFirstCharToUpper()));
             _runeWeapons = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_runeWeapons).UnderscoreFirstCharToUpper()));
+            
+            _axeOfGrimnir = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_axeOfGrimnir).UnderscoreFirstCharToUpper()));
+            _shameOfTheAncestors = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_shameOfTheAncestors).UnderscoreFirstCharToUpper()));
+            _deadlyDetermination = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_deadlyDetermination).UnderscoreFirstCharToUpper()));
+            _urkSlayer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_urkSlayer).UnderscoreFirstCharToUpper()));
+            _giantSlayer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_giantSlayer).UnderscoreFirstCharToUpper()));
+            _baneOfChaos = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_baneOfChaos).UnderscoreFirstCharToUpper()));
+            _lastJourney = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_lastJourney).UnderscoreFirstCharToUpper()));
 
         }
 
@@ -1029,6 +1048,44 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 4;
             });
             _runeWeapons.Initialize("{=rune_weapons_choice_group_str}Rune Weapons", TORCareers.Ironbreaker, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier>= 4;
+            });
+            
+            //Slayer
+            
+            _axeOfGrimnir.Initialize("{=axe_of_grimnir_choice_group_str}Axe of Grimnir", TORCareers.Slayer, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _shameOfTheAncestors.Initialize("{=shame_of_the_ancestors_choice_group_str}Shame of the Ancestors", TORCareers.Slayer, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _deadlyDetermination.Initialize("{=deadly_determination_choice_group_str}Deadly Determination", TORCareers.Slayer, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return hero.Clan.Tier >= 2;
+            });
+            _urkSlayer.Initialize("{=urk_slayer_choice_group_str}Urk Slayer", TORCareers.Slayer, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _giantSlayer.Initialize("{=giant_slayer_choice_group_str}Giant Slayer", TORCareers.Slayer, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _baneOfChaos.Initialize("{=bane_of_chaos_choice_group_str}Bane of Chaos", TORCareers.Slayer, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            });
+            _lastJourney.Initialize("{=last_journey_choice_group_str}The Last Journey", TORCareers.Slayer, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier>= 4;

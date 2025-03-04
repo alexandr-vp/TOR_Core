@@ -1,0 +1,285 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using TaleWorlds.Core;
+using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
+
+namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices;
+
+public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
+{
+    private CareerChoiceObject _slayerRoot;
+    
+    private CareerChoiceObject _axeOfGrimnirPassive1;
+    private CareerChoiceObject _axeOfGrimnirPassive2;
+    private CareerChoiceObject _axeOfGrimnirPassive3;
+    private CareerChoiceObject _axeOfGrimnirPassive4;
+    private CareerChoiceObject _axeOfGrimnirKeystone;
+
+    private CareerChoiceObject _shameOfTheAncestorsPassive1;
+    private CareerChoiceObject _shameOfTheAncestorsPassive2;
+    private CareerChoiceObject _shameOfTheAncestorsPassive3;
+    private CareerChoiceObject _shameOfTheAncestorsPassive4;
+    private CareerChoiceObject _shameOfTheAncestorsKeystone;
+
+    private CareerChoiceObject _deadlyDeterminationPassive1;
+    private CareerChoiceObject _deadlyDeterminationPassive2;
+    private CareerChoiceObject _deadlyDeterminationPassive3;
+    private CareerChoiceObject _deadlyDeterminationPassive4;
+    private CareerChoiceObject _deadlyDeterminationKeystone;
+
+    private CareerChoiceObject _urkSlayerPassive1;
+    private CareerChoiceObject _urkSlayerPassive2;
+    private CareerChoiceObject _urkSlayerPassive3;
+    private CareerChoiceObject _urkSlayerPassive4;
+    private CareerChoiceObject _urkSlayerKeystone;
+
+    private CareerChoiceObject _giantSlayerPassive1;
+    private CareerChoiceObject _giantSlayerPassive2;
+    private CareerChoiceObject _giantSlayerPassive3;
+    private CareerChoiceObject _giantSlayerPassive4;
+    private CareerChoiceObject _giantSlayerKeystone;
+
+    private CareerChoiceObject _baneOfChaosPassive1;
+    private CareerChoiceObject _baneOfChaosPassive2;
+    private CareerChoiceObject _baneOfChaosPassive3;
+    private CareerChoiceObject _baneOfChaosPassive4;
+    private CareerChoiceObject _baneOfChaosKeystone;
+
+    private CareerChoiceObject _theLastJourneyPassive1;
+    private CareerChoiceObject _theLastJourneyPassive2;
+    private CareerChoiceObject _theLastJourneyPassive3;
+    private CareerChoiceObject _theLastJourneyPassive4;
+    private CareerChoiceObject _theLastJourneyKeystone;
+
+    protected override void RegisterAll()
+    {
+        _slayerRoot = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SlayerRoot"));
+        
+        _axeOfGrimnirPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("AxeOfGrimnirPassive1"));
+        _axeOfGrimnirPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("AxeOfGrimnirPassive2"));
+        _axeOfGrimnirPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("AxeOfGrimnirPassive3"));
+        _axeOfGrimnirPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("AxeOfGrimnirPassive4"));
+        _axeOfGrimnirKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("AxeOfGrimnirKeystone"));
+
+        _shameOfTheAncestorsPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ShameForTheAncestorsPassive1"));
+        _shameOfTheAncestorsPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ShameForTheAncestorsPassive2"));
+        _shameOfTheAncestorsPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ShameForTheAncestorsPassive3"));
+        _shameOfTheAncestorsPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ShameForTheAncestorsPassive4"));
+        _shameOfTheAncestorsKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ShameForTheAncestorsKeystone"));
+
+        _deadlyDeterminationPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeadlyDeterminationPassive1"));
+        _deadlyDeterminationPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeadlyDeterminationPassive2"));
+        _deadlyDeterminationPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeadlyDeterminationPassive3"));
+        _deadlyDeterminationPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeadlyDeterminationPassive4"));
+        _deadlyDeterminationKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeadlyDeterminationKeystone"));
+
+        _urkSlayerPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("UrkSlayerPassive1"));
+        _urkSlayerPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("UrkSlayerPassive2"));
+        _urkSlayerPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("UrkSlayerPassive3"));
+        _urkSlayerPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("UrkSlayerPassive4"));
+        _urkSlayerKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("UrkSlayerKeystone"));
+
+        _giantSlayerPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("MonsterSlayerPassive1"));
+        _giantSlayerPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("MonsterSlayerPassive2"));
+        _giantSlayerPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("MonsterSlayerPassive3"));
+        _giantSlayerPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("MonsterSlayerPassive4"));
+        _giantSlayerKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("MonsterSlayerKeystone"));
+
+        _baneOfChaosPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BaneOfChaosPassive1"));
+        _baneOfChaosPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BaneOfChaosPassive2"));
+        _baneOfChaosPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BaneOfChaosPassive3"));
+        _baneOfChaosPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BaneOfChaosPassive4"));
+        _baneOfChaosKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BaneOfChaosKeystone"));
+
+        _theLastJourneyPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("TheLastJourneyPassive1"));
+        _theLastJourneyPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("TheLastJourneyPassive2"));
+        _theLastJourneyPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("TheLastJourneyPassive3"));
+        _theLastJourneyPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("TheLastJourneyPassive4"));
+        _theLastJourneyKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("TheLastJourneyKeystone"));
+    }
+
+    protected override void InitializeKeyStones()
+    {
+        _slayerRoot.Initialize(CareerID, "{=ironbreaker_root_str}The Character will not receive any damage for a short amount of time and will shrug any damage off. The movement speed is reduced by 25% though. The duration expands with growing athletics skill.", null, true,
+            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(TriggeredEffectTemplate),
+                    MutationTargetOriginalId = "apply_impenetrable",
+                    PropertyName = "ImbuedStatusEffectDuration",
+                    PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Athletics }, 0.004f),
+                    MutationType = OperationType.Add
+                }
+            });
+        
+        _axeOfGrimnirKeystone.Initialize(CareerID, "{=axe_of_grimnir_keystone_str}Immune to fire damage, explosives and knockback resistance during ability", "AxeOfGrimnir", false,
+        ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+        {
+            new CareerChoiceObject.MutationObject()
+            {
+                MutationTargetType = typeof(TriggeredEffectTemplate),
+                MutationTargetOriginalId = "apply_impenetrable",
+                PropertyName = "ImbuedStatusEffectDuration",
+                PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.004f),
+                MutationType = OperationType.Add
+            },
+        });
+    
+        _shameOfTheAncestorsKeystone.Initialize(CareerID, "{=shame_of_the_ancestors_keystone_str}Scouting counts towards ability. Ability starts charged", "ShameOfTheAncestors", false,
+        ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+        {
+            new CareerChoiceObject.MutationObject()
+            {
+                MutationTargetType = typeof(TriggeredEffectTemplate),
+                MutationTargetOriginalId = "apply_impenetrable",
+                PropertyName = "ImbuedStatusEffectDuration",
+                PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Athletics }, 0.004f),
+                MutationType = OperationType.Add
+            }
+        });
+    
+        _deadlyDeterminationKeystone.Initialize(CareerID, "{=deadly_determination_keystone_str}Leadership counts towards Careerability. Charge ability by dealing damage", "DeadlyDetermination", false,
+            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(TriggeredEffectTemplate),
+                    MutationTargetOriginalId = "apply_impenetrable",
+                    PropertyName = "ImbuedStatusEffectDuration",
+                    PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded }, 0.004f),
+                    MutationType = OperationType.Add
+                }
+            });
+        
+        _urkSlayerKeystone.Initialize(CareerID, "{=urk_slayer_keystone_str}Dwarfs in the immediate surrounding also benefit from effect. Scales with onehanded", "UrkSlayer", false,
+            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(TriggeredEffectTemplate),
+                    MutationTargetOriginalId = "apply_impenetrable",
+                    PropertyName = "ImbuedStatusEffectDuration",
+                    PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded }, 0.004f),
+                    MutationType = OperationType.Add
+                },
+            });
+        
+        _giantSlayerKeystone.Initialize(CareerID, "{=giant_slayer_keystone_str}During ability your reload speed is increased. ability scales with gunpowder skill ", "GiantSlayer", false,
+            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(TriggeredEffectTemplate),
+                    MutationTargetOriginalId = "apply_impenetrable",
+                    PropertyName = "ImbuedStatusEffects",
+                    PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "impenetrable_rls" }).ToList(),
+                    MutationType = OperationType.Replace
+                },
+                new CareerChoiceObject.MutationObject()
+                {
+                MutationTargetType = typeof(TriggeredEffectTemplate),
+                MutationTargetOriginalId = "apply_impenetrable",
+                PropertyName = "ImbuedStatusEffectDuration",
+                PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.GunPowder }, 0.004f),
+                MutationType = OperationType.Add
+            }
+            });
+        
+        _baneOfChaosKeystone.Initialize(CareerID, "{=bane_of_chaos_keystone_str}Receiving damage during ability will stack upon, and add for each taken hit 0.5% physical resistance post ability.", "BaneOfChaos", false,
+            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(TriggeredEffectTemplate),
+                    MutationTargetOriginalId = "apply_impenetrable",
+                    PropertyName = "ImbuedStatusEffects",
+                    PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "impenetrable_rls" }).ToList(),
+                    MutationType = OperationType.Replace
+                },
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(TriggeredEffectTemplate),
+                    MutationTargetOriginalId = "apply_impenetrable",
+                    PropertyName = "ImbuedStatusEffectDuration",
+                    PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.GunPowder }, 0.004f),
+                    MutationType = OperationType.Add
+                }
+            });
+        
+        _theLastJourneyKeystone.Initialize(CareerID, "{=rune_weapons_keystone_str}For every taken hit during  your ability, physical damage is increased by 0.5% for the next 5 seconds", "LastJourney", false,
+            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(TriggeredEffectTemplate),
+                    MutationTargetOriginalId = "apply_impenetrable",
+                    PropertyName = "ImbuedStatusEffects",
+                    PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "impenetrable_rls" }).ToList(),
+                    MutationType = OperationType.Replace
+                },
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(TriggeredEffectTemplate),
+                    MutationTargetOriginalId = "apply_impenetrable",
+                    PropertyName = "ImbuedStatusEffectDuration",
+                    PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.GunPowder }, 0.004f),
+                    MutationType = OperationType.Add
+                }
+            });
+        
+    }
+
+    protected override void InitializePassives()
+    {
+        _axeOfGrimnirPassive1.Initialize(CareerID, "{=axe_of_grimnir_passive1_str}Increases Hitpoints by 25.", "AxeOfGrimnir", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+        _axeOfGrimnirPassive2.Initialize(CareerID, "{=shame_of_the_ancestors_passive4_str}10% extra melee damage.", "AxeOfGrimnir", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
+        _axeOfGrimnirPassive3.Initialize(CareerID, "{=axe_of_grimnir_passive3_str}Every melee kill adds faith", "AxeOfGrimnir", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
+        _axeOfGrimnirPassive4.Initialize(CareerID, "{=axe_of_grimnir_passive4_str}CUSTOM", "AxeOfGrimnir", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
+        
+        _shameOfTheAncestorsPassive1.Initialize(CareerID, "{=shame_of_the_ancestors_passive1_str}Increases Hitpoints by 25.", "ShameOfTheAncestors", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+        _shameOfTheAncestorsPassive2.Initialize(CareerID, "{=shame_of_the_ancestors_passive2_str}Party movement speed is increased by 1.", "ShameOfTheAncestors", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
+        _shameOfTheAncestorsPassive3.Initialize(CareerID, "{=shame_of_the_ancestors_passive4_str}Increases health regeneration after battles by 2.", "ShameOfTheAncestors", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.HealthRegeneration));
+        _shameOfTheAncestorsPassive4.Initialize(CareerID, "{=shame_of_the_ancestors_passive3_str}CUSTOM : All non slayer units can be converted to slayers providing extra oath gold", "ShameOfTheAncestors", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
+            (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && victim.Character.Culture.StringId == "aserai"));
+        
+        _deadlyDeterminationPassive1.Initialize(CareerID, "{=deadly_determination_passive1_str}Increases Hitpoints by 25.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+        _deadlyDeterminationPassive2.Initialize(CareerID, "{=deadly_determination_passive2_str}Slayer units gain 50 extra one handed-melee skill.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, new List<string>(){nameof(DefaultSkills.OneHanded)}, characterObject => !characterObject.IsHero && characterObject.StringId.Contains("slayer")));
+        _deadlyDeterminationPassive3.Initialize(CareerID, "{=deadly_determination_passive3_str}Weapon swing speed increased by 15%.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15f, PassiveEffectType.SwingSpeed,true)); 
+        _deadlyDeterminationPassive4.Initialize(CareerID, "{=deadly_determination_passive4_str}Custom.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true, characterObject => characterObject.HasAttribute("Knightly")));
+
+        _urkSlayerPassive1.Initialize(CareerID, "{=urk_slayer_passive1_str}15% movement speed", "UrkSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.MovementSpeed,true));
+        _urkSlayerPassive2.Initialize(CareerID, "{=urk_slayer_passive2_str}10% extra melee damage while on horseback.", "UrkSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee,
+            (attacker, victim, mask) => mask== AttackTypeMask.Melee&& attacker.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(attacker,9f) && victim.Character.Culture.StringId == "aserai")); 
+        _urkSlayerPassive3.Initialize(CareerID, "{=urk_slayer_passive4_str}Increases Range resistance by 40%.", "UrkSlayer", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical,40),AttackTypeMask.Ranged));
+        _urkSlayerPassive4.Initialize(CareerID, "{=urk_slayer_passive3_str}Any Attack adds bonus against shields", "UrkSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special));
+        
+        _giantSlayerPassive1.Initialize(CareerID, "{=giant_slayer_passive1_str}Increases Hitpoints by 25.", "GiantSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+        _giantSlayerPassive2.Initialize(CareerID, "{=giant_slayer_passive2_str}25% Bonus damage against mounts if weight undershoots 9", "GiantSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
+        _giantSlayerPassive3.Initialize(CareerID, "{=giant_slayer_passive3_str}Slayer units gain 50 extra two-handed  skill.", "GiantSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, new List<string>(){nameof(DefaultSkills.TwoHanded)}, characterObject => !characterObject.IsHero && characterObject.StringId.Contains("slayer")));
+
+        
+        _baneOfChaosPassive1.Initialize(CareerID, "{=bane_of_chaos_passive1_str}15% spell damage resistance if weight", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 20), AttackTypeMask.Melee, 
+            (attacker, victim, mask) => mask == AttackTypeMask.Spell && victim.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(victim,9) ));
+
+        _baneOfChaosPassive2.Initialize(CareerID, "{=bane_of_chaos_passive2_str}Increases Hitpoints by 25.", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+        _baneOfChaosPassive3.Initialize(CareerID, "{=bane_of_chaos_passive3_str}Extra 25% armor penetration of melee attacks.", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
+        _baneOfChaosPassive4.Initialize(CareerID, "{=bane_of_chaos_passive4_str}20% bonus damage against chaos and beastmen.", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
+            (attacker, victim, mask) => mask== AttackTypeMask.Melee&& attacker.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(attacker,9f))); 
+        
+        _theLastJourneyPassive1.Initialize(CareerID, "{=the_last_journey_passive1_str}Increases Hitpoints by 25.", "LastJourney", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+        _theLastJourneyPassive2.Initialize(CareerID, "{=the_last_journey_passive2_str}25% physical melee damage resistance if weight undershoots 9 stones", "LastJourney", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 25), AttackTypeMask.Melee, 
+            (attacker, victim, mask) => mask == AttackTypeMask.Melee && victim.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(victim,9) ));
+        _theLastJourneyPassive3.Initialize(CareerID, "{=the_last_journey_passive3_str}15% physical melee damage resistance for slayers", "LastJourney", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee, 
+            (attacker, victim, mask) => mask == AttackTypeMask.Melee && !victim.IsHero &&  victim.Character.StringId.Contains("slayer") ));
+        _theLastJourneyPassive4.Initialize(CareerID, "{=the_last_journey_passive4_str}40% Range resistance for slayer units and heroes.", "LastJourney", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical,40),AttackTypeMask.Ranged,
+            (attacker, victim, mask) => mask == AttackTypeMask.Ranged && !victim.IsHero &&  victim.Character.StringId.Contains("slayer")));
+        
+    }
+}

@@ -46,7 +46,8 @@ namespace TOR_Core.CharacterDevelopment
                 new SpellsingerCareerChoices(TORCareers.Spellsinger),
                 new GreyLordCareerChoices(TORCareers.GreyLord),
                 new KnightOldWorldCareerChoices(TORCareers.KnightOldWorld),
-                new IronbreakerCareerChoices(TORCareers.Ironbreaker)
+                new IronbreakerCareerChoices(TORCareers.Ironbreaker),
+                new SlayerCareerChoices(TORCareers.Slayer),
             ];
         }
 

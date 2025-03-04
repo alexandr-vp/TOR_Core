@@ -12,6 +12,7 @@ using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
@@ -117,6 +118,7 @@ namespace TOR_Core.Models
                 var weaponComponentData = weapon.CurrentUsageItem;
 
                 if (attacker.IsHero && attacker.HeroObject == Hero.MainHero)
+                {
                     if (Hero.MainHero.HasAnyCareer())
                     {
                         var choices = Hero.MainHero.GetAllCareerChoices();
@@ -124,17 +126,30 @@ namespace TOR_Core.Models
                         if (choices.Contains("MartiallePassive4") || 
                             choices.Contains("NightRiderPassive4") || 
                             choices.Contains("TeachingsOfTheWinterFatherPassive3")||
-                            choices.Contains("IronPricePassive2"))
+                            choices.Contains("IronPricePassive2") ||
+                            choices.Contains("UrkSlayerPassive4"))
                         {
                             weaponComponentData.WeaponFlags |= WeaponFlags.BonusAgainstShield;
                         }
+
+                        if (choices.Contains("GiantSlayerPassive4") && attackInformation.IsVictimAgentMount)
+                        {
+                            if (CareerChoicesHelper.ArmorWeightCheck(attackerAgent, 9))
+                            {
+                                resultDamage.Add(resultDamage.BaseNumber*0.25f);
+                            }
+                            
+                        }
                     }
+                }
+                    
 
                 if (defender.IsUndead()|| defender.IsVampire() && attacker.HasAttribute("UndeadBane"))
                 {
                     resultDamage.AddFactor(0.5f);
                 }
             }
+            
             
             if (attacker.IsTreeSpirit())
             {

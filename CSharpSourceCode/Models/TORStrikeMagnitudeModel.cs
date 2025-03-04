@@ -2,8 +2,10 @@ using Helpers;
 using SandBox.GameComponents;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
@@ -26,8 +28,10 @@ namespace TOR_Core.Models
 
                 if (attacker.IsPlayerCharacter&& attacker.HeroObject == Hero.MainHero)
                 {
+                    
                     var attackMask = AttackTypeMask.Melee;
                     if (weaponComponent.IsRangedWeapon) attackMask = AttackTypeMask.Ranged;
+                    
                     CareerHelper.ApplyBasicCareerPassives(attacker.HeroObject, ref resultArmor, PassiveEffectType.ArmorPenetration, attackMask, true);
                 }
 

@@ -43,7 +43,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             numberOfTroopsFromInteraction = 0;
             PlayerEncounter.Current.IsPlayerWaiting = true;
             args.MenuContext.GameMenu.StartWait();
-        }, null, PrayConsequence, PrayingTick, GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
+        }, null, PrayConsequence, PrayingTick, GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameOverlays.MenuOverlayType.None, TORConstants.SHRINE_PRAYING_DURATION, GameMenu.MenuFlags.None, null);
         starter.AddGameMenu("shrine_menu_pray_result", "{PRAY_RESULT} {NEWLINE} {FOLLOWERS_RESULT}", PrayResultInit);
         starter.AddGameMenuOption("shrine_menu_pray_result", "return_to_root", "Continue", args =>
         {
@@ -124,11 +124,13 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         var godName = GameTexts.FindText("tor_religion_name_of_god", component.Religion.StringId);
         MBTextManager.SetTextVariable("GOD_NAME", godName);
         MBTextManager.SetTextVariable("PRAY_TEXT", "{=tor_custom_settlement_shrine_pray_text_str}Pray to receive the blessing of {GOD_NAME}");
+        /*
         if (MobileParty.MainParty.HasAnyActiveBlessing())
         {
             args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_blessing_already_active_str}You already have an active blessing.", null);
             args.IsEnabled = false;
         }
+        */
 
         if (CareerHelper.IsPriestCareer(Hero.MainHero.GetCareer()) && CareerHelper.GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer()) != component.Religion.StringId)
         {
@@ -207,7 +209,14 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
                             return;
                         }
                         var freeSlots = MobileParty.MainParty.Party.PartySizeLimit - MobileParty.MainParty.MemberRoster.TotalManCount;
-                        var count = MBRandom.RandomInt(1, 4); //TODO adjust here for devotion effects
+                        var count = MBRandom.RandomInt(1, 4);
+
+                        if (Hero.MainHero.HasCareerChoice("AxeOfGrimnirPassive4"))
+                        {
+                            count *= 2;
+                        }
+                        
+                        count = freeSlots < count ? freeSlots : count;
                         if (freeSlots > 0)
                         {
                             if (freeSlots < count) count = freeSlots;
@@ -288,6 +297,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             MBTextManager.SetTextVariable("FOLLOWER_RESULT_NUMBER", numberOfTroopsFromInteraction.ToString());
             MBTextManager.SetTextVariable("FOLLOWER_RESULT_TROOP", troop.EncyclopediaLinkWithName);
             MBTextManager.SetTextVariable("FOLLOWERS_RESULT", "{=tor_custom_settlement_shrine_follower_result_str}Witnessing your prayers have inspired {FOLLOWER_RESULT_NUMBER} {FOLLOWER_RESULT_TROOP} to join your party.");
+            numberOfTroopsFromInteraction = 0;
         }
     }
 

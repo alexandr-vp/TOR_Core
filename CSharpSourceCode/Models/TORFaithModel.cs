@@ -23,6 +23,18 @@ namespace TOR_Core.Models
         public int CalculateSkillXpForPraying(Hero hero, int blessingDuration=1)
         {
             ExplainedNumber result = new ExplainedNumber(TORConstants.DEFAULT_PRAYING_FAITH_XP);
+
+            if (hero.PartyBelongedTo.HasAnyActiveBlessing())
+            {
+                var t = hero.PartyBelongedTo.GetPartyInfo();
+
+                if (t.CurrentBlessingRemainingDuration - blessingDuration < 1)
+                {
+                    return 0;
+                }
+                
+                blessingDuration = t.CurrentBlessingRemainingDuration - blessingDuration;
+            }
             result.AddFactor(blessingDuration-1);
             return (int)result.ResultNumber;
         }
@@ -66,6 +78,8 @@ namespace TOR_Core.Models
                     hero.Heal(value,false);
                 }
             }
+
+      
             
             if (cultID== "cult_of_ulric" && Hero.MainHero.HasCareerChoice("TeachingsOfTheWinterFatherPassive2"))
             {

@@ -300,6 +300,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         Ammo,               //Player ammo , flat number
         SwingSpeed,
         EquipmentWeightReduction,
-        TroopSkill          // adds for troops additional skill value
+        TroopSkill,         // adds for troops additional skill value
+        MovementSpeed       //Player movement speed
     }
 }

@@ -470,6 +470,7 @@ namespace TOR_Core.Models
             ExplainedNumber movementAccuracyPenalty = new ExplainedNumber(agentDrivenProperties.WeaponMaxMovementAccuracyPenalty);
             ExplainedNumber accuracyPenalty = new ExplainedNumber(agentDrivenProperties.WeaponInaccuracy);
             ExplainedNumber swingSpeed = new ExplainedNumber(agentDrivenProperties.SwingSpeedMultiplier);
+            ExplainedNumber movementSpeed = new ExplainedNumber(agentDrivenProperties.MaxSpeedMultiplier);
             if (weapon != null && character != null)
             {
                 if (weapon.WeaponClass == WeaponClass.Pistol && !agent.HasMount)
@@ -485,11 +486,14 @@ namespace TOR_Core.Models
                 CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref accuracyPenalty, PassiveEffectType.AccuracyPenalty);
                 
                 CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref swingSpeed, PassiveEffectType.SwingSpeed);
+                
+                CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref movementSpeed, PassiveEffectType.MovementSpeed);
             }
 
             agentDrivenProperties.WeaponMaxMovementAccuracyPenalty = movementAccuracyPenalty.ResultNumber;
             agentDrivenProperties.WeaponInaccuracy = accuracyPenalty.ResultNumber;
             agentDrivenProperties.SwingSpeedMultiplier = swingSpeed.ResultNumber;
+            agentDrivenProperties.MaxSpeedMultiplier = movementSpeed.ResultNumber;
 
         }
 

@@ -254,10 +254,10 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.All,
                 (attacker, victim, mask) => victim.IsUndead() && attacker.IsMainAgent  && mask == AttackTypeMask.Melee  ));
         
-        _pathOfVigilancePassive1.Initialize(CareerID, "{=path_of_vigilance_passive1_str}50% additional Hitpoints for the player's mount.", "PathOfViligance", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseHealth, true)); 
-        _pathOfVigilancePassive2.Initialize(CareerID, "{=path_of_vigilance_passive2_str}Gain 15% physical resistance to melee and ranged attacks.", "PathOfViligance", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Ranged | AttackTypeMask.Melee)); 
-        _pathOfVigilancePassive3.Initialize(CareerID,"{=path_of_vigilance_passive3_str}Hits below 15 damage do not stagger the player.","PathOfViligance",false,ChoiceType.Passive);
-        _pathOfVigilancePassive4.Initialize(CareerID, "{=path_of_vigilance_passive4_str}Wielding a shield increases wardsave.", "PathOfViligance", false, ChoiceType.Passive, null,
+        _pathOfVigilancePassive1.Initialize(CareerID, "{=path_of_vigilance_passive1_str}50% additional Hitpoints for the player's mount.", "PathOfVigilance", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseHealth, true)); 
+        _pathOfVigilancePassive2.Initialize(CareerID, "{=path_of_vigilance_passive2_str}Gain 15% physical resistance to melee and ranged attacks.", "PathOfVigilance", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Ranged | AttackTypeMask.Melee)); 
+        _pathOfVigilancePassive3.Initialize(CareerID,"{=path_of_vigilance_passive3_str}Hits below 15 damage do not stagger the player.","PathOfVigilance",false,ChoiceType.Passive);
+        _pathOfVigilancePassive4.Initialize(CareerID, "{=path_of_vigilance_passive4_str}Wielding a shield increases wardsave.", "PathOfVigilance", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 35), AttackTypeMask.All,
                 (attacker, victim, mask) => victim.IsMainAgent && victim.WieldedOffhandWeapon.IsShield() ));
         

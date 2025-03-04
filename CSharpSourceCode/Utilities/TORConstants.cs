@@ -33,6 +33,8 @@ namespace TOR_Core.Utilities
         public const int ELVEN_VOICES_COUNT = 1;
         public const int TREESPIRIT_VOICE_INDEX_START = 33;
         public const int TREESPIRIT_VOICES_COUNT = 1;
+        
+        public const float SHRINE_PRAYING_DURATION = 6f;
 
         public readonly struct Cultures
         {
