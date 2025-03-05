@@ -97,7 +97,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 int usedPoints = info.CareerChoices.Count - 1; //Account for root choice, does not need to be taken into consideration.
 
                 var min = Mathf.Min(TORConfig.MaximumNumberOfCareerPerkPoints, Hero.MainHero.Level);
-                FreeCareerPoints = "Free career points: " + (min - usedPoints).ToString();
+
+                var free = min - usedPoints;
+                
+                GameTexts.SetVariable("FREE_CAREERPOINTS",free.ToString());
+                
+                var text  = GameTexts.FindText("str_career_screen","free_points").ToString();
+                
+                FreeCareerPoints = text;
             }
             
         }

@@ -3,6 +3,7 @@
   <!-- UI -->
   <string id="str_career_screen.title" text= "{=tor_career_screen_title_str}Career"/>
   <string id="str_career_screen.ability_title" text= "{=tor_career_ability_title_str}Career Ability"/>
+  <string id="str_career_screen.free_points" text= "{=tor_career_free_points_label_str}Free career points: {FREE_CAREERPOINTS}"/>
   
   
   <!-- CC Options -->
