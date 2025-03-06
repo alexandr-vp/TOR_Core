@@ -293,6 +293,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddCareer(TORCareers.Ironbreaker);
             }
             
+            if (id == "option_3_dw_slayer")
+            {
+                Hero.MainHero.AddCareer(TORCareers.Slayer);
+            }
+            
             if (IsWitchHunterCharacterCreationID(id))
             {
                 Hero.MainHero.AddCareer(TORCareers.WitchHunter);
