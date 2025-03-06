@@ -78,8 +78,6 @@ namespace TOR_Core.Models
                     hero.Heal(value,false);
                 }
             }
-
-      
             
             if (cultID== "cult_of_ulric" && Hero.MainHero.HasCareerChoice("TeachingsOfTheWinterFatherPassive2"))
             {

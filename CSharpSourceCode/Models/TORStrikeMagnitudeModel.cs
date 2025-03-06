@@ -28,7 +28,6 @@ namespace TOR_Core.Models
 
                 if (attacker.IsPlayerCharacter&& attacker.HeroObject == Hero.MainHero)
                 {
-                    
                     var attackMask = AttackTypeMask.Melee;
                     if (weaponComponent.IsRangedWeapon) attackMask = AttackTypeMask.Ranged;
                     
@@ -57,7 +56,6 @@ namespace TOR_Core.Models
                         }
                         
                     }
-                    
                     
                 }
 

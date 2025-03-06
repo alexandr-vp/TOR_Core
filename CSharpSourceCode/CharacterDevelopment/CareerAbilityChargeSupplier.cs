@@ -528,8 +528,12 @@ namespace TOR_Core.CharacterDevelopment
                 malus += 1;
             }
 
-            chargeValue = (int)(chargeValue- (chargeValue * (0.1f * malus)));
-            
+            if (malus > 0)
+            {
+                chargeValue = (int)(chargeValue- (chargeValue * (0.1f * malus)));
+            }
+
+           
             
             return chargeType switch
             {

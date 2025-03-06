@@ -426,16 +426,18 @@ namespace TOR_Core.BattleMechanics
                         }
                     }
                 }
-                
-                if(affectedAgent.IsUndead() || affectedAgent.Character.IsCultist())     //TODO needs a Chaos Attribute
-                if (choices.Contains("SilverHammerPassive1") || 
-                    choices.Contains("TemplarOrdersPassive2"))
+
+                if (affectedAgent.IsUndead() || affectedAgent.Character.IsCultist())
                 {
+                    if (choices.Contains("SilverHammerPassive1") || 
+                        choices.Contains("TemplarOrdersPassive2"))
+                    {
                
-                    Hero.MainHero.AddSkillXp(TORSkills.Faith, 10);
-                }
-
-
+                        Hero.MainHero.AddSkillXp(TORSkills.Faith, 10);
+                    }
+                }  
+               
+                
                 if (choices.Contains("AxeOfGrimnirPassive3"))
                 {
                     Hero.MainHero.AddSkillXp(TORSkills.Faith, 10);
