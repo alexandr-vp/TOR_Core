@@ -1068,7 +1068,7 @@ namespace TOR_Core.CharacterDevelopment
             _deadlyDetermination.Initialize("{=deadly_determination_choice_group_str}Deadly Determination", TORCareers.Slayer, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
-                return hero.Clan.Tier >= 2;
+                return true;
             });
             _urkSlayer.Initialize("{=urk_slayer_choice_group_str}Urk Slayer", TORCareers.Slayer, 2, (Hero hero, out string text) =>
             {
@@ -1077,13 +1077,13 @@ namespace TOR_Core.CharacterDevelopment
             });
             _giantSlayer.Initialize("{=giant_slayer_choice_group_str}Giant Slayer", TORCareers.Slayer, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
-                return hero.Clan.Tier >= 2;
+                text = string.Empty;
+                return true;
             });
             _baneOfChaos.Initialize("{=bane_of_chaos_choice_group_str}Bane of Chaos", TORCareers.Slayer, 2, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
-                return hero.Clan.Tier >= 4;
+                text = string.Empty;
+                return true;
             });
             _lastJourney.Initialize("{=last_journey_choice_group_str}The Last Journey", TORCareers.Slayer, 3, (Hero hero, out string text) =>
             {
