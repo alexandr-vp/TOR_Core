@@ -44,6 +44,7 @@ public class IronbreakerCareerButtonBehavior(CareerObject careerObject) : Career
         }
         else
         {
+            PartyScreenManager.PartyScreenLogic.CurrentData.PartyGoldChangeAmount -= GoldCost;
             CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(),ExchangeCost);
             CareerButtonHelper.ExchangeUnitForNewUnit(characterObject, ironbreakerUnit, true);
         }

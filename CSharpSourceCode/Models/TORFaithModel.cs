@@ -24,7 +24,7 @@ namespace TOR_Core.Models
         {
             ExplainedNumber result = new ExplainedNumber(TORConstants.DEFAULT_PRAYING_FAITH_XP);
 
-            if (hero.PartyBelongedTo.HasAnyActiveBlessing())
+            if (hero.PartyBelongedTo!=null && hero.PartyBelongedTo.HasAnyActiveBlessing())
             {
                 var t = hero.PartyBelongedTo.GetPartyInfo();
 

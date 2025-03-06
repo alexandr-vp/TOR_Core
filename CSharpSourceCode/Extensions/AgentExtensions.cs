@@ -97,30 +97,16 @@ namespace TOR_Core.Extensions
             return agent.Character.IsTreeSpirit();
         }
 
-        public static bool IsDamageShruggedOff(this Agent agent, int inflictedDamge=0)
+        public static bool IsDamageShruggedOff(this Agent agent, int inflictedDamage=0)
         {
             if (Campaign.Current == null) return false;
-            if (inflictedDamge > 15) return false;
             
             if (agent.IsMainAgent && agent.GetHero().HasAnyCareer())
             {
-                var choices = agent.GetHero().GetAllCareerChoices();
-                if (choices.Contains("ProtectorOfTheWeakPassive4"))
+                if (CareerHelper.ShruggedOffDamage(Hero.MainHero, inflictedDamage))
+                {
                     return true;
-                if (choices.Contains("BladeMasterPassive3"))
-                    return true;
-                if (choices.Contains("CommanderPassive3"))
-                    return true;
-                if (choices.Contains("MonsterSlayerPassive4"))
-                    return true;
-                if (choices.Contains("BlackGrailVowPassive2"))
-                    return true;
-                if (choices.Contains("FuryOfWarPassive4"))
-                    return true;
-                if (choices.Contains("PathOfViligancePassive3"))
-                    return true;
-                if (choices.Contains("IronPricePassive1"))
-                    return true;
+                }
             }
 
             if (Hero.MainHero.HasCareer(TORCareers.Necromancer))

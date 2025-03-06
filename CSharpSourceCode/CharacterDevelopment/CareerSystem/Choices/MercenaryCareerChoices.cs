@@ -307,7 +307,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _commanderPassive2.Initialize(CareerID, "{=commander_lord_passive2_str}Increases the damage of all melee troops by 15%.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee, 
                 (attacker, victim, mask) => attacker.BelongsToMainParty() && !(attacker.IsMainAgent || attacker.IsHero)&& mask == AttackTypeMask.Melee));
             
-            _commanderPassive3.Initialize(CareerID, "{=commander_lord_passive3_str}Hits below 15 damage do not stagger the player.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special)); // Agent extension 83
+            _commanderPassive3.Initialize(CareerID, "{=commander_lord_passive3_str}Hits below 15 damage do not stagger the player.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));
             _commanderPassive4.Initialize(CareerID, "{=commander_lord_passive4_str}Companion health of party is increased by 25.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special));
         }
         

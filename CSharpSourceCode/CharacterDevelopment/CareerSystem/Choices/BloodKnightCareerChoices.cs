@@ -368,7 +368,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _bladeMasterPassive1.Initialize(CareerID, "{=blade_master_passive1_str}20% extra melee damage.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
             _bladeMasterPassive2.Initialize(CareerID, "{=blade_master_passive2_str}Increases health regeneration after battles by 5.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
-            _bladeMasterPassive3.Initialize(CareerID, "{=blade_master_passive3_str}Hits below 15 damage will not stagger the player.", "BladeMaster", false, ChoiceType.Passive, null); // Agent extension 83,
+            _bladeMasterPassive3.Initialize(CareerID, "{=blade_master_passive3_str}Hits below 15 damage do not stagger the player.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));
             _bladeMasterPassive4.Initialize(CareerID, "{=blade_master_passive4_str}All troops, the player included, gain exp when raiding villages.", "BladeMaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TorRaidModel 23  AND TorCareerPerkCampaignBehavior 73
             
             _doomRiderPassive1.Initialize(CareerID, "{=doom_rider_passive1_str}20% extra melee damage.", "DoomRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee));

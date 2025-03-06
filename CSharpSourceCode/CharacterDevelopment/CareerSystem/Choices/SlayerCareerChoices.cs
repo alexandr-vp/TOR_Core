@@ -61,47 +61,47 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     {
         _slayerRoot = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("SlayerRoot"));
         
-        _axeOfGrimnirPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("AxeOfGrimnirPassive1"));
-        _axeOfGrimnirPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("AxeOfGrimnirPassive2"));
-        _axeOfGrimnirPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("AxeOfGrimnirPassive3"));
-        _axeOfGrimnirPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("AxeOfGrimnirPassive4"));
-        _axeOfGrimnirKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("AxeOfGrimnirKeystone"));
+        _axeOfGrimnirPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_axeOfGrimnirPassive1).UnderscoreFirstCharToUpper()));
+        _axeOfGrimnirPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_axeOfGrimnirPassive2).UnderscoreFirstCharToUpper()));
+        _axeOfGrimnirPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_axeOfGrimnirPassive3).UnderscoreFirstCharToUpper()));
+        _axeOfGrimnirPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_axeOfGrimnirPassive4).UnderscoreFirstCharToUpper()));
+        _axeOfGrimnirKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_axeOfGrimnirKeystone).UnderscoreFirstCharToUpper()));
 
-        _shameOfTheAncestorsPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ShameForTheAncestorsPassive1"));
-        _shameOfTheAncestorsPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ShameForTheAncestorsPassive2"));
-        _shameOfTheAncestorsPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ShameForTheAncestorsPassive3"));
-        _shameOfTheAncestorsPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ShameForTheAncestorsPassive4"));
-        _shameOfTheAncestorsKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("ShameForTheAncestorsKeystone"));
+        _shameOfTheAncestorsPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_shameOfTheAncestorsPassive1).UnderscoreFirstCharToUpper()));
+        _shameOfTheAncestorsPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_shameOfTheAncestorsPassive2).UnderscoreFirstCharToUpper()));
+        _shameOfTheAncestorsPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_shameOfTheAncestorsPassive3).UnderscoreFirstCharToUpper()));
+        _shameOfTheAncestorsPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_shameOfTheAncestorsPassive4).UnderscoreFirstCharToUpper()));
+        _shameOfTheAncestorsKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_shameOfTheAncestorsKeystone).UnderscoreFirstCharToUpper()));
 
-        _deadlyDeterminationPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeadlyDeterminationPassive1"));
-        _deadlyDeterminationPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeadlyDeterminationPassive2"));
-        _deadlyDeterminationPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeadlyDeterminationPassive3"));
-        _deadlyDeterminationPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeadlyDeterminationPassive4"));
-        _deadlyDeterminationKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("DeadlyDeterminationKeystone"));
+        _deadlyDeterminationPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_deadlyDeterminationPassive1).UnderscoreFirstCharToUpper()));
+        _deadlyDeterminationPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_deadlyDeterminationPassive2).UnderscoreFirstCharToUpper()));
+        _deadlyDeterminationPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_deadlyDeterminationPassive3).UnderscoreFirstCharToUpper()));
+        _deadlyDeterminationPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_deadlyDeterminationPassive4).UnderscoreFirstCharToUpper()));
+        _deadlyDeterminationKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_deadlyDeterminationKeystone).UnderscoreFirstCharToUpper()));
 
-        _urkSlayerPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("UrkSlayerPassive1"));
-        _urkSlayerPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("UrkSlayerPassive2"));
-        _urkSlayerPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("UrkSlayerPassive3"));
-        _urkSlayerPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("UrkSlayerPassive4"));
-        _urkSlayerKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("UrkSlayerKeystone"));
+        _urkSlayerPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_urkSlayerPassive1).UnderscoreFirstCharToUpper()));
+        _urkSlayerPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_urkSlayerPassive2).UnderscoreFirstCharToUpper()));
+        _urkSlayerPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_urkSlayerPassive3).UnderscoreFirstCharToUpper()));
+        _urkSlayerPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_urkSlayerPassive4).UnderscoreFirstCharToUpper()));
+        _urkSlayerKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_urkSlayerKeystone).UnderscoreFirstCharToUpper()));
 
-        _giantSlayerPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("MonsterSlayerPassive1"));
-        _giantSlayerPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("MonsterSlayerPassive2"));
-        _giantSlayerPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("MonsterSlayerPassive3"));
-        _giantSlayerPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("MonsterSlayerPassive4"));
-        _giantSlayerKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("MonsterSlayerKeystone"));
+        _giantSlayerPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_giantSlayerPassive1).UnderscoreFirstCharToUpper()));
+        _giantSlayerPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_giantSlayerPassive2).UnderscoreFirstCharToUpper()));
+        _giantSlayerPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_giantSlayerPassive3).UnderscoreFirstCharToUpper()));
+        _giantSlayerPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_giantSlayerPassive4).UnderscoreFirstCharToUpper()));
+        _giantSlayerKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_giantSlayerKeystone).UnderscoreFirstCharToUpper()));
 
-        _baneOfChaosPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BaneOfChaosPassive1"));
-        _baneOfChaosPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BaneOfChaosPassive2"));
-        _baneOfChaosPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BaneOfChaosPassive3"));
-        _baneOfChaosPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BaneOfChaosPassive4"));
-        _baneOfChaosKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("BaneOfChaosKeystone"));
+        _baneOfChaosPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_baneOfChaosPassive1).UnderscoreFirstCharToUpper()));
+        _baneOfChaosPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_baneOfChaosPassive2).UnderscoreFirstCharToUpper()));
+        _baneOfChaosPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_baneOfChaosPassive3).UnderscoreFirstCharToUpper()));
+        _baneOfChaosPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_baneOfChaosPassive4).UnderscoreFirstCharToUpper()));
+        _baneOfChaosKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_baneOfChaosKeystone).UnderscoreFirstCharToUpper()));
 
-        _theLastJourneyPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("TheLastJourneyPassive1"));
-        _theLastJourneyPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("TheLastJourneyPassive2"));
-        _theLastJourneyPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("TheLastJourneyPassive3"));
-        _theLastJourneyPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("TheLastJourneyPassive4"));
-        _theLastJourneyKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("TheLastJourneyKeystone"));
+        _theLastJourneyPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_theLastJourneyPassive1).UnderscoreFirstCharToUpper()));
+        _theLastJourneyPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_theLastJourneyPassive2).UnderscoreFirstCharToUpper()));
+        _theLastJourneyPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_theLastJourneyPassive3).UnderscoreFirstCharToUpper()));
+        _theLastJourneyPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_theLastJourneyPassive4).UnderscoreFirstCharToUpper()));
+        _theLastJourneyKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_theLastJourneyKeystone).UnderscoreFirstCharToUpper()));
     }
 
     protected override void InitializeKeyStones()
@@ -263,7 +263,7 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _giantSlayerPassive1.Initialize(CareerID, "{=giant_slayer_passive1_str}Increases Hitpoints by 25.", "GiantSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
         _giantSlayerPassive2.Initialize(CareerID, "{=giant_slayer_passive2_str}25% Bonus damage against mounts if weight undershoots 9", "GiantSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
         _giantSlayerPassive3.Initialize(CareerID, "{=giant_slayer_passive3_str}Slayer units gain 50 extra two-handed  skill.", "GiantSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, new List<string>(){nameof(DefaultSkills.TwoHanded)}, characterObject => !characterObject.IsHero && characterObject.StringId.Contains("slayer")));
-
+        _giantSlayerPassive4.Initialize(CareerID, "{=giant_slayer_passive1_str}Unable to be staggered by any damage.", "GiantSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.ShruggedOff));
         
         _baneOfChaosPassive1.Initialize(CareerID, "{=bane_of_chaos_passive1_str}15% spell damage resistance if weight", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 20), AttackTypeMask.Melee, 
             (attacker, victim, mask) => mask == AttackTypeMask.Spell && victim.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(victim,9) ));

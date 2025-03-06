@@ -301,6 +301,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         SwingSpeed,
         EquipmentWeightReduction,
         TroopSkill,         // adds for troops additional skill value
-        MovementSpeed       //Player movement speed
+        MovementSpeed,       //Player movement speed
+        ShruggedOff
     }
 }

@@ -304,7 +304,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
             (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && victim.Character.Culture.StringId == "aserai"));
         _tunnelWatchPassive4.Initialize(CareerID, "{=tunnel_watch_passive4_str}10% extra melee damage.", "TunnelWatch", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
 
-        _ironPricePassive1.Initialize(CareerID, "{=iron_price_passive1_str}Hits below 15 damage won't stagger", "IronPrice", false, ChoiceType.Passive, null);
+        _ironPricePassive1.Initialize(CareerID, "{=iron_price_passive1_str}Hits below 15 damage do not stagger the player.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));
         _ironPricePassive2.Initialize(CareerID, "{=iron_price_passive2_str}Attacks deal bonus damage against shields.", "IronPrice", false, ChoiceType.Passive, null);
         _ironPricePassive3.Initialize(CareerID, "{=iron_price_passive3_str}custom resource upgrade costs for Ironbreaker units are reduced by 25%.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true, characterObject => characterObject.HasAttribute("Ironbreaker")));
         _ironPricePassive4.Initialize(CareerID, "{=iron_price_passive4_str}Custom.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true, characterObject => characterObject.HasAttribute("Knightly")));

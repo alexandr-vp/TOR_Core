@@ -78,6 +78,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             return skillValue*scalingFactor;
         }
+
+        public static bool ShruggedOffDamage(Hero hero, int damage)
+        {
+            var choices = hero.GetAllCareerChoices();
+            return (from choiceID in choices select TORCareerChoices.GetChoice(choiceID) 
+                into choice where choice != null where choice.Passive != null && choice.Passive.PassiveEffectType == PassiveEffectType.ShruggedOff select choice).AnyQ(choice => choice.GetPassiveValue() < damage);
+        }
         
         public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, AttackTypeMask mask, bool asFactor = false)
         {
