@@ -484,5 +484,59 @@ namespace TOR_Core.CharacterDevelopment
             return chargeValue;
             
         }
+        
+        public static float SlayerChargeSupplier(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue,
+            AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
+        {
+
+            if (!affectingAgent.IsMainAgent) return 0;
+
+            var malus = 0;
+            
+            if (Hero.MainHero.HasCareerChoice("AxeOfGrimnirKeystone"))
+            {
+                malus += 1;
+            }
+            
+            if (Hero.MainHero.HasCareerChoice("ShameOfTheAncestorsKeystone"))
+            {
+                malus += 1;
+            }
+            
+            if (Hero.MainHero.HasCareerChoice("DeadlyDeterminationKeystone"))
+            {
+                malus += 1;
+            }
+            
+            if (Hero.MainHero.HasCareerChoice("UrkSlayerKeystone"))
+            {
+                malus += 1;
+            }
+            
+            if (Hero.MainHero.HasCareerChoice("GiantSlayerKeystone"))
+            {
+                malus += 1;
+            }
+            
+            if (Hero.MainHero.HasCareerChoice("BaneOfChaosKeystone"))
+            {
+                malus += 1;
+            }
+            
+            if (Hero.MainHero.HasCareerChoice("TheLastJourneyKeystone"))
+            {
+                malus += 1;
+            }
+
+            chargeValue = (int)(chargeValue- (chargeValue * (0.1f * malus)));
+            
+            
+            return chargeType switch
+            {
+                ChargeType.NumberOfKills => 100,
+                ChargeType.DamageDone => chargeValue,
+                _ => chargeValue
+            };
+        }
     }
 }
