@@ -97,6 +97,11 @@ namespace TOR_Core.Extensions
             return agent.Character.IsTreeSpirit();
         }
 
+        public static bool IsSlayer(this Agent agent)
+        {
+            return agent.Character.Culture.StringId == TORConstants.Cultures.DAWI && agent.Character.StringId.Contains("slayer");
+        }
+
         public static bool IsDamageShruggedOff(this Agent agent, int inflictedDamage=0)
         {
             if (Campaign.Current == null) return false;

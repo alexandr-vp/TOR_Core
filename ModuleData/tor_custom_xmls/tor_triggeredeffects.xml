@@ -1117,7 +1117,21 @@
                              ImbuedStatusEffectDuration="20"
                              DamageVariance="0"
                              ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyKnightlyStrikeTraitScript" />
-	
+							 
+	<TriggeredEffectTemplate StringID="apply_doom_seeking"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="5"
+                             HasShockWave="false"
+                             TargetType="Friendly"
+                             ImbuedStatusEffectDuration="20"
+                             DamageVariance="0"
+                             ScriptNameToTrigger="none">
+		<ImbuedStatusEffect>doom_seeking_attribute</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
 	
     <TriggeredEffectTemplate StringID="apply_swift_shiver_trait"
                              BurstParticleEffectPrefab="none"

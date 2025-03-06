@@ -320,9 +320,35 @@ namespace TOR_Core.BattleMechanics
 
             var hitBodyPart = blow.VictimBodyPart;
 
+            if (Hero.MainHero.HasCareer(TORCareers.Slayer))
+            {
+                if (affectedAgent.BelongsToMainParty())
+                {
+                    if (Hero.MainHero.HasCareerChoice("DeadlyDeterminationPassive4")  && affectedAgent.IsSlayer())
+                    {
+                        CareerMissionVariables[0] ++;
+                    }
+                }
+            
+                if (affectorAgent.BelongsToMainParty())
+                {
+                    if (Hero.MainHero.HasCareerChoice("TheLastJourneyKeystone")  && affectedAgent.IsSlayer())
+                    {
+                        CareerMissionVariables[0] ++;
+                    }
+                }
+            }
+            
+
             if (affectorAgent.IsMainAgent)
             {
                 var choices = Hero.MainHero.GetAllCareerChoices();
+
+                if (Hero.MainHero.HasCareer(TORCareers.Slayer) && Agent.Main.HasAttribute("DoomSeeking"))
+                {
+                    CareerMissionVariables[0]++;
+                }
+                
                 if (hitBodyPart == BoneBodyPartType.Head || hitBodyPart == BoneBodyPartType.Neck)
                 {
                     if (choices.Contains("CourtleyPassive4"))

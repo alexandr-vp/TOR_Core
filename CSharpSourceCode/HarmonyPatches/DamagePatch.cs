@@ -200,17 +200,35 @@ namespace TOR_Core.HarmonyPatches
                 return true;
             }
 
-            if (attackTypeMask == AttackTypeMask.Ranged && attacker.IsMainAgent && Campaign.Current!=null && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            if (attacker.IsMainAgent)
             {
-                if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4"))
+                if (attackTypeMask == AttackTypeMask.Ranged && Campaign.Current!=null && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+                {
+                    if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4"))
+                    {
+                        CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
+                        if (careerPerkBehavior != null)
+                        {
+                            damageProportions[(int)DamageType.Magical] += 0.01f*careerPerkBehavior.CareerMissionVariables[0];
+                        }  
+                    }
+                }
+                
+                if (attackTypeMask == AttackTypeMask.Melee && Campaign.Current!=null && Hero.MainHero.HasCareer(TORCareers.Slayer))
                 {
                     CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
                     if (careerPerkBehavior != null)
                     {
-                        damageProportions[(int)DamageType.Magical] += 0.01f*careerPerkBehavior.CareerMissionVariables[0];
-                    }  
+                        damageProportions[(int)DamageType.Physical] += 0.01f*careerPerkBehavior.CareerMissionVariables[0];
+                        if (Hero.MainHero.HasCareerChoice("BaneOfChaosKeystone"))
+                        {
+                            resistancePercentages[(int)DamageType.Physical]+= 0.001f*careerPerkBehavior.CareerMissionVariables[0];
+                        }
+                        
+                    }
                 }
             }
+            
 
             //calculating non-spell damage
             for (int i = 0; i < damageCategories.Length - 1; i++)

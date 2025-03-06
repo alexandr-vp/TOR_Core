@@ -114,7 +114,7 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     MutationTargetType = typeof(TriggeredEffectTemplate),
                     MutationTargetOriginalId = "apply_impenetrable",
                     PropertyName = "ImbuedStatusEffectDuration",
-                    PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Athletics }, 0.004f),
+                    PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Athletics },  0.02f),
                     MutationType = OperationType.Add
                 }
             });
@@ -125,9 +125,9 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             new CareerChoiceObject.MutationObject()
             {
                 MutationTargetType = typeof(TriggeredEffectTemplate),
-                MutationTargetOriginalId = "apply_impenetrable",
+                MutationTargetOriginalId = "apply_doom_seeking",
                 PropertyName = "ImbuedStatusEffectDuration",
-                PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.004f),
+                PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith },  0.02f),
                 MutationType = OperationType.Add
             },
         });
@@ -138,9 +138,9 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             new CareerChoiceObject.MutationObject()
             {
                 MutationTargetType = typeof(TriggeredEffectTemplate),
-                MutationTargetOriginalId = "apply_impenetrable",
+                MutationTargetOriginalId = "apply_doom_seeking",
                 PropertyName = "ImbuedStatusEffectDuration",
-                PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Athletics }, 0.004f),
+                PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Athletics },  0.02f),
                 MutationType = OperationType.Add
             }
         });
@@ -151,9 +151,9 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 new CareerChoiceObject.MutationObject()
                 {
                     MutationTargetType = typeof(TriggeredEffectTemplate),
-                    MutationTargetOriginalId = "apply_impenetrable",
+                    MutationTargetOriginalId = "apply_doom_seeking",
                     PropertyName = "ImbuedStatusEffectDuration",
-                    PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded }, 0.004f),
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded }, 0.02f),
                     MutationType = OperationType.Add
                 }
             });
@@ -164,11 +164,11 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 new CareerChoiceObject.MutationObject()
                 {
                     MutationTargetType = typeof(TriggeredEffectTemplate),
-                    MutationTargetOriginalId = "apply_impenetrable",
-                    PropertyName = "ImbuedStatusEffectDuration",
-                    PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded }, 0.004f),
-                    MutationType = OperationType.Add
-                },
+                    MutationTargetOriginalId = "apply_doom_seeking",
+                    PropertyName = "ImbuedStatusEffects",
+                    PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "doom_seeking_dmg" }).ToList(),
+                    MutationType = OperationType.Replace
+                }
             });
         
         _giantSlayerKeystone.Initialize(CareerID, "{=giant_slayer_keystone_str}During ability your reload speed is increased. ability scales with gunpowder skill ", "GiantSlayer", false,
@@ -177,61 +177,21 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 new CareerChoiceObject.MutationObject()
                 {
                     MutationTargetType = typeof(TriggeredEffectTemplate),
-                    MutationTargetOriginalId = "apply_impenetrable",
-                    PropertyName = "ImbuedStatusEffects",
-                    PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "impenetrable_rls" }).ToList(),
-                    MutationType = OperationType.Replace
-                },
-                new CareerChoiceObject.MutationObject()
-                {
-                MutationTargetType = typeof(TriggeredEffectTemplate),
-                MutationTargetOriginalId = "apply_impenetrable",
-                PropertyName = "ImbuedStatusEffectDuration",
-                PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.GunPowder }, 0.004f),
-                MutationType = OperationType.Add
-            }
-            });
+                    MutationTargetOriginalId = "apply_doom_seeking",
+                    PropertyName = "ImbuedStatusEffectDuration",
+                    PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.TwoHanded }, 0.02f),
+                    MutationType = OperationType.Add
+                }
+            }); //special
         
         _baneOfChaosKeystone.Initialize(CareerID, "{=bane_of_chaos_keystone_str}Receiving damage during ability will stack upon, and add for each taken hit 0.5% physical resistance post ability.", "BaneOfChaos", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
-                new CareerChoiceObject.MutationObject()
-                {
-                    MutationTargetType = typeof(TriggeredEffectTemplate),
-                    MutationTargetOriginalId = "apply_impenetrable",
-                    PropertyName = "ImbuedStatusEffects",
-                    PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "impenetrable_rls" }).ToList(),
-                    MutationType = OperationType.Replace
-                },
-                new CareerChoiceObject.MutationObject()
-                {
-                    MutationTargetType = typeof(TriggeredEffectTemplate),
-                    MutationTargetOriginalId = "apply_impenetrable",
-                    PropertyName = "ImbuedStatusEffectDuration",
-                    PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.GunPowder }, 0.004f),
-                    MutationType = OperationType.Add
-                }
             });
         
         _theLastJourneyKeystone.Initialize(CareerID, "{=rune_weapons_keystone_str}For every taken hit during  your ability, physical damage is increased by 0.5% for the next 5 seconds", "LastJourney", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
-                new CareerChoiceObject.MutationObject()
-                {
-                    MutationTargetType = typeof(TriggeredEffectTemplate),
-                    MutationTargetOriginalId = "apply_impenetrable",
-                    PropertyName = "ImbuedStatusEffects",
-                    PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "impenetrable_rls" }).ToList(),
-                    MutationType = OperationType.Replace
-                },
-                new CareerChoiceObject.MutationObject()
-                {
-                    MutationTargetType = typeof(TriggeredEffectTemplate),
-                    MutationTargetOriginalId = "apply_impenetrable",
-                    PropertyName = "ImbuedStatusEffectDuration",
-                    PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.GunPowder }, 0.004f),
-                    MutationType = OperationType.Add
-                }
             });
         
     }
@@ -268,7 +228,7 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _baneOfChaosPassive1.Initialize(CareerID, "{=bane_of_chaos_passive1_str}15% spell damage resistance if weight", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 20), AttackTypeMask.Melee, 
             (attacker, victim, mask) => mask == AttackTypeMask.Spell && victim.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(victim,9) ));
 
-        _baneOfChaosPassive2.Initialize(CareerID, "{=bane_of_chaos_passive2_str}Increases Hitpoints by 25.", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+        _baneOfChaosPassive2.Initialize(CareerID, "{=bane_of_chaos_passive2_str}Increases health regeneration on the campaign map by 4.", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(4, PassiveEffectType.HealthRegeneration));
         _baneOfChaosPassive3.Initialize(CareerID, "{=bane_of_chaos_passive3_str}Extra 25% armor penetration of melee attacks.", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
         _baneOfChaosPassive4.Initialize(CareerID, "{=bane_of_chaos_passive4_str}20% bonus damage against chaos and beastmen.", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
             (attacker, victim, mask) => mask== AttackTypeMask.Melee&& attacker.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(attacker,9f))); 

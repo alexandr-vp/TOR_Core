@@ -146,7 +146,7 @@ namespace TOR_Core.CharacterDevelopment
             _greyLord.Initialize("Grey Lord Wizard", null, "MindControl",CareerAbilityChargeSupplier.GreyLordCareerCharge, 1000, typeof(MindControlScript));
             _knightOldWorld.Initialize("Knight of the Old World", null,"KnightlyStrike", CareerAbilityChargeSupplier.KnightOldWorldChargeSupplier, 500);
             _ironbreaker.Initialize("Ironbreaker", null,"Impenetrable", CareerAbilityChargeSupplier.IronbreakerChargeSupplier, 500, typeof(ImpenetrableScript));
-            _slayer.Initialize("Slayer", null,"Impenetrable", CareerAbilityChargeSupplier.IronbreakerChargeSupplier, 500, typeof(ImpenetrableScript));
+            _slayer.Initialize("Slayer", null,"DoomSeeking", CareerAbilityChargeSupplier.IronbreakerChargeSupplier, 500, typeof(ImpenetrableScript));
         }
     }
 }
