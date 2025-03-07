@@ -4533,7 +4533,7 @@
 
 	<AbilityTemplate StringID="Impenetrable"
                      Name="{=impenetrable_label_str}Impenetrable"
-                     SpriteName="knightly_strike_icon"
+                     SpriteName="impenetrable_icon"
                      CoolDown="5"
                      WindsOfMagicCost="8"
                      BaseMisCastChance="0.05"
