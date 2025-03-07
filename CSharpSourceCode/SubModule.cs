@@ -34,6 +34,7 @@ using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Careers;
 using TOR_Core.CampaignMechanics.Chaos;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomDialogs;
 using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
 using TOR_Core.CampaignMechanics.CustomEvents;
@@ -155,6 +156,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORKingdomDecisionsCampaignBehavior());
                 starter.AddBehavior(new ServeAsAHirelingCampaignBehavior());
                 starter.AddBehavior(new TORStartupBehavior());
+                starter.AddBehavior(new TORCraftingCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -180,7 +182,6 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORClanTierModel());
                 gameStarterObject.AddModel(new TORCombatXpModel());
                 gameStarterObject.AddModel(new TORDamageParticleModel());
-                //gameStarterObject.AddModel(new TORMapWeatherModel());
                 gameStarterObject.AddModel(new TORMarriageModel());
                 gameStarterObject.AddModel(new TORMobilePartyFoodConsumptionModel());
                 gameStarterObject.AddModel(new TORPartyHealingModel());
@@ -218,6 +219,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TOREncounterModel());
                 gameStarterObject.AddModel(new TORSettlementDistanceModel());
                 gameStarterObject.AddModel(new TORVolunteerModel());
+                gameStarterObject.AddModel(new TORSmithingModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }
