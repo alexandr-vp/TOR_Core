@@ -591,6 +591,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\SpellsingerCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\TORCareerChoicesBase.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\VampireCountCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\WardenCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestUlricCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WaywatcherCareerChoices.cs" />

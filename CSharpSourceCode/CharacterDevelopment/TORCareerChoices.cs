@@ -48,6 +48,7 @@ namespace TOR_Core.CharacterDevelopment
                 new KnightOldWorldCareerChoices(TORCareers.KnightOldWorld),
                 new IronbreakerCareerChoices(TORCareers.Ironbreaker),
                 new SlayerCareerChoices(TORCareers.Slayer),
+                new WardenCareerChoices(TORCareers.Warden)
             ];
         }
 

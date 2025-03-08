@@ -15,12 +15,8 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
-    public class BlackGrailKnightCareerChoices : TORCareerChoicesBase
+    public class BlackGrailKnightCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     {
-        public BlackGrailKnightCareerChoices(CareerObject id) : base(id)
-        {
-        }
-
         private CareerChoiceObject _blackGrailKnightRoot;
 
         private CareerChoiceObject _curseOfMousillonKeystone;
