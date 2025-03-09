@@ -355,6 +355,7 @@ namespace TOR_Core.CharacterDevelopment
             _gromrilArmor = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_gromrilArmor).UnderscoreFirstCharToUpper()));
             _runeWeapons = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_runeWeapons).UnderscoreFirstCharToUpper()));
             
+            //Slayer
             _axeOfGrimnir = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_axeOfGrimnir).UnderscoreFirstCharToUpper()));
             _shameOfTheAncestors = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_shameOfTheAncestors).UnderscoreFirstCharToUpper()));
             _deadlyDetermination = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_deadlyDetermination).UnderscoreFirstCharToUpper()));
@@ -362,10 +363,8 @@ namespace TOR_Core.CharacterDevelopment
             _giantSlayer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_giantSlayer).UnderscoreFirstCharToUpper()));
             _baneOfChaos = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_baneOfChaos).UnderscoreFirstCharToUpper()));
             _lastJourney = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_lastJourney).UnderscoreFirstCharToUpper()));
-
             
             //Warden of Athel Loren
-            
             _wardenOfCavaroc = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_wardenOfCavaroc).UnderscoreFirstCharToUpper()));
             _wardenOfCythral = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_wardenOfCythral).UnderscoreFirstCharToUpper()));
             _wardenOfTorgovann = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_wardenOfTorgovann).UnderscoreFirstCharToUpper()));
@@ -1115,33 +1114,33 @@ namespace TOR_Core.CharacterDevelopment
             
             //warden of Athel Loren
             
-            _wardenOfCavaroc.Initialize("{=nest_cleansing_choice_group_str}Warden of Cavaroc", TORCareers.Warden, 1, (Hero hero, out string text) =>
+            _wardenOfCavaroc.Initialize("{=warden_of_cavaroc_choice_group_str}Warden of Cavaroc", TORCareers.Warden, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _wardenOfCythral.Initialize("{=nest_cleansing_choice_group_str}Warden of  Cythral and Anmyr", TORCareers.Warden, 1, (Hero hero, out string text) =>
+            _wardenOfCythral.Initialize("{=warden_of_cythral_choice_group_str}Warden of  Cythral and Anmyr", TORCareers.Warden, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _wardenOfWydrioth.Initialize("{=nest_cleansing_choice_group_str}Warden of Wydrioth", TORCareers.Warden, 1, (Hero hero, out string text) =>
+            _wardenOfWydrioth.Initialize("{=warden_of_wydrioth_choice_group_str}Warden of Wydrioth", TORCareers.Warden, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _wardenOfAtylwyth.Initialize("{=nest_cleansing_choice_group_str}Warden of Atylwyth", TORCareers.Warden, 2, (Hero hero, out string text) =>
+            _wardenOfAtylwyth.Initialize("{=warden_of_atylwyth_choice_group_str}Warden of Atylwyth", TORCareers.Warden, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier>= 4;
             });
-            _wardenOfTorgovann.Initialize("{=nest_cleansing_choice_group_str}Warden of Torgovann", TORCareers.Warden, 2, (Hero hero, out string text) =>
+            _wardenOfTorgovann.Initialize("{=warden_of_torgovann_choice_group_str}Warden of Torgovann", TORCareers.Warden, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier>= 2;
             });
             
-            _wardenOfTalsyn.Initialize("{=nest_cleansing_choice_group_str}Warden of Talsyn", TORCareers.Warden, 3, (Hero hero, out string text) =>
+            _wardenOfTalsyn.Initialize("{=warden_of_talsyn_choice_group_str}Warden of Talsyn", TORCareers.Warden, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier>= 4;

@@ -414,7 +414,15 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             if (Hero.MainHero.GetCareer() == null)
             {
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
+                {
+                    Hero.MainHero.AddCareer(TORCareers.Warden);
+                    return;
+                }
+                
                 Hero.MainHero.AddCareer(TORCareers.Mercenary);
+
+               
             }
         }
 

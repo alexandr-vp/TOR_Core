@@ -34,15 +34,19 @@ namespace TOR_Core.Models
                 {
                     var choices = Hero.MainHero.GetAllCareerChoices();
 
-                    if (choices.Contains("MercenaryLordPassive4") || choices.Contains("EndsJustifiesMeansPassive4") || choices.Contains("EyeOfTheHunterPassive2") )
+                    if (choices.Contains("MercenaryLordPassive4") || 
+                        choices.Contains("EndsJustifiesMeansPassive4") || 
+                        choices.Contains("EyeOfTheHunterPassive2")||
+                        choices.Contains("StarfireEssencePassive3"))
                     {
                         missileWeaponFlags |= WeaponFlags.MultiplePenetration;
                     }
                     
-                    if (choices.Contains("StarfireEssencePassive3") )
+                    if(missileWeapon.CurrentUsageItem.WeaponClass == WeaponClass.Javelin&& choices.Contains("wardenOfTalsynPassive4"))
                     {
-                        missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
+                        missileWeaponFlags |= WeaponFlags.MultiplePenetration;
                     }
+                    
                     
                     if ( Hero.MainHero.HasCareer(TORCareers.Waywatcher) && choices.Contains("StarfireEssencePassive4"))
                     {

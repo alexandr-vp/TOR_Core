@@ -4580,7 +4580,7 @@
     </AbilityTemplate>
 	
 	<AbilityTemplate StringID="HawkEye"
-                     Name="{=wind_of_death_label_str}Eagle Attack"
+                     Name="{=wind_of_death_label_str}Hawk Eye"
                      SpriteName="windofdeath_icon"
                      CoolDown="5"
                      WindsOfMagicCost="0"
