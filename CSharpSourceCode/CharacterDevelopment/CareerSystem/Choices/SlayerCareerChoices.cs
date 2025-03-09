@@ -106,7 +106,7 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
     protected override void InitializeKeyStones()
     {
-        _slayerRoot.Initialize(CareerID, "{=ironbreaker_root_str}The Character will not receive any damage for a short amount of time and will shrug any damage off. The movement speed is reduced by 25% though. The duration expands with growing athletics skill.", null, true,
+        _slayerRoot.Initialize(CareerID, "{=slayer_root_str}For a limited time, the Slayer has a increased speed bonus and weapon speed bonus. The kills gained  during the ability, add a doom seeker stack which  permanently increasing the damage of the player. For every Keystone, the damage dealt bonus is increased by 0.05% \n \n The ability requires 500 damage to be charged. Every kill adds 100 additional charge. For every keystone(5th perk) you require 10% more damage. ", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -119,7 +119,7 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 }
             });
         
-        _axeOfGrimnirKeystone.Initialize(CareerID, "{=axe_of_grimnir_keystone_str}Immune to fire damage, explosives and knockback resistance during ability", "AxeOfGrimnir", false,
+        _axeOfGrimnirKeystone.Initialize(CareerID, "{=axe_of_grimnir_keystone_str}Faith increases duration.", "AxeOfGrimnir", false,
         ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
         {
             new CareerChoiceObject.MutationObject()
@@ -132,20 +132,12 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             },
         });
     
-        _shameOfTheAncestorsKeystone.Initialize(CareerID, "{=shame_of_the_ancestors_keystone_str}Scouting counts towards ability. Ability starts charged", "ShameOfTheAncestors", false,
+        _shameOfTheAncestorsKeystone.Initialize(CareerID, "{=shame_of_the_ancestors_keystone_str}Losing a slayer units adds a Doom Seeker stack", "ShameOfTheAncestors", false,
         ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
         {
-            new CareerChoiceObject.MutationObject()
-            {
-                MutationTargetType = typeof(TriggeredEffectTemplate),
-                MutationTargetOriginalId = "apply_doom_seeking",
-                PropertyName = "ImbuedStatusEffectDuration",
-                PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Athletics },  0.02f),
-                MutationType = OperationType.Add
-            }
         });
     
-        _deadlyDeterminationKeystone.Initialize(CareerID, "{=deadly_determination_keystone_str}Leadership counts towards Careerability. Charge ability by dealing damage", "DeadlyDetermination", false,
+        _deadlyDeterminationKeystone.Initialize(CareerID, "{=deadly_determination_keystone_str}One handed scales ability.", "DeadlyDetermination", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -158,7 +150,7 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 }
             });
         
-        _urkSlayerKeystone.Initialize(CareerID, "{=urk_slayer_keystone_str}Dwarfs in the immediate surrounding also benefit from effect. Scales with onehanded", "UrkSlayer", false,
+        _urkSlayerKeystone.Initialize(CareerID, "{=urk_slayer_keystone_str}You deal 50% extra damage during ability", "UrkSlayer", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -171,7 +163,7 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 }
             });
         
-        _giantSlayerKeystone.Initialize(CareerID, "{=giant_slayer_keystone_str}During ability your reload speed is increased. ability scales with gunpowder skill ", "GiantSlayer", false,
+        _giantSlayerKeystone.Initialize(CareerID, "{=giant_slayer_keystone_str}Ability starts charged. Scales with Two handed weapons", "GiantSlayer", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -184,7 +176,7 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 }
             }); //special
         
-        _baneOfChaosKeystone.Initialize(CareerID, "{=bane_of_chaos_keystone_str}Receiving damage during ability will stack upon, and add for each taken hit 0.5% physical resistance post ability.", "BaneOfChaos", false,
+        _baneOfChaosKeystone.Initialize(CareerID, "{=bane_of_chaos_keystone_str}You gain 0.1% physical resistance for every kill during ability.", "BaneOfChaos", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
             });
@@ -212,7 +204,7 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _deadlyDeterminationPassive1.Initialize(CareerID, "{=deadly_determination_passive1_str}Increases Hitpoints by 25.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
         _deadlyDeterminationPassive2.Initialize(CareerID, "{=deadly_determination_passive2_str}Slayer units gain 50 extra one handed-melee skill.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, new List<string>(){nameof(DefaultSkills.OneHanded)}, characterObject => !characterObject.IsHero && characterObject.StringId.Contains("slayer")));
         _deadlyDeterminationPassive3.Initialize(CareerID, "{=deadly_determination_passive3_str}Weapon swing speed increased by 15%.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15f, PassiveEffectType.SwingSpeed,true)); 
-        _deadlyDeterminationPassive4.Initialize(CareerID, "{=deadly_determination_passive4_str}Custom.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true, characterObject => characterObject.HasAttribute("Knightly")));
+        _deadlyDeterminationPassive4.Initialize(CareerID, "{=deadly_determination_passive4_str}Adds 10% extra base damage after losing 50 healthpoints and armor weight below 9.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true, characterObject => characterObject.HasAttribute("Knightly")));
 
         _urkSlayerPassive1.Initialize(CareerID, "{=urk_slayer_passive1_str}15% movement speed", "UrkSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.MovementSpeed,true));
         _urkSlayerPassive2.Initialize(CareerID, "{=urk_slayer_passive2_str}10% extra melee damage while on horseback.", "UrkSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee,

@@ -324,7 +324,7 @@ namespace TOR_Core.BattleMechanics
             {
                 if (affectedAgent.BelongsToMainParty())
                 {
-                    if (Hero.MainHero.HasCareerChoice("DeadlyDeterminationPassive4")  && affectedAgent.IsSlayer())
+                    if (Hero.MainHero.HasCareerChoice("ShameOfTheAncestorsKeystone")  && affectedAgent.IsSlayer())
                     {
                         CareerMissionVariables[0] ++;
                     }
@@ -332,7 +332,7 @@ namespace TOR_Core.BattleMechanics
             
                 if (affectorAgent.BelongsToMainParty())
                 {
-                    if (Hero.MainHero.HasCareerChoice("TheLastJourneyKeystone")  && affectedAgent.IsSlayer())
+                    if (Hero.MainHero.HasCareerChoice("TheLastJourneyKeystone")  && affectorAgent.IsSlayer())
                     {
                         CareerMissionVariables[0] ++;
                     }

@@ -131,6 +131,15 @@ namespace TOR_Core.Models
                         {
                             weaponComponentData.WeaponFlags |= WeaponFlags.BonusAgainstShield;
                         }
+                        
+                        if (choices.Contains("DeadlyDeterminationPassive4"))
+                        {
+                            if (CareerChoicesHelper.ArmorWeightCheck(attackerAgent, 9) &&  attackerAgent.Health<= attackerAgent.HealthLimit-50)
+                            {
+                                resultDamage.AddFactor(0.1f);
+                            }
+                            
+                        }
 
                         if (choices.Contains("GiantSlayerPassive4") && attackInformation.IsVictimAgentMount)
                         {
