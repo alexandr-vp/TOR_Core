@@ -1987,7 +1987,7 @@
                              BurstParticleEffectPrefab="none"
                              SoundEffectId="none"
                              SoundEffectLength="0"
-                             DamageType="Invalid"
+                             DamageType="Physical"
                              DamageAmount="0"
                              Radius="5"
                              HasShockWave="false"
@@ -1995,8 +1995,24 @@
                              ImbuedStatusEffectDuration="5"
                              DamageVariance="0.0"
                              ScriptNameToTrigger="none">
-        <ImbuedStatusEffect>impenetrable_invincible</ImbuedStatusEffect>
-		<ImbuedStatusEffect>impenetrable_attribute</ImbuedStatusEffect>
+        <ImbuedStatusEffect>hawk_eye_debuff</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
+	
+	
+	 <TriggeredEffectTemplate StringID="apply_hawk_eye_buff"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Physical"
+                             DamageAmount="0"
+                             Radius="5"
+                             HasShockWave="false"
+                             TargetType="Friendly"
+                             ImbuedStatusEffectDuration="5"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>hawk_eye_buff_ats</ImbuedStatusEffect>
+		<ImbuedStatusEffect>hawk_eye_buff_mvs</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
     
 	<!-- Powerstones -->

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -74,7 +75,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _wardenOfCythralPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_wardenOfCythralPassive2).UnderscoreFirstCharToUpper()));
             _wardenOfCythralPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_wardenOfCythralPassive3).UnderscoreFirstCharToUpper()));
             _wardenOfCythralPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_wardenOfCythralPassive4).UnderscoreFirstCharToUpper()));
-            _wardenOfCavarocKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_wardenOfCythralKeystone).UnderscoreFirstCharToUpper()));
+            _wardenOfCythralKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_wardenOfCythralKeystone).UnderscoreFirstCharToUpper()));
             
             _wardenOfWydriothPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_wardenOfWydriothPassive1).UnderscoreFirstCharToUpper()));
             _wardenOfWydriothPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_wardenOfWydriothPassive2).UnderscoreFirstCharToUpper()));
@@ -123,7 +124,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _wardenOfCavarocKeystone.Initialize(CareerID, "{=warden_root_str}The Warden orders his trusty hawk to scout an area. The hawk marks enemies caught in the area as prey. Its ferocious dives instill fear in the foe, which causes penalties to received melee damage. The radius of the ability increases with every point in the Scouting skill.\n \nThis ability refreshes automatically and gains additional effects with more Career perks unlocked.", null, true,
+            _wardenOfCavarocKeystone.Initialize(CareerID, "{=warden_of_cavaroc_keystone_str}Riding counts towards ability. Enemy movement speed is reduced for all units in the zone.", "WardenOfCavaroc", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -133,8 +134,130 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyName = "Radius",
                         PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Riding },  0.01f),
                         MutationType = OperationType.Add
-                    }
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_hawk_eye",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "hawk_eye_debuff_mvs" }).ToList(),
+                        MutationType = OperationType.Replace
+                    },
                 });
+            
+            _wardenOfCythralKeystone.Initialize(CareerID, "{=warden_of_cythral_keystone_str}Ability scales with two handed weapon skill. ability starts charged", "WardenOfCythral", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "HawkEye",
+                        PropertyName = "Radius",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.TwoHanded },  0.01f),
+                        MutationType = OperationType.Add
+                    },
+                });
+            
+            _wardenOfWydriothKeystone.Initialize(CareerID, "{=warden_of_wydrioth_keystone_str}Archery skill counts towards ability. Enemies in the zone suffer 25% more ranged damage", "WardenOfWydrioth", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "HawkEye",
+                        PropertyName = "Radius",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Bow },  0.01f),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_hawk_eye",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "hawk_eye_debuff_range" }).ToList(),
+                        MutationType = OperationType.Replace
+                    },
+                });
+            
+            _wardenOfTorgovannKeystone.Initialize(CareerID, "{=warden_of_torgovann_keystone_str}Riding counts towards ability. Enemy movement speed is reduced for all units in the zone.", "WardenOfTorgovann", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "HawkEye",
+                        PropertyName = "Radius",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded },  0.01f),
+                        MutationType = OperationType.Add
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_hawk_eye",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "hawk_eye_debuff_ats" }).ToList(),
+                        MutationType = OperationType.Replace
+                    },
+                });
+            
+           _wardenOfAtylwythKeystone.Initialize(CareerID, "{=warden_of_antylwyth_keystone_str} Swing and movement speed increase for all friendly units in the zone.", "WardenOfAtylwyth", false,
+               ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+               {
+                   new CareerChoiceObject.MutationObject()
+                   {
+                       MutationTargetType = typeof(AbilityTemplate),
+                       MutationTargetOriginalId = "HawkEye",
+                       PropertyName = "TriggeredEffects",
+                       PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "apply_hawk_eye_buff" }).ToList(),
+                       MutationType = OperationType.Replace
+                   },
+               });
+           
+           
+           _wardenOfTalsynKeystone.Initialize(CareerID, "{=warden_of_talsyn_keystone_str} Leadership and Throwing counts towards ability. Cooldown reduction by 50%.", "WardenOfTalsyn", false,
+               ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+               {
+                   new CareerChoiceObject.MutationObject()
+                   {
+                       MutationTargetType = typeof(AbilityTemplate),
+                       MutationTargetOriginalId = "HawkEye",
+                       PropertyName = "Radius",
+                       PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){DefaultSkills.Leadership , DefaultSkills.Throwing },  0.01f),
+                       MutationType = OperationType.Add
+                   },
+                   new CareerChoiceObject.MutationObject()
+                   {
+                       MutationTargetType = typeof(AbilityTemplate),
+                       MutationTargetOriginalId = "HawkEye",
+                       PropertyName = "CoolDown",
+                       PropertyValue = (choice, originalValue, agent) => (int)((int)originalValue * - 0.5f),
+                       MutationType = OperationType.Add
+                   },
+                   
+               });
+           
+           _wardenOfArgwylonKeystone.Initialize(CareerID, "{=warden_of_argwylon_keystone_str}Magical Damage against affected enemies is increased. Small direct damage effects for every enemy in the zone.", "WardenOfArgwylon", false,
+               ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+               {
+                   new CareerChoiceObject.MutationObject()
+                   {
+                       MutationTargetType = typeof(TriggeredEffectTemplate),
+                       MutationTargetOriginalId = "apply_hawk_eye",
+                       PropertyName = "DamageAmount",
+                       PropertyValue = (choice, originalValue, agent) => 3,
+                       MutationType = OperationType.Replace
+                   },
+                   new CareerChoiceObject.MutationObject()
+                   {
+                       MutationTargetType = typeof(TriggeredEffectTemplate),
+                       MutationTargetOriginalId = "apply_hawk_eye",
+                       PropertyName = "ImbuedStatusEffects",
+                       PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "hawk_eye_debuff_mag" }).ToList(),
+                       MutationType = OperationType.Replace
+                   },
+               });
+            
+            
         }
 
         protected override void InitializePassives()

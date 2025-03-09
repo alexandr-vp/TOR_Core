@@ -4582,7 +4582,7 @@
 	<AbilityTemplate StringID="HawkEye"
                      Name="{=wind_of_death_label_str}Hawk Eye"
                      SpriteName="windofdeath_icon"
-                     CoolDown="5"
+                     CoolDown="100"
                      WindsOfMagicCost="0"
                      BaseMisCastChance="0.3"
                      Duration="15"
