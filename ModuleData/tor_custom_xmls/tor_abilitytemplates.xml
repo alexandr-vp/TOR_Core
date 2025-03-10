@@ -1357,7 +1357,7 @@
                      TargetCapturingRadius="3"
                      SpellTier="4"
                      BelongsToLoreID="LoreOfLight"
-                     TooltipDescription="{=radiant_gaze_description_str}Columns of light rise from the ground in a path.">
+                     TooltipDescription="{=radiant_gaze_description_str}The caster's gaze focuses radiant power on one nearby target within visual range. Sometimes, looks really can kill.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
