@@ -2967,7 +2967,7 @@
                      CrosshairType="TargetedAOE"
                      SpellTier="3"
                      BelongsToLoreID="LoreOfLife"
-                     TooltipDescription="{=barkskin_description_str}Hardens the skin of targets, making them tougher, providing 50% physical resistance for 80 secouds">
+                     TooltipDescription="{=barkskin_description_str}Hardens the skin of targets, making them tougher, providing 50% physical resistance for 80 seconds.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -3647,7 +3647,7 @@
                      CrosshairType="TargetedAOE"
                      SpellTier="3"
                      BelongsToLoreID="LoreOfMetal"
-                     TooltipDescription="{=meteoric_ironclad_description_str}Allies are protected by an enchantment of iron and silver. Provides 60% physical resistance for a duration of 45 seconds">
+                     TooltipDescription="{=meteoric_ironclad_description_str}Allies are protected by an enchantment of iron and silver. Provides 60% physical resistance for a duration of 45 seconds.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
