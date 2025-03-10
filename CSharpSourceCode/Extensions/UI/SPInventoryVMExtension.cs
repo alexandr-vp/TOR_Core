@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using HarmonyLib;
 using Helpers;
 using TaleWorlds.CampaignSystem;
@@ -19,6 +21,17 @@ public class SPInventoryVMExtension : BaseViewModelExtension
         
         
     }
+    
+    private delegate T GetItemFieldDelegate<out T>(ItemModifier item, string _fieldName);
+    
+    private static readonly Dictionary<ArmorComponent.ArmorMaterialTypes, string> MaterialTypeMap = new()
+    {
+        { ArmorComponent.ArmorMaterialTypes.Plate, "plate" },
+        { ArmorComponent.ArmorMaterialTypes.Chainmail, "chain" },
+        { ArmorComponent.ArmorMaterialTypes.Leather, "leather" },
+        { ArmorComponent.ArmorMaterialTypes.Cloth, "cloth" },
+        { ArmorComponent.ArmorMaterialTypes.None, "cloth_unarmored" }
+    };
 
     public override void OnFinalize()
     {
@@ -43,9 +56,33 @@ public class SPInventoryVMExtension : BaseViewModelExtension
 
 
 
-           newItem = new ItemObject(item);
+           newItem = Game.Current.ObjectManager.GetObject<ItemObject>(item.StringId);
            
-           Crafting.GenerateItem(item.WeaponDesign,new TextObject("test"),Hero.MainHero.Culture,new ItemModifierGroup(), ref newItem);
+           
+           EquipmentElement elem = new(newItem);
+           if (newItem.ArmorComponent != null)
+           {
+               var modifier = new ItemModifier();       //Retrieve from a XML for base setup , can be also contain some base extras, like enchanced item value or 
+
+               modifier.StringId = "test"+MBRandom.RandomInt(); //freshly created item trait id, matches modifier stringID, for having an unique identifier
+               
+               
+               elem.SetModifier(modifier);
+               
+               
+             //  Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(elem,1);
+               Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(elem,1);
+           }
+           else
+           {
+              
+           
+               Crafting.GenerateItem(item.WeaponDesign,new TextObject("test"),Hero.MainHero.Culture,new ItemModifierGroup(), ref newItem);
+               
+               Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(newItem,1);
+           }
+  
+           
            
            
 
@@ -57,7 +94,7 @@ public class SPInventoryVMExtension : BaseViewModelExtension
             return;
         
         
-        Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(newItem,1);
+        
         
        // InventoryManager.InventoryLogic.TransferOne(rosterElement);
 
@@ -65,4 +102,23 @@ public class SPInventoryVMExtension : BaseViewModelExtension
         
         TORCommon.Say("test");
     }
+    
+    private ItemModifier GetRandomModifierWithTarget(ItemModifierGroup modifierGroup, int modifierTier)
+    {
+        var results = modifierGroup.ItemModifiers.OrderBy(mod => mod.PriceMultiplier);
+
+        //check if there are more than 6 modifiers
+
+        return results.ElementAt(Math.Min(results.Count() - 1, modifierTier));
+    }
+    
+            
+        private int GetItemFieldInt(ItemModifier item, string _fieldName)
+        {
+            var value = item.GetType()?.GetProperty(_fieldName)?.GetValue(item);
+            if (value is not null)
+                return (int)value;
+            else return 0;
+        }
+    
 }
