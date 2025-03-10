@@ -1357,7 +1357,7 @@
                      TargetCapturingRadius="3"
                      SpellTier="4"
                      BelongsToLoreID="LoreOfLight"
-                     TooltipDescription="{=radiant_gaze_description_str}The caster's gaze focuses radiant power on one nearby target within visual range. Sometimes, looks really can kill.">
+                     TooltipDescription="{=radiant_gaze_description_str}The wizard's Hysh-infused gaze generates a wave of deadly energy damaging enemies in its path.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
