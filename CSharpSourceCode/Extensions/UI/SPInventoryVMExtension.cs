@@ -40,8 +40,11 @@ public class SPInventoryVMExtension : BaseViewModelExtension
            newItem.StringId = item.StringId + number;       // in case B : it changes the whole "template" not just the single item instance!
 
            newItem.DetermineItemCategoryForItem();
+           newItem.IsReady = true;
+           ItemObject.InitAsPlayerCraftedItem(ref newItem);
+           Game.Current.ObjectManager.RegisterObject(newItem);
 
-           //Game.Current.ObjectManager.RegisterObject(newItem);
+         
      
            if(newItem==null)
                continue;
