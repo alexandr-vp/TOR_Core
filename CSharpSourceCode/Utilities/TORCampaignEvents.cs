@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
 using TOR_Core.CampaignMechanics.Religion;
 
 namespace TOR_Core.Utilities
@@ -14,6 +15,7 @@ namespace TOR_Core.Utilities
         public static TORCampaignEvents Instance;
         public event EventHandler<DevotionLevelChangedEventArgs> DevotionLevelChanged;
         public event EventHandler<ChaosUprisingStartedEventArgs> ChaosUprisingStarted;
+        public event EventHandler<ItemDuplicatedEventArgs> ItemDuplicated;
 
         public TORCampaignEvents()
         {
@@ -37,6 +39,16 @@ namespace TOR_Core.Utilities
             if(uprisingEvent != null)
             {
                 uprisingEvent(this, args);
+            }
+        }
+
+        public void OnItemDuplicated(ItemObject newItem, ItemObject oldItem)
+        {
+            var args = new ItemDuplicatedEventArgs(newItem, oldItem);
+            var itemDuplicatedEvent = ItemDuplicated;
+            if (itemDuplicatedEvent != null)
+            {
+                itemDuplicatedEvent(this, args);
             }
         }
     }
@@ -65,5 +77,17 @@ namespace TOR_Core.Utilities
         }
 
         public Settlement Settlement { get; set; }
+    }
+
+    public class ItemDuplicatedEventArgs : EventArgs
+    {
+        public ItemDuplicatedEventArgs(ItemObject newItem, ItemObject oldItem)
+        {
+            NewItem = newItem;
+            OldItem = oldItem;
+        }
+
+        public ItemObject NewItem { get; set; }
+        public ItemObject OldItem { get; set; }
     }
 }

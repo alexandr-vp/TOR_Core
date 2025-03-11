@@ -3,32 +3,43 @@ using Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Overlay;
 using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.CampaignSystem.ViewModelCollection.GameMenu;
 using TaleWorlds.Core;
+using TaleWorlds.Library.NewsManager;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
+using TaleWorlds.SaveSystem;
 using TOR_Core.Extensions;
-using static Ink.Compiler;
+using TOR_Core.Utilities;
+using static TaleWorlds.CampaignSystem.CampaignBehaviors.CraftingCampaignBehavior;
 
 namespace TOR_Core.CampaignMechanics.Crafting
 {
-    public class TORCraftingCampaignBehavior : CraftingCampaignBehavior
+    public class TORCraftingCampaignBehavior : CampaignBehaviorBase
     {
         private bool _hasSmithyBeenRemoved;
+        private Dictionary<ItemObject, TorItemDuplicationData> _customCraftedItems = [];
 
         public override void RegisterEvents()
         {
-            base.RegisterEvents();
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
             CampaignEvents.TickEvent.AddNonSerializedListener(this, OnTick);
+            TORCampaignEvents.Instance.ItemDuplicated += OnItemDuplicated;
+        }
+
+        private void OnItemDuplicated(object sender, ItemDuplicatedEventArgs e)
+        {
+            if (!_customCraftedItems.ContainsKey(e.NewItem))
+            {
+                var copyfromStringId = e.OldItem.StringId;
+                var newName = e.NewItem.Name.ToString();
+                _customCraftedItems.Add(e.NewItem, new TorItemDuplicationData { OriginalItemStringId = e.OldItem.StringId, NewItemName = e.NewItem.Name.ToString() });
+            }
         }
 
         private void OnTick(float obj)
@@ -157,5 +168,55 @@ namespace TOR_Core.CampaignMechanics.Crafting
             args.optionLeaveType = GameMenuOption.LeaveType.Craft;
             return MenuHelper.SetOptionProperties(args, canPlayerDo, shouldBeDisabled, disabledText);
         }
+
+        public static ItemObject CreateItemCopy(ItemObject copyFrom, string newId, string newName)
+        {
+            var newItem = new ItemObject();
+            newItem.CopyPropertiesFrom(copyFrom);
+            newItem.StringId = newId;
+            AccessTools.Property(typeof(ItemObject), "Name").SetValue(newItem, new TextObject(newName));
+
+            newItem.Initialize();
+            ItemObject.InitAsPlayerCraftedItem(ref newItem);
+            newItem.DetermineItemCategoryForItem();
+            MBObjectManager.Instance.RegisterObject(newItem);
+            newItem.AfterInitialized();
+
+            return newItem;
+        }
+
+        public void InitializeSavedCraftedItems()
+        {
+            foreach(var element in _customCraftedItems)
+            {
+                var duplicateItem = element.Key;
+                var copyFrom = MBObjectManager.Instance.GetObject<ItemObject>(element.Value.OriginalItemStringId);
+                if (copyFrom == null) continue;
+                duplicateItem.CopyPropertiesFrom(copyFrom);
+                AccessTools.Property(typeof(ItemObject), "Name").SetValue(duplicateItem, new TextObject(element.Value.NewItemName));
+                duplicateItem.Initialize();
+                ItemObject.InitAsPlayerCraftedItem(ref duplicateItem);
+                duplicateItem.DetermineItemCategoryForItem();
+                duplicateItem.IsReady = true;
+            }
+        }
+
+        public override void SyncData(IDataStore dataStore)
+        {
+            dataStore.SyncData("_customCraftedItems", ref _customCraftedItems);
+        }
+
+        ~TORCraftingCampaignBehavior()
+        {
+            TORCampaignEvents.Instance.ItemDuplicated -= OnItemDuplicated;
+        }
+    }
+
+    public class TorItemDuplicationData
+    {
+        [SaveableProperty(1)]
+        public string OriginalItemStringId { get; set; }
+        [SaveableProperty(2)]
+        public string NewItemName { get; set; }
     }
 }

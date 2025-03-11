@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.CustomArenaModes;
+using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
@@ -42,12 +45,13 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(OakOfAgesComponent), 20);
             AddClassDefinition(typeof(WorldRootsComponent), 21);
             AddClassDefinition(typeof(ArcheryContestTournamentGame), 22);
+            AddClassDefinition(typeof(TorItemDuplicationData), 23);
         }
 
         protected override void DefineEnumTypes()
         {
-            AddEnumDefinition(typeof(EngineerQuestStates), 23);
-            AddEnumDefinition(typeof(SpellCastingLevel), 24);
+            AddEnumDefinition(typeof(EngineerQuestStates), 24);
+            AddEnumDefinition(typeof(SpellCastingLevel), 25);
         }
 
         protected override void DefineContainerDefinitions()
@@ -64,6 +68,7 @@ namespace TOR_Core.SaveGameSystem
             ConstructContainerDefinition(typeof(Dictionary<string, double>));
             ConstructContainerDefinition(typeof(Dictionary<string, float>));
             ConstructContainerDefinition(typeof(Dictionary<string, string>));
+            ConstructContainerDefinition(typeof(Dictionary<ItemObject, TorItemDuplicationData>));
             ConstructContainerDefinition(typeof(Dictionary<string, List<string>>));
         }
     }

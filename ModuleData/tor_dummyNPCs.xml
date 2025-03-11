@@ -4,7 +4,7 @@
         This is a file that defines special NPC loadouts. Face, bodyproperty are ignored. Only equipments matter. 
     -->
     <!--EMPIRE SETS-->
-    <NPCCharacter id="tournament_template_emp_one_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.empire" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tournament_template_emp_one_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.empire" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.fighter_empire" />
         </face>
@@ -15,7 +15,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_template_emp_two_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.empire" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tournament_template_emp_two_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.empire" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.fighter_empire" />
         </face>
@@ -26,7 +26,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_template_emp_four_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.empire" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tournament_template_emp_four_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.empire" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.fighter_empire" />
         </face>
@@ -38,7 +38,7 @@
     </NPCCharacter>
 
     <!--BRETONNIA SETS (jousting)-->
-    <NPCCharacter id="tournament_template_br_one_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.vlandia" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tournament_template_br_one_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.vlandia" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.fighter_empire" />
         </face>
@@ -49,7 +49,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_template_br_two_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.vlandia" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tournament_template_br_two_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.vlandia" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.fighter_empire" />
         </face>
@@ -60,7 +60,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_template_br_four_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.vlandia" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tournament_template_br_four_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.vlandia" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.fighter_empire" />
         </face>
@@ -72,7 +72,7 @@
     </NPCCharacter>
 
     <!--MOUSILLON SETS (jousting)-->
-    <NPCCharacter id="tor_m_tournament_template_one_participant_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.mousillon" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tor_m_tournament_template_one_participant_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.mousillon" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.fighter_empire" />
         </face>
@@ -83,7 +83,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tor_m_tournament_template_two_participant_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.mousillon" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tor_m_tournament_template_two_participant_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.mousillon" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.fighter_empire" />
         </face>
@@ -94,7 +94,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tor_m_tournament_template_four_participant_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.mousillon" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tor_m_tournament_template_four_participant_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.mousillon" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.fighter_empire" />
         </face>
@@ -106,7 +106,7 @@
     </NPCCharacter>
 
     <!--SYLVANIA SETS-->
-    <NPCCharacter id="tournament_template_vampire_one_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.khuzait" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tournament_template_vampire_one_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.khuzait" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.fighter_empire" />
         </face>
@@ -117,7 +117,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_template_vampire_two_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.khuzait" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tournament_template_vampire_two_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.khuzait" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.fighter_empire" />
         </face>
@@ -128,7 +128,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_template_vampire_four_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.khuzait" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tournament_template_vampire_four_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.khuzait" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.fighter_empire" />
         </face>
@@ -140,7 +140,7 @@
     </NPCCharacter>
 
     <!--ASRAI SETS-->
-    <NPCCharacter id="tournament_template_asrai_one_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.battania" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tournament_template_asrai_one_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.battania" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.male_wood_elf" />
         </face>
@@ -151,7 +151,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_template_asrai_two_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.battania" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tournament_template_asrai_two_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.battania" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.male_wood_elf" />
         </face>
@@ -162,7 +162,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_template_asrai_four_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.battania" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tournament_template_asrai_four_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.battania" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.male_wood_elf" />
         </face>
@@ -174,7 +174,7 @@
     </NPCCharacter>
 
     <!--Eonir SETS-->
-    <NPCCharacter id="tournament_template_eonir_one_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.eonir" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tournament_template_eonir_one_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.eonir" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.male_wood_elf" />
         </face>
@@ -185,7 +185,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_template_eonir_two_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.eonir" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tournament_template_eonir_two_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.eonir" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.male_wood_elf" />
         </face>
@@ -196,7 +196,7 @@
         </Equipments>
     </NPCCharacter>
 
-    <NPCCharacter id="tournament_template_eonir_four_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.eonir" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+    <NPCCharacter id="tournament_template_eonir_four_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.eonir" is_hero="false" occupation="Special" skill_template="SkillSet.tor_skills_level11">
         <face>
             <face_key_template value="BodyProperty.male_wood_elf" />
         </face>
