@@ -38,32 +38,62 @@ public class SPInventoryVMExtension : BaseViewModelExtension
         base.OnFinalize();
         
         var t = InventoryManager.InventoryLogic.GetElementsInRoster(InventoryLogic.InventorySide.PlayerInventory);
-
-
-        ItemObject newItem = null;
-
+        
         foreach (var element in t)
         {
             var item = element.EquipmentElement.Item;
             
-            
-            //ItemObject.InitAsPlayerCraftedItem(ref item);
-
-            var ta = item.IsCraftedWeapon;
-            
- 
            // item.StringId = item.StringId + "_001";
 
-
-
-           newItem = Game.Current.ObjectManager.GetObject<ItemObject>(item.StringId);
+           var number = MBRandom.RandomInt(); 
            
            
+           var newItem = Game.Current.ObjectManager.GetObject<ItemObject>(item.StringId);
+
+
+
+           newItem.StringId = item.StringId + number;
+        
+        
+               
+               
+           
+           newItem = Game.Current.ObjectManager.RegisterPresumedObject(newItem);
+           
+            
+           
+     
+           if(newItem==null)
+               continue;
+           
+           
+           
+           //ItemObject.InitAsPlayerCraftedItem(ref newItem);
            EquipmentElement elem = new(newItem);
-           if (newItem.ArmorComponent != null)
+           
+           
+           var modifier = new ItemModifier(); 
+           modifier = Game.Current.ObjectManager.GetObject<ItemModifier>("tor_epic_enchantment");       //works like a charm no need to get more complex on the item modifer groups
+           modifier.StringId = "test"+MBRandom.RandomInt(); //freshly created item trait id, matches modifier stringID, for having an unique identifier
+           
+           
+               
+           //elem.SetModifier(modifier);
+
+
+           
+           
+               
+               
+           //  Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(elem,1);
+           Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(newItem,1);
+           
+           
+           /*if (newItem.ArmorComponent != null)
            {
                var modifier = new ItemModifier();       //Retrieve from a XML for base setup , can be also contain some base extras, like enchanced item value or 
-
+               
+               modifier = Game.Current.ObjectManager.GetObject<ItemModifier>("tor_epic_enchantment");       //works like a charm no need to get more complex on the item modifer groups
                modifier.StringId = "test"+MBRandom.RandomInt(); //freshly created item trait id, matches modifier stringID, for having an unique identifier
                
                
@@ -75,12 +105,11 @@ public class SPInventoryVMExtension : BaseViewModelExtension
            }
            else
            {
-              
-           
+               //old working only for crafted swords.
                Crafting.GenerateItem(item.WeaponDesign,new TextObject("test"),Hero.MainHero.Culture,new ItemModifierGroup(), ref newItem);
                
                Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(newItem,1);
-           }
+           }*/
   
            
            
