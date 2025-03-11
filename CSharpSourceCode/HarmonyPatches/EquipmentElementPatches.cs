@@ -12,6 +12,7 @@ public static class EquipmentElementPatches
     public static void Postfix(ref bool __result, EquipmentElement other , EquipmentElement __instance)
     {
 
+        /*
         var b = __result;
         if(__instance.Item==null)return;
         if(other.Item ==null)return;
@@ -21,6 +22,7 @@ public static class EquipmentElementPatches
         {
             TORCommon.Say("hello");
         }
+        */
 
 
         /*

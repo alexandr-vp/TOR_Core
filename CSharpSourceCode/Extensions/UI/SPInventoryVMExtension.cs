@@ -21,17 +21,6 @@ public class SPInventoryVMExtension : BaseViewModelExtension
         
         
     }
-    
-    private delegate T GetItemFieldDelegate<out T>(ItemModifier item, string _fieldName);
-    
-    private static readonly Dictionary<ArmorComponent.ArmorMaterialTypes, string> MaterialTypeMap = new()
-    {
-        { ArmorComponent.ArmorMaterialTypes.Plate, "plate" },
-        { ArmorComponent.ArmorMaterialTypes.Chainmail, "chain" },
-        { ArmorComponent.ArmorMaterialTypes.Leather, "leather" },
-        { ArmorComponent.ArmorMaterialTypes.Cloth, "cloth" },
-        { ArmorComponent.ArmorMaterialTypes.None, "cloth_unarmored" }
-    };
 
     public override void OnFinalize()
     {
@@ -40,96 +29,40 @@ public class SPInventoryVMExtension : BaseViewModelExtension
         var t = InventoryManager.InventoryLogic.GetElementsInRoster(InventoryLogic.InventorySide.PlayerInventory);
         
         foreach (var element in t)
-        {
+        { 
             var item = element.EquipmentElement.Item;
+            var number = MBRandom.RandomInt();
             
-           // item.StringId = item.StringId + "_001";
-
-           var number = MBRandom.RandomInt(); 
-           
-           
-           var newItem = Game.Current.ObjectManager.GetObject<ItemObject>(item.StringId);
-
-
-
-           newItem.StringId = item.StringId + number;
-        
-        
-               
-               
-           
-           newItem = Game.Current.ObjectManager.RegisterPresumedObject(newItem);
-           
+            var newItem = new ItemObject(item);         //here is the problem , the copied item is not "deep" enough and crashs at reload
+            // var newItem = Game.Current.ObjectManager.GetObject<ItemObject>(item.StringId);           //CASE B
             
-           
+            
+           newItem.StringId = item.StringId + number;       // in case B : it changes the whole "template" not just the single item instance!
+
+           newItem.DetermineItemCategoryForItem();
+
+           //Game.Current.ObjectManager.RegisterObject(newItem);
      
            if(newItem==null)
                continue;
-           
-           
-           
-           //ItemObject.InitAsPlayerCraftedItem(ref newItem);
-           EquipmentElement elem = new(newItem);
-           
-           
-           var modifier = new ItemModifier(); 
-           modifier = Game.Current.ObjectManager.GetObject<ItemModifier>("tor_epic_enchantment");       //works like a charm no need to get more complex on the item modifer groups
-           modifier.StringId = "test"+MBRandom.RandomInt(); //freshly created item trait id, matches modifier stringID, for having an unique identifier
-           
-           
-               
-           //elem.SetModifier(modifier);
 
-
+           //var equipmentItem = new EquipmentElement(newItem);
            
-           
-               
-               
-           //  Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(elem,1);
            Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(newItem,1);
            
            
-           /*if (newItem.ArmorComponent != null)
-           {
-               var modifier = new ItemModifier();       //Retrieve from a XML for base setup , can be also contain some base extras, like enchanced item value or 
-               
-               modifier = Game.Current.ObjectManager.GetObject<ItemModifier>("tor_epic_enchantment");       //works like a charm no need to get more complex on the item modifer groups
-               modifier.StringId = "test"+MBRandom.RandomInt(); //freshly created item trait id, matches modifier stringID, for having an unique identifier
-               
-               
-               elem.SetModifier(modifier);
-               
-               
-             //  Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(elem,1);
-               Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(elem,1);
-           }
-           else
-           {
-               //old working only for crafted swords.
-               Crafting.GenerateItem(item.WeaponDesign,new TextObject("test"),Hero.MainHero.Culture,new ItemModifierGroup(), ref newItem);
-               
-               Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(newItem,1);
-           }*/
-  
+           // create an item trait that gets assigned to the newItem string id - based on a blue print with modified values
            
+           //store the trait in a map serialized by the game
            
+           //voila - freshly unique item with a dynamic item trait
            
-
-          
-    
             break;
         }
         if(t.IsEmpty())
             return;
         
-        
-        
-        
-       // InventoryManager.InventoryLogic.TransferOne(rosterElement);
-
-       //Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(item, 1);
-        
-        TORCommon.Say("test");
+        TORCommon.Say("item created");
     }
     
     private ItemModifier GetRandomModifierWithTarget(ItemModifierGroup modifierGroup, int modifierTier)
