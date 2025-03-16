@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -11,178 +12,202 @@ public class ServeAsAHirelingActivities
     public ServeAsAHirelingActivities()
     {
         _activitySets = new Dictionary<CareerObject, List<SkillObject>>();
-        foreach (var career in TORCareers.All)
+        _activitySets = new Dictionary<CareerObject, List<SkillObject>>()
         {
-            //note order matters!
-
-            
-            if (career == TORCareers.BlackGrailKnight)
+            //Mousillon
             {
-                _activitySets.Add(career, [
+                TORCareers.BlackGrailKnight, [
                     DefaultSkills.OneHanded,
                     DefaultSkills.Charm,
                     DefaultSkills.Riding,
                     DefaultSkills.Polearm,
                     DefaultSkills.Roguery
-                ]);
-            }
-
-            if (career == TORCareers.GrailKnight)
+                ]
+            },
+            //Bretonnia
             {
-                _activitySets.Add(career, [
+                TORCareers.GrailKnight, [
                     DefaultSkills.OneHanded,
                     DefaultSkills.Charm,
                     DefaultSkills.Riding,
-                    DefaultSkills.Steward,
-                    TORSkills.Faith
-                ]);
-
-            }
-            
-            if (career == TORCareers.GrailDamsel)
+                    DefaultSkills.Polearm,
+                    DefaultSkills.Roguery
+                ]
+            },
             {
-                _activitySets.Add(career, [
+                TORCareers.GrailDamsel, [
                     DefaultSkills.Riding,
                     TORSkills.SpellCraft,
                     TORSkills.Faith,
                     DefaultSkills.Steward,
                     DefaultSkills.Medicine
-                ]);
-            }
-            
-            if (career == TORCareers.Necromancer)
+                ]
+            },
+            //Vampire Counts
             {
-                _activitySets.Add(career, [
+                TORCareers.Necromancer, [
+                    DefaultSkills.Riding,
                     TORSkills.SpellCraft,
-                    DefaultSkills.Roguery,
-                    DefaultSkills.Medicine,
-                    DefaultSkills.Scouting,
-                    DefaultSkills.Steward
-                ]);
-            }
-
-            if (career == TORCareers.BloodKnight)
+                    TORSkills.Faith,
+                    DefaultSkills.Steward,
+                    DefaultSkills.Medicine
+                ]
+            },
             {
-                _activitySets.Add(career, [
+                TORCareers.BloodKnight, [
                     DefaultSkills.OneHanded,
                     DefaultSkills.TwoHanded,
                     DefaultSkills.Riding,
                     DefaultSkills.Tactics,
                     DefaultSkills.Leadership
-                ]);
-            }
-            
-            if (career == TORCareers.MinorVampire)
+                ]
+            },
             {
-                _activitySets.Add(career, [
+                TORCareers.MinorVampire, [
                     DefaultSkills.OneHanded,
                     DefaultSkills.Charm,
                     TORSkills.SpellCraft,
                     DefaultSkills.Roguery,
                     DefaultSkills.Leadership,
-                ]);
-            }
-            
-            if (career == TORCareers.Necrarch)
+                ]
+            },
             {
-                _activitySets.Add(career, [
+                TORCareers.Necrarch, [
                     TORSkills.SpellCraft,
                     DefaultSkills.Roguery,
                     DefaultSkills.Medicine,
                     DefaultSkills.Engineering,
                     DefaultSkills.Steward
-                ]);
-            }
-            
-            
-            //Empire careers
-            if (career == TORCareers.Mercenary)
+                ]
+            },
+            //Empire
             {
-                _activitySets.Add(career, [
+                TORCareers.Mercenary, [
                     DefaultSkills.TwoHanded,
                     DefaultSkills.Bow,
                     TORSkills.GunPowder,
                     DefaultSkills.Trade,
                     DefaultSkills.Tactics,
-                ]);
-            }
-            
-            if (career == TORCareers.ImperialMagister)
+                ]
+            },
             {
-                _activitySets.Add(career, [
+                TORCareers.ImperialMagister, [
                     TORSkills.SpellCraft,
                     DefaultSkills.Steward,
                     DefaultSkills.OneHanded,
                     DefaultSkills.Medicine,
                     DefaultSkills.Tactics
-                ]);
-            }
-            
-            if (career == TORCareers.WitchHunter)
+                ]
+            },
             {
-                _activitySets.Add(career, [
+                TORCareers.WitchHunter, [
                     DefaultSkills.TwoHanded,
                     DefaultSkills.Crossbow,
                     TORSkills.GunPowder,
                     TORSkills.Faith,
                     DefaultSkills.OneHanded
-                ]);
-            }
-            
-            if (career == TORCareers.WarriorPriest)
+                ]
+            },
             {
-                _activitySets.Add(career, [
+                TORCareers.WarriorPriest, [
                     DefaultSkills.OneHanded,
                     DefaultSkills.TwoHanded,
                     DefaultSkills.Athletics,
                     DefaultSkills.Medicine,
                     TORSkills.Faith,
-                ]);
-            }
-            
-            if (career == TORCareers.WarriorPriestUlric)
+                ]
+            },
             {
-                _activitySets.Add(career, [
+                TORCareers.WarriorPriestUlric, [
                     DefaultSkills.Scouting,
                     DefaultSkills.TwoHanded,
                     DefaultSkills.Athletics,
                     DefaultSkills.Leadership,
                     TORSkills.Faith,
-                ]);
-            }
-            
-            if (career == TORCareers.Waywatcher)
+                ]
+            },
+            //Woodelves
             {
-                _activitySets.Add(career, [
+                TORCareers.Waywatcher, [
                     DefaultSkills.Bow,
                     DefaultSkills.Scouting,
                     DefaultSkills.Roguery,
                     DefaultSkills.Athletics,
                     DefaultSkills.Medicine
-                ]);
-            }
-            
-            if (career == TORCareers.Spellsinger)
+                ]
+            },
             {
-                _activitySets.Add(career, [
+                TORCareers.Spellsinger, [
                     TORSkills.SpellCraft,
                     DefaultSkills.Riding,
                     TORSkills.Faith,
                     DefaultSkills.Charm,
                     DefaultSkills.Medicine
-                ]);
-            }
-            if (career == TORCareers.GreyLord)
+                ]
+            },
             {
-                _activitySets.Add(career, [
+                TORCareers.Warden, [
+                    DefaultSkills.OneHanded,
+                    DefaultSkills.TwoHanded,
+                    DefaultSkills.Leadership,
+                    DefaultSkills.Scouting,
+                    DefaultSkills.Medicine
+                ]
+            },
+            {
+                TORCareers.KnightOldWorld, [
+                    DefaultSkills.Steward,
+                    DefaultSkills.Charm,
+                    DefaultSkills.Leadership,
+                    DefaultSkills.Riding,
+                    DefaultSkills.OneHanded,
+                ]
+            },
+            //Eonir
+            {
+                TORCareers.GreyLord, [
                     TORSkills.SpellCraft,
                     DefaultSkills.Steward,
                     DefaultSkills.Leadership,
                     DefaultSkills.Charm,
                     DefaultSkills.Medicine
-                ]);
+                ]
+            },
+            
+            //Dwarfs
+            
+            {
+                TORCareers.Ironbreaker, [
+                    DefaultSkills.Steward,
+                    DefaultSkills.Charm,
+                    DefaultSkills.Leadership,
+                    DefaultSkills.Riding,
+                    DefaultSkills.OneHanded,
+                ]
+            },
+            {
+                TORCareers.Slayer, [
+                    TORSkills.Faith,
+                    DefaultSkills.Medicine,
+                    DefaultSkills.Athletics,
+                    DefaultSkills.TwoHanded,
+                    DefaultSkills.OneHanded,
+                ]
+            },
+            
+        };
+
+
+        foreach (var career in TORCareers.All)
+        {
+            if (!_activitySets.ContainsKey(career))
+            {
+                throw new Exception("Zerca register the hireling career acitivities, dumb ass! missing : "+career.Name);
             }
         }
+        
+        
+        
     }
     
     public List<SkillObject> GetHirelingActivities(CareerObject careerObject)

@@ -4609,7 +4609,7 @@
                      CrosshairType="TargetedAOE"
                      AbilityTargetType="GroundAtPosition"
                      MinDistance="2"
-                     MaxDistance="10"
+                     MaxDistance="75"
                      TargetCapturingRadius="3"
                      MaxRandomDeviation="1"
                      SpellTier="4"
