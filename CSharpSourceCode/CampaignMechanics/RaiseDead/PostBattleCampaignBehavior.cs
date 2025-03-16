@@ -1,21 +1,16 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
-using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
-using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.CampaignMechanics.RaiseDead
 {
@@ -28,13 +23,8 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         {
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, InitializeRaiseableCharacters);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PostBattleEvent);                //Those events are never executed when the player lose a battle!
-  
         }
         
-
-       
-
-
         private void PostBattleEvent(MapEvent mapEvent)
         {
             if (Hero.MainHero.IsEnlisted())
