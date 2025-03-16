@@ -38,6 +38,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         private bool _tier1Active;
         private bool _tier2Active;
         private bool _tier3Active;
+        
+        private string _careerAbilityTitle;
 
         public CareerObjectVM(CareerObject career)
         {
@@ -52,6 +54,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             _choiceGroups1 = new MBBindingList<CareerChoiceGroupObjectVM>();
             _choiceGroups2 = new MBBindingList<CareerChoiceGroupObjectVM>();
             _choiceGroups3 = new MBBindingList<CareerChoiceGroupObjectVM>();
+            
 
             foreach(var group in _career.ChoiceGroups)
             {
@@ -76,6 +79,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                         break;
                 }
             }
+            CareerAbilityTitle = GameTexts.FindText("str_career_screen","ability_title").ToString();
             _choiceGroup1Name = GameTexts.FindText("career_choicegroup1_name", _career.StringId).ToString();
             _choiceGroup2Name = GameTexts.FindText("career_choicegroup2_name", _career.StringId).ToString();
             _choiceGroup3Name = GameTexts.FindText("career_choicegroup3_name", _career.StringId).ToString();
@@ -93,7 +97,32 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 int usedPoints = info.CareerChoices.Count - 1; //Account for root choice, does not need to be taken into consideration.
 
                 var min = Mathf.Min(TORConfig.MaximumNumberOfCareerPerkPoints, Hero.MainHero.Level);
-                FreeCareerPoints = "Free career points: " + (min - usedPoints).ToString();
+
+                var free = min - usedPoints;
+                
+                GameTexts.SetVariable("FREE_CAREERPOINTS",free.ToString());
+                
+                var text  = GameTexts.FindText("str_career_screen","free_points").ToString();
+                
+                FreeCareerPoints = text;
+            }
+            
+        }
+        
+        [DataSourceProperty]
+        public string CareerAbilityTitle
+        {
+            get
+            {
+                return _careerAbilityTitle;
+            }
+            set
+            {
+                if (value != _careerAbilityTitle)
+                {
+                    _careerAbilityTitle = value;
+                    OnPropertyChangedWithValue(value, "CareerAbilityTitle");
+                }
             }
         }
 

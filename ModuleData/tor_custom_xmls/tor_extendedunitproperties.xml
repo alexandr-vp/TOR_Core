@@ -1393,6 +1393,28 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_dw_slayer">
+    <Abilities />
+    <Attributes>
+      <string>Unbreakable</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_dw_troll_slayer">
+    <Abilities />
+    <Attributes>
+      <string>Unbreakable</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_forestborn">
     <Abilities />
     <Attributes>
@@ -4379,6 +4401,12 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_stirland_first_8">
+    <Abilities />
+    <Attributes>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_stirland_second_1">
     <Abilities />
     <Attributes>
@@ -4456,6 +4484,14 @@
   <CharacterExtendedInfo id="tor_emp_lord_wissenland_first_7">
     <Abilities />
     <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_wissenland_first_8">
+    <Abilities />
+    <Attributes>
+      <string>AICompanion</string>
       <string>AbilityUser</string>
       <string>CanPlaceArtillery</string>
     </Attributes>
@@ -4620,6 +4656,8 @@
     <Abilities />
     <Attributes>
       <string>AICompanion</string>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_reikland_first_4">
@@ -4755,6 +4793,8 @@
     <Abilities />
     <Attributes>
       <string>AICompanion</string>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_middenland_second_1">
@@ -4869,6 +4909,18 @@
   <CharacterExtendedInfo id="tor_emp_lord_ostermark_first_10">
     <Abilities />
     <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_ostermark_first_11">
+    <Abilities>
+      <string>HealingHand</string>
+      <string>CometOfSigmar</string>
+      <string>ArmourOfRighteousness</string>
+      <string>Vanquish</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>AICompanion</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_ostermark_second_1">
     <Abilities />
@@ -5042,6 +5094,14 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_nordland_first_7">
+    <Abilities />
+    <Attributes>
+      <string>AICompanion</string>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_nordland_second_1">
     <Abilities />
     <Attributes>
@@ -5139,6 +5199,8 @@
     <Abilities />
     <Attributes>
       <string>AICompanion</string>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_ostland_first_6">
@@ -5236,6 +5298,14 @@
   <CharacterExtendedInfo id="tor_emp_lord_wasteland_first_7">
     <Abilities />
     <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_emp_lord_wasteland_first_8">
+    <Abilities />
+    <Attributes>
+      <string>AICompanion</string>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_wasteland_second_1">
     <Abilities />
@@ -5810,6 +5880,20 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_parravon_first_8">
+    <Abilities>
+      <string>FlockOfDoom</string>
+      <string>TheBeastUnleashed</string>
+      <string>CurseOfAnraheir</string>
+      <string>PannsImpenetrablePelt</string>
+      <string>TanglingThorn</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_montfort_factionleader">
     <Abilities />
     <Attributes>
@@ -5922,6 +6006,21 @@
   <CharacterExtendedInfo id="tor_br_lord_bordeleaux_first_7">
     <Abilities />
     <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_bordeleaux_first_8">
+    <Abilities>
+      <string>ChainLightning</string>
+      <string>HarmonicConvergence</string>
+      <string>Blizzard</string>
+      <string>CometOfCasandora</string>
+      <string>Thunderbolt</string>
+      <string>CurseOfMidnightWind</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>AICompanion</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_carcassonne_factionleader">
     <Abilities />
@@ -6148,6 +6247,20 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_couronne_first_10">
+    <Abilities>
+      <string>FlockOfDoom</string>
+      <string>TheBeastUnleashed</string>
+      <string>CurseOfAnraheir</string>
+      <string>PannsImpenetrablePelt</string>
+      <string>TanglingThorn</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_couronne_second_1">
     <Abilities />
     <Attributes>
@@ -6242,6 +6355,21 @@
       <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_lyonesse_first_8">
+    <Abilities>
+      <string>ChainLightning</string>
+      <string>HarmonicConvergence</string>
+      <string>Blizzard</string>
+      <string>CometOfCasandora</string>
+      <string>Thunderbolt</string>
+      <string>CurseOfMidnightWind</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_artois_factionleader">
     <Abilities />
     <Attributes>
@@ -6299,6 +6427,20 @@
   <CharacterExtendedInfo id="tor_br_lord_gisoreux_first_6">
     <Abilities />
     <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_gisoreux_first_7">
+    <Abilities>
+      <string>FlockOfDoom</string>
+      <string>TheBeastUnleashed</string>
+      <string>CurseOfAnraheir</string>
+      <string>PannsImpenetrablePelt</string>
+      <string>TanglingThorn</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>AICompanion</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_factionleader">
     <Abilities />

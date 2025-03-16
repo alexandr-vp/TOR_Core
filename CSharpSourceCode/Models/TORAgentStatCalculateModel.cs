@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
@@ -22,6 +23,7 @@ namespace TOR_Core.Models
 {
     public class TORAgentStatCalculateModel : SandboxAgentStatCalculateModel
     {
+        private float heavyDwarfSpeedModificatior = 0.75f;
         private float vampireDaySpeedModificator = 1.1f;
         private float vampireNightSpeedModificator = 1.2f;
         private CustomCrosshairMissionBehavior _crosshairBehavior;
@@ -67,6 +69,15 @@ namespace TOR_Core.Models
             return accuracy.ResultNumber;
         }
 
+        public override float GetKnockDownResistance(Agent agent, StrikeType strikeType)
+        {
+            if (agent.HasAttribute("Tubthumping"))
+            {
+                return 1;
+            }
+            return base.GetKnockDownResistance(agent, strikeType);
+        }
+
         public override void InitializeMissionEquipment(Agent agent)
         {
             if (agent.Origin is SummonedAgentOrigin) return;
@@ -94,7 +105,7 @@ namespace TOR_Core.Models
                         if (!missionWeapon.IsEmpty)
                         {
                             WeaponComponentData currentUsageItem = missionWeapon.CurrentUsageItem;
-                            if (currentUsageItem != null && currentUsageItem.IsAmmo && currentUsageItem.RelevantSkill != null)
+                            if (currentUsageItem != null && (currentUsageItem.IsAmmo || currentUsageItem.AmmoClass == WeaponClass.Stone) && currentUsageItem.RelevantSkill != null)
                             {
                                 ExplainedNumber ammoCount = new ExplainedNumber(missionWeapon.Amount);
 
@@ -116,6 +127,49 @@ namespace TOR_Core.Models
                                         }
                                     }
                                 }
+
+                                if (Hero.MainHero.HasCareer(TORCareers.Ironbreaker))
+                                {
+                                    if ( missionWeapon.HasAnyUsageWithWeaponClass(WeaponClass.Stone) &&
+                                         currentUsageItem.ItemUsage.Contains("dwarf_hand_grenade")
+                                       )
+                                    {
+                                        if( agent.Character.IsHero && agent.GetHero() == Hero.MainHero &&  Hero.MainHero.HasCareerChoice("NestCleansingPassive3"))
+                                        {
+                                            ammoCount.Add(2);
+                                        }
+                                        if(agent.Character.IsIronbreakerUnit() && !agent.Character.IsHero &&  Hero.MainHero.HasCareerChoice("NestCleansingPassive4"))
+                                        {
+                                            ammoCount.Add(1);
+                                        }
+
+                                        
+                                    }
+                                    
+                                    if (Hero.MainHero.HasCareerChoice("IronDrakesPassive4") && agent.GetOriginMobileParty() == MobileParty.MainParty && agent.Character.IsIronbreakerUnit())
+                                    {
+                                        foreach (var elem in MobileParty.MainParty.MemberRoster.GetTroopRoster())
+                                        {
+                                            if (elem.Character.StringId == "tor_dw_ironbeard")
+                                            {
+                                                ammoCount.AddFactor(0.1f);
+                                            }
+                                        }
+                                    }
+
+                                    if (agent.Character.IsHero && agent.GetHero() == Hero.MainHero )
+                                    {
+
+                                        if (missionWeapon.Item.IsFlameThrowerItem())
+                                        {
+                                            if(Hero.MainHero.HasCareerChoice("IronDrakesPassive3"))
+                                            {
+                                                ammoCount.Add(12);
+                                            }
+                                        }
+                                        
+                                    }
+                                }
                                 
                                 if (currentUsageItem.RelevantSkill == TORSkills.GunPowder && currentUsageItem.WeaponClass == WeaponClass.Cartridge)
                                 {
@@ -126,6 +180,54 @@ namespace TOR_Core.Models
                                 if (result != missionWeapon.Amount)
                                 {
                                     equipment.SetAmountOfSlot(equipmentIndex, (short)result, true);
+                                }
+                            }
+
+                            if (currentUsageItem.IsShield)
+                            {
+                                if ( agent == Agent.Main && Hero.MainHero.HasCareer(TORCareers.Ironbreaker) && Hero.MainHero.HasCareerChoice("ShieldwallPassive2"))
+                                {
+                                    int hitPoints = missionWeapon.HitPoints;
+
+                                    var smithingSkill = Hero.MainHero.GetSkillValue(DefaultSkills.Crafting);
+
+                                    hitPoints += (int) (smithingSkill *0.5f);
+
+                                    equipment.SetHitPointsOfSlot(equipmentIndex, (short) hitPoints, true);
+                                }
+                            }
+                        }
+                    }
+
+                    if (agent.BelongsToMainParty() && agent.Character.IsIronbreakerUnit() && !agent.Character.IsRanged )
+                    {
+                        if (!Hero.MainHero.HasCareer(TORCareers.Ironbreaker)) return;
+                        
+                        if (Hero.MainHero.HasCareerChoice("NestCleansingPassive4"))
+                        {
+                            MissionEquipment troopEquipment = agent.Equipment;
+                            for (int i = 0; i < 5; i++)
+                            {
+                                EquipmentIndex equipmentIndex = (EquipmentIndex)i;
+                                MissionWeapon missionWeapon = equipment[equipmentIndex];
+                                
+                            }
+                        }
+                        
+                        if (Hero.MainHero.HasCareerChoice("NestCleansingPassive4"))
+                        {
+                            MissionEquipment troopEquipment = agent.Equipment;
+                            for (int i = 0; i < 5; i++)
+                            {
+                                EquipmentIndex equipmentIndex = (EquipmentIndex)i;
+                                MissionWeapon missionWeapon = equipment[equipmentIndex];
+
+                                if (missionWeapon.IsEmpty)
+                                {
+                                    var item = MBObjectManager.Instance.GetObject<ItemObject>("tor_dwarf_weapon_grenade_dwarf_hand_grenade");
+                                    MissionWeapon weapon = new MissionWeapon(item, null, Hero.MainHero.ClanBanner);
+                                    agent.EquipWeaponWithNewEntity((EquipmentIndex)i, ref weapon);
+                                    break;
                                 }
                             }
                         }
@@ -164,69 +266,9 @@ namespace TOR_Core.Models
                     {
                         if (mobileParty.LeaderHero.HasAnyCareer())
                         {
-                            var choices = Agent.Main.GetHero().GetAllCareerChoices();
-
-                            if ((skill == DefaultSkills.OneHanded || skill == DefaultSkills.TwoHanded) && choices.Contains("ErrantryWarPassive3") && agent.Character.IsKnightUnit())
+                            if (!agent.IsMainAgent && !agent.Character.IsHero )
                             {
-                                var choice = TORCareerChoices.GetChoice("ErrantryWarPassive3");
-                                if (choice.Passive != null)
-                                    resultNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
-                            }
-
-                            if ((skill == DefaultSkills.OneHanded || skill == DefaultSkills.TwoHanded) && choices.Contains("SwampRiderPassive4") && agent.Character.IsKnightUnit())
-                            {
-                                var choice = TORCareerChoices.GetChoice("SwampRiderPassive4");
-                                if (choice.Passive != null)
-                                    resultNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
-                            }
-
-                            if (skill == DefaultSkills.Polearm && choices.Contains("EnhancedHorseCombatPassive4") && agent.Character.IsKnightUnit())
-                            {
-                                var choice = TORCareerChoices.GetChoice("EnhancedHorseCombatPassive4");
-                                if (choice.Passive != null)
-                                    resultNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
-                            }
-                            
-                            if (skill == DefaultSkills.OneHanded || skill == DefaultSkills.TwoHanded && choices.Contains("SecularOrdersPassive2") && agent.Character.IsKnightUnit())
-                            {
-                                var choice = TORCareerChoices.GetChoice("SecularOrdersPassive2");
-                                if (choice.Passive != null)
-                                    resultNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
-                            }
-                            
-                            if (skill == DefaultSkills.Polearm && choices.Contains("PathOfConquestPassive4") && agent.Character.IsKnightUnit())
-                            {
-                                var choice = TORCareerChoices.GetChoice("PathOfConquestPassive4");
-                                if (choice.Passive != null)
-                                    resultNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
-                            }
-
-                            if (skill == DefaultSkills.Polearm && choices.Contains("CurseOfMousillonPassive2") && agent.Character.IsKnightUnit())
-                            {
-                                var choice = TORCareerChoices.GetChoice("CurseOfMousillonPassive2");
-                                if (choice.Passive != null)
-                                    resultNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
-                            }
-
-                            if ((skill == DefaultSkills.OneHanded || skill == DefaultSkills.TwoHanded || skill == DefaultSkills.Polearm) && choices.Contains("NightRider2") && (agent.Character.IsUndead() || agent.Character.IsVampire()))
-                            {
-                                var choice = TORCareerChoices.GetChoice("NightRider2");
-                                if (choice.Passive != null)
-                                    resultNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
-                            }
-
-                            if ((skill == DefaultSkills.Bow || skill == DefaultSkills.Throwing || skill == DefaultSkills.Crossbow || skill == TORSkills.GunPowder) && choices.Contains("NoRestAgainstEvilPassive2"))
-                            {
-                                var choice = TORCareerChoices.GetChoice("NoRestAgainstEvilPassive2");
-                                if (choice.Passive != null)
-                                    resultNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
-                            }
-
-                            if (skill == DefaultSkills.Bow && choices.Contains("EyeOfTheHunterPassive3"))
-                            {
-                                var choice = TORCareerChoices.GetChoice("EyeOfTheHunterPassive3");
-                                if (choice.Passive != null)
-                                    resultNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
+                                CareerHelper.ApplySkillBonusForTroops(ref resultNumber, skill, agent.Character);
                             }
                         }
                     }
@@ -323,6 +365,17 @@ namespace TOR_Core.Models
                         agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanDefend);
                         agent.Defensiveness = 0.001f;
                     }
+
+                    if (character.IsIronbreakerUnit())
+                    {
+                        agentDrivenProperties.WeaponInaccuracy += 0.095f;
+                        
+                        
+                        var modificator = heavyDwarfSpeedModificatior;
+                        agentDrivenProperties.TopSpeedReachDuration *= modificator;
+                        agentDrivenProperties.MaxSpeedMultiplier *= modificator;
+                    }
+                    
                 }
             }
 
