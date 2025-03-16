@@ -23,11 +23,10 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         {
             get
             {
-                if(_cachedName == null)
+                if (_cachedName == null)
                 {
-
                     var nightwatch = new TextObject ("{=tor_graveyard_nightwatch_name}{SETTLEMENTNAME}'s Nightwatch");
-                    MBTextManager.SetTextVariable("SETTLEMENT_NAME", Settlement.CurrentSettlement.Name);
+                    MBTextManager.SetTextVariable("SETTLEMENT_NAME", HomeSettlement.Name);
                     _cachedName = nightwatch;
                 }
                 return _cachedName;
@@ -40,7 +39,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         {
             Settlement = settlement;
             _cachedName = new TextObject ("{=tor_graveyard_nightwatch_name}{SETTLEMENTNAME}'s Nightwatch");
-            MBTextManager.SetTextVariable("SETTLEMENT_NAME", Settlement.CurrentSettlement.Name);
+            MBTextManager.SetTextVariable("SETTLEMENT_NAME", HomeSettlement.Name);
         }
 
 

@@ -1357,7 +1357,7 @@
                      TargetCapturingRadius="3"
                      SpellTier="4"
                      BelongsToLoreID="LoreOfLight"
-                     TooltipDescription="{=radiant_gaze_description_str}Columns of light rise from the ground in a path.">
+                     TooltipDescription="{=radiant_gaze_description_str}The wizard's Hysh-infused gaze generates a wave of deadly energy damaging enemies in its path.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -2967,7 +2967,7 @@
                      CrosshairType="TargetedAOE"
                      SpellTier="3"
                      BelongsToLoreID="LoreOfLife"
-                     TooltipDescription="{=barkskin_description_str}Hardens the skin of targets, making them tougher, providing 50% physical resistance for 80 secouds">
+                     TooltipDescription="{=barkskin_description_str}Hardens the skin of targets, making them tougher, providing 50% physical resistance for 80 seconds.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -3647,7 +3647,7 @@
                      CrosshairType="TargetedAOE"
                      SpellTier="3"
                      BelongsToLoreID="LoreOfMetal"
-                     TooltipDescription="{=meteoric_ironclad_description_str}Allies are protected by an enchantment of iron and silver. Provides 60% physical resistance for a duration of 45 seconds">
+                     TooltipDescription="{=meteoric_ironclad_description_str}Allies are protected by an enchantment of iron and silver. Provides 60% physical resistance for a duration of 45 seconds.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -4628,7 +4628,7 @@
 	
 	<AbilityTemplate StringID="Impenetrable"
                      Name="{=impenetrable_label_str}Impenetrable"
-                     SpriteName="knightly_strike_icon"
+                     SpriteName="impenetrable_icon"
                      CoolDown="5"
                      WindsOfMagicCost="0"
                      BaseMisCastChance="0.05"
