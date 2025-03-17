@@ -1995,7 +1995,7 @@
                              ImbuedStatusEffectDuration="5"
                              DamageVariance="0.0"
                              ScriptNameToTrigger="none">
-        <ImbuedStatusEffect>hawk_eye_debuff</ImbuedStatusEffect>
+        <ImbuedStatusEffect>hawk_eye_debuff_melee</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
 	
 	

@@ -4588,7 +4588,7 @@
                      Duration="15"
                      Radius="5"
                      AbilityType="CareerAbility"
-                     AbilityEffectType="Vortex"
+                     AbilityEffectType="CareerAbilityEffect"
                      BaseMovementSpeed="0.3"
                      TickInterval="0.5"
                      TriggerType="EveryTick"

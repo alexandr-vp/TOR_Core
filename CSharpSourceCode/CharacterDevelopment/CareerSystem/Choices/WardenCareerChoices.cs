@@ -264,8 +264,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             _wardenOfCavarocPassive1.Initialize(CareerID, "{=warden_of_cavaroc_passive1_str}Party speed increases by 2.", "WardenOfCavaroc", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2.0f, PassiveEffectType.PartyMovementSpeed));
             _wardenOfCavarocPassive2.Initialize(CareerID, "{=warden_of_cavaroc_passive2_str}50% additional Hitpoints for the player's mount.", "WardenOfCavaroc", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseHealth, true)); 
-            _wardenOfCavarocPassive3.Initialize(CareerID, "{=warden_of_cavaroc_passive3_str}10% extra damage while on horseback.", "WardenOfCavaroc", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee &AttackTypeMask.Ranged,
-                (attacker, victim, mask) => attacker.IsMainAgent && (mask == AttackTypeMask.Melee || mask == AttackTypeMask.Ranged) && attacker.HasMount));
+            _wardenOfCavarocPassive3.Initialize(CareerID, "{=warden_of_cavaroc_passive3_str}10% extra damage while on horseback.", "WardenOfCavaroc", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee | AttackTypeMask.Ranged,
+                (attacker, victim, mask) => attacker.IsMainAgent && attacker.HasMount));
             _wardenOfCavarocPassive4.Initialize(CareerID, "{=warden_of_cavaroc_passive4_str}Horse charge damage is increased by 50%.", "WardenOfCavaroc", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseChargeDamage, true));
             
             _wardenOfCythralPassive1.Initialize(CareerID, "{=warden_of_cythral_passive1_str}All Elves receive 20 bonus points in their  Two-handed skill.", "WardenOfCythral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>(){nameof(DefaultSkills.TwoHanded)}, characterObject => characterObject.IsElf()));

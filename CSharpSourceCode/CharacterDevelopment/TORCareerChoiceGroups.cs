@@ -1132,7 +1132,7 @@ namespace TOR_Core.CharacterDevelopment
             _wardenOfAtylwyth.Initialize("{=warden_of_atylwyth_choice_group_str}Warden of Atylwyth", TORCareers.Warden, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
-                return hero.Clan.Tier>= 4;
+                return hero.Clan.Tier>= 2;
             });
             _wardenOfTorgovann.Initialize("{=warden_of_torgovann_choice_group_str}Warden of Torgovann", TORCareers.Warden, 2, (Hero hero, out string text) =>
             {

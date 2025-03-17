@@ -2014,7 +2014,7 @@
 	
 	
 	<StatusEffectTemplate
-		id="hawk_eye_debuff"
+		id="hawk_eye_debuff_melee"
 		particle_id="summer_heat"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="-0.25"
@@ -2035,7 +2035,7 @@
 	
 	<StatusEffectTemplate
 		id="hawk_eye_debuff_range"
-		particle_id="summer_heat"
+		particle_id=""
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="-0.25"
 		applies_for_attack_type="Ranged"

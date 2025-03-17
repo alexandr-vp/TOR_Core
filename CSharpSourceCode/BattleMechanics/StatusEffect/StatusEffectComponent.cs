@@ -62,7 +62,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             if (Agent == null) return;
             if(_disabled) return;
 
-            StatusEffect effect = _currentEffects.Keys.Where(e => e.Template.StringID.Equals(effectId)).FirstOrDefault();
+            StatusEffect effect = _currentEffects.Keys.Where(e => e.Template.StringID.Contains(effectId)).FirstOrDefault();
             if (effect != null)
             {
                 if (append)
