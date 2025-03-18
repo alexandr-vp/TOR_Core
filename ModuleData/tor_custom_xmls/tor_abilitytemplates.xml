@@ -2559,7 +2559,7 @@
                      CrosshairType="TargetedAOE"
                      SpellTier="2"
                      BelongsToLoreID="HighMagic"
-                     TooltipDescription="{=apotheosis_description_str}The wizard infuses and invigorates his allies with pure magical energies.">
+                     TooltipDescription="{=apotheosis_description_str}The wizard infuses and revitalizes his allies with pure magical energies.">
         <LightColorRGB x="255"
                        y="255"
                        z="255"
