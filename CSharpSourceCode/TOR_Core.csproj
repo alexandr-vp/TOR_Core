@@ -516,6 +516,7 @@
     <Compile Include="CampaignMechanics\RaiseDead\GraveyardNightWatchPartyComponent.cs" />
     <Compile Include="CampaignMechanics\RaiseDead\PostBattleCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\RaiseDead\RaiseDeadInTownBehavior.cs" />
+    <Compile Include="CampaignMechanics\RaiseDead\TreeSpiritHelpers.cs" />
     <Compile Include="CampaignMechanics\RegimentsOfRenown\RORCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\RegimentsOfRenown\RORManager.cs" />
     <Compile Include="CampaignMechanics\RegimentsOfRenown\ToRSettlementNameplateVM.cs" />

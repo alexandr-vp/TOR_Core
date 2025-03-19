@@ -126,6 +126,15 @@ public class ServeAsAHirelingActivities
                     TORSkills.Faith,
                 ]
             },
+            {
+                TORCareers.KnightOldWorld, [
+                    DefaultSkills.OneHanded,
+                    DefaultSkills.TwoHanded,
+                    DefaultSkills.Polearm,
+                    DefaultSkills.Riding,
+                    DefaultSkills.Leadership,
+                ]
+            },
             //Woodelves
             {
                 TORCareers.Waywatcher, [
@@ -147,20 +156,11 @@ public class ServeAsAHirelingActivities
             },
             {
                 TORCareers.Warden, [
-                    DefaultSkills.OneHanded,
-                    DefaultSkills.TwoHanded,
-                    DefaultSkills.Leadership,
+                    DefaultSkills.Polearm,
+                    DefaultSkills.Throwing,
+                    DefaultSkills.Bow,
                     DefaultSkills.Scouting,
-                    DefaultSkills.Medicine
-                ]
-            },
-            {
-                TORCareers.KnightOldWorld, [
-                    DefaultSkills.Steward,
-                    DefaultSkills.Charm,
                     DefaultSkills.Leadership,
-                    DefaultSkills.Riding,
-                    DefaultSkills.OneHanded,
                 ]
             },
             //Eonir
@@ -178,20 +178,20 @@ public class ServeAsAHirelingActivities
             
             {
                 TORCareers.Ironbreaker, [
-                    DefaultSkills.Steward,
-                    DefaultSkills.Charm,
-                    DefaultSkills.Leadership,
-                    DefaultSkills.Riding,
                     DefaultSkills.OneHanded,
+                    DefaultSkills.Crafting,
+                    DefaultSkills.Scouting,
+                    DefaultSkills.Athletics,
+                    TORSkills.GunPowder,
                 ]
             },
             {
                 TORCareers.Slayer, [
+                    DefaultSkills.OneHanded,
+                    DefaultSkills.TwoHanded,
+                    DefaultSkills.Athletics,
                     TORSkills.Faith,
                     DefaultSkills.Medicine,
-                    DefaultSkills.Athletics,
-                    DefaultSkills.TwoHanded,
-                    DefaultSkills.OneHanded,
                 ]
             },
             
@@ -202,7 +202,7 @@ public class ServeAsAHirelingActivities
         {
             if (!_activitySets.ContainsKey(career))
             {
-                throw new Exception("Zerca register the hireling career acitivities, dumb ass! missing : "+career.Name);
+                throw new Exception("Zerca register the hireling career acitivities, you dumb ass! missing : "+career.Name);
             }
         }
         

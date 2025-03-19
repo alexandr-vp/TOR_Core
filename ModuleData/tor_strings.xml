@@ -1819,6 +1819,31 @@ While rather varied in terms of equipment, faiths, or beliefs, such knights ulti
   <string id="HirelingActivity2.GreyLord" text="{=hirelingactivity2_greylord_str}Hold speeches about the dragons of Caledor" />
   <string id="HirelingActivity3.GreyLord" text="{=hirelingactivity3_greylord_str}Maintain Asurian etiquette" />
   <string id="HirelingActivity4.GreyLord" text="{=hirelingactivity4_greylord_str}Experiment with alchemistic substances" />
+  
+  <string id="HirelingActivity0.KnightOldWorld" text="{=hirelingactivity0_knightoldworld_str}Sparring practice with a sword" /> 
+  <string id="HirelingActivity1.KnightOldWorld" text="{=hirelingactivity1_knightoldworld_str}Sparring practice with a greatsword" /> 
+  <string id="HirelingActivity2.KnightOldWorld" text="{=hirelingactivity2_knightoldworld_str}Joust with other cavalrymen" /> 
+  <string id="HirelingActivity3.KnightOldWorld" text="{=hirelingactivity3_knightoldworld_str}Tend to your mount" /> 
+  <string id="HirelingActivity4.KnightOldWorld" text="{=hirelingactivity4_knightoldworld_str}Give battlefield advice to common troops" />
+  
+  <string id="HirelingActivity0.Ironbreaker" text="{=hirelingactivity0_ironbreaker_str}Train with an az" />
+  <string id="HirelingActivity1.Ironbreaker" text="{=hirelingactivity1_ironbreaker_str}Maintain your armor and weapons" />
+  <string id="HirelingActivity2.Ironbreaker" text="{=hirelingactivity2_ironbreaker_str}Scout nearby tunnels" />
+  <string id="HirelingActivity3.Ironbreaker" text="{=hirelingactivity3_ironbreaker_str}Arm wrestle with other soldiers" />
+  <string id="HirelingActivity4.Ironbreaker" text="{=hirelingactivity4_ironbreaker_str}Help the army engineer with grenades" />
+  
+  <string id="HirelingActivity0.Slayer" text="{=hirelingactivity0_slayer_str}Train with an az" />
+  <string id="HirelingActivity1.Slayer" text="{=hirelingactivity1_slayer_str}Practice with a great az" />
+  <string id="HirelingActivity2.Slayer" text="{=hirelingactivity2_slayer_str}Patrol the camp perimeter" />
+  <string id="HirelingActivity3.Slayer" text="{=hirelingactivity3_slayer_str}Repeat the words of your Slayer Oath" />
+  <string id="HirelingActivity4.Slayer" text="{=hirelingactivity4_slayer_str}Drown your shame in ale" />
+  
+  <string id="HirelingActivity0.Warden" text="Sparring practice with spears" /> 
+  <string id="HirelingActivity1.Warden" text="Javelin target practice" /> 
+  <string id="HirelingActivity2.Warden" text="Bow target practice" />
+  <string id="HirelingActivity3.Warden" text="Scout the perimeter together with your hawk" /> 
+  <string id="HirelingActivity4.Warden" text="Discuss army movements with other nobles" />
+  
 
 
   <!--Meadow ! -->
