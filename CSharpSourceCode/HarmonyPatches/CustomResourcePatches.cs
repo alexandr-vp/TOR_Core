@@ -14,6 +14,7 @@ using TOR_Core.Extensions;
 using TaleWorlds.Library;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade.Diamond.Cosmetics.CosmeticTypes;
 using TOR_Core.CampaignMechanics.CustomResources;
 
 namespace TOR_Core.HarmonyPatches
@@ -107,6 +108,32 @@ namespace TOR_Core.HarmonyPatches
         public static void UpgradeTroopPostFix(PartyVM __instance, PartyScreenLogic.PartyCommand command)
         {
             CustomResourceManager.OnPartyScreenTroopUpgrade(__instance, command);
+        }
+        
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(PartyVM), "TransferAllCharacters")]
+        private static void TransferAllCharactersPostFix( PartyVM __instance,
+            PartyScreenLogic.PartyRosterSide rosterSide,
+            PartyScreenLogic.TroopType type)
+        {
+            var partyScreenLogic = __instance.PartyScreenLogic;
+            var roster = type == PartyScreenLogic.TroopType.Prisoner ? partyScreenLogic.PrisonerRosters[(int) rosterSide] : partyScreenLogic.MemberRosters[(int) rosterSide];
+            
+            foreach (var elem in roster.GetTroopRoster())
+            {
+                CustomResourceManager.OnTroopTranfered(__instance, rosterSide, elem.Character, elem.Number);
+            }
+        }
+        
+        
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(PartyVM), "OnTransferTroop")]
+        public static void OnTransferTroopPostFix(PartyVM __instance,PartyCharacterVM troop,
+            int newIndex,
+            int transferAmount,
+            PartyScreenLogic.PartyRosterSide fromSide )
+        {
+            CustomResourceManager.OnTroopTranfered(__instance, fromSide, troop.Character, transferAmount);
         }
 
         public static string GetUpgradeHint(int index, int numOfItems, int availableUpgrades, int upgradeCoinCost, bool hasRequiredPerk, PerkObject requiredPerk, CharacterObject character, TroopRosterElement troop, int partyGoldChangeAmount, string entireStackShortcutKeyText, string fiveStackShortcutKeyText)

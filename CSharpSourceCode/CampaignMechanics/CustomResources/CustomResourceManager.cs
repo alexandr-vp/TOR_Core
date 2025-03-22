@@ -374,15 +374,94 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             if (pushedScreen is GauntletPartyScreen)
             {
                 Instance._currentPartyScreen = pushedScreen;
-                Instance._resourceChanges.Clear();
+                ResetResourcesAndRefillInitially();
                 PartyScreenManager.PartyScreenLogic.PartyScreenClosedEvent += PartyScreenLogic_PartyScreenClosedEvent;
                 PartyScreenManager.PartyScreenLogic.AfterReset += PartyScreenLogic_AfterReset;
             }
         }
 
-        private static void PartyScreenLogic_AfterReset(PartyScreenLogic partyScreenLogic, bool fromCancel)
+        private static void ResetResourcesAndRefillInitially()
         {
             Instance._resourceChanges.Clear();
+            AddInitialChange();
+        }
+
+        private static void AddInitialChange()
+        {
+
+            var mapEvent = MapEvent.PlayerMapEvent;
+            
+            if(mapEvent==null) return;
+
+            if(PartyScreenManager.PartyScreenLogic==null) return;
+            
+            if(PartyScreenManager.Instance.CurrentMode != PartyScreenMode.Loot) return;
+            
+            var result = 0f;
+
+            var prisoners = PartyScreenManager.PartyScreenLogic.PrisonerRosters[0];
+
+            var leftMemberRoster = PartyScreenManager.PartyScreenLogic.MemberRosters[0];
+            
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
+            {
+                
+                foreach (var element in prisoners.ToFlattenedRoster())
+                {
+                    if (element.Troop.Culture.StringId != TORConstants.Cultures.BEASTMEN) continue;
+
+                    result += 3;
+                }
+            }
+
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.SYLVANIA || Hero.MainHero.Culture.StringId == TORConstants.Cultures.MOUSILLON)
+            {
+               
+            }
+            
+            if ((Hero.MainHero.IsVampire() || Hero.MainHero.CanRaiseDead()) &&
+                PartyScreenManager.Instance.CurrentMode == PartyScreenMode.Loot)
+            {
+            
+                if (Hero.MainHero.PartyBelongedTo.MapEvent != null)
+                {
+                    var totalCausalties = Hero.MainHero.PartyBelongedTo.MapEvent.GetMapEventSide(BattleSideEnum.Defender).Casualties;
+                    result += Math.Max(0,totalCausalties - prisoners.ToFlattenedRoster().Count());
+                }
+                
+               
+                
+                if (leftMemberRoster != null && leftMemberRoster.Count > 0)
+                {
+                    result += AdjustBattleSpoilsForDarkEnergy(leftMemberRoster);
+                }
+
+                if (prisoners != null && prisoners.Count > 0)
+                {
+                    result += AdjustBattleSpoilsForDarkEnergy(prisoners, true);
+                }
+            }
+            
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA &&
+                PartyScreenManager.Instance.CurrentMode == PartyScreenMode.Loot)
+            {
+                var prisonerRoster = prisoners.GetTroopRoster();
+                if (prisonerRoster.Any())
+                {
+                    var explainedNumber = new ExplainedNumber();
+                    foreach (var element in prisonerRoster)
+                    {
+                        AddChivarlyForUnit(ref explainedNumber,element.Character,element.Number);
+                    }
+                }
+            }
+            
+            AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(),-(int)result);
+        }
+
+        private static void PartyScreenLogic_AfterReset(PartyScreenLogic partyScreenLogic, bool fromCancel)
+        {
+            ResetResourcesAndRefillInitially();
             Instance._currentPartyVM?.GetExtensionInstance().RefreshValues();
         }
 
@@ -401,62 +480,6 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             }
 
             Instance._resourceChanges.Clear();
-            if (PartyScreenManager.Instance.CurrentMode != PartyScreenMode.Loot) return;
-            if (PlayerEncounter.Current == null) return;
-            
-            var prisoners = leftPrisonRoster.TotalManCount;
-            var result = 0f;
-
-            if ((Hero.MainHero.IsVampire() || Hero.MainHero.CanRaiseDead()) &&
-                PartyScreenManager.Instance.CurrentMode == PartyScreenMode.Loot)
-            {
-                if (Hero.MainHero.PartyBelongedTo.MapEvent != null)
-                {
-                    var totalCausalties = Hero.MainHero.PartyBelongedTo.MapEvent.GetMapEventSide(BattleSideEnum.Defender).Casualties;
-                    result += Math.Max(0,totalCausalties - prisoners);
-                }
-                
-                if (leftMemberRoster != null && leftMemberRoster.Count > 0)
-                {
-                    result += AdjustBattleSpoilsForDarkEnergy(leftMemberRoster);
-                }
-
-                if (leftPrisonRoster != null && leftPrisonRoster.Count > 0)
-                {
-                    result += AdjustBattleSpoilsForDarkEnergy(leftPrisonRoster, true);
-                }
-
-                Hero.MainHero.AddCultureSpecificCustomResource(result);
-                return;
-            }
-
-            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA &&
-                PartyScreenManager.Instance.CurrentMode == PartyScreenMode.Loot)
-            {
-                var prisonerRoster = leftPrisonRoster.ToFlattenedRoster().ToList();
-                if (prisonerRoster.Any())
-                {
-                    foreach (var element in prisonerRoster)
-                    {
-                        if (!element.Troop.IsHuman()) return;
-
-                        if (element.Troop.Culture.IsBandit)
-                        {
-                            result += 1;
-                            continue;
-                        }
-
-                        result += 2f;
-
-                        if (element.Troop.IsKnightUnit())
-                        {
-                            result += 2;
-                        }
-                    }
-                }
-
-                Hero.MainHero.AddCultureSpecificCustomResource(result);
-            }
         }
 
 
@@ -468,13 +491,38 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             foreach (var troop in leftUnits.GetTroopRoster().ToList())
             {
                 if (troop.Character.IsHero) continue;
-
-                var level = troop.Character.Level;
-
-                explainedNumber.Add(level * troop.Number);
+                
+                AddDarkEnergyForUnit(ref explainedNumber, troop.Character,troop.Number);
             }
 
             return explainedNumber.ResultNumber / reduction;
+        }
+
+        private static void AddDarkEnergyForUnit(ref ExplainedNumber number, CharacterObject characterObject, int amount)
+        {
+            if(characterObject.IsHero)return;
+            
+            var level = characterObject.Level;
+
+            number.Add(level * amount);
+        }
+        
+        private static void AddChivarlyForUnit(ref ExplainedNumber number, CharacterObject characterObject, int amount)
+        {
+            if (!characterObject.IsHuman()) return;
+
+            if (characterObject.Culture.IsBandit)
+            {
+                number.Add(1 * amount);
+                return;
+            }
+
+            number.Add(2 * amount);
+
+            if (characterObject.IsKnightUnit())
+            {
+                number.Add(2 * amount);
+            }
         }
 
         public static void OnPartyScreenTroopUpgrade(PartyVM partyVM, PartyScreenLogic.PartyCommand command)
@@ -513,6 +561,35 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             }
 
             return dictionary;
+        }
+
+        public static void OnTroopTranfered(PartyVM partyVm, PartyScreenLogic.PartyRosterSide fromSide, CharacterObject troop, int transferAmount, bool isPrisoner = false)
+        {
+            int sign = fromSide == PartyScreenLogic.PartyRosterSide.Left ? 1 : -1;
+            var explainedNumber = new ExplainedNumber();
+            
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
+            {
+                if (troop.Culture.StringId == TORConstants.Cultures.BEASTMEN)
+                {
+                    explainedNumber.Add(3*transferAmount);
+                }
+            }
+
+            if (Hero.MainHero.IsVampire() || Hero.MainHero.CanRaiseDead())
+            {
+                //rosterElement.Number = 1;
+                AddDarkEnergyForUnit(ref explainedNumber, troop, transferAmount);
+            }
+
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA && isPrisoner)
+            {
+                AddChivarlyForUnit(ref explainedNumber, troop, transferAmount);
+            }
+            
+            AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), sign*(int) explainedNumber.ResultNumber);
+            
+            partyVm.GetExtensionInstance().RefreshValues();
         }
     }
 }
