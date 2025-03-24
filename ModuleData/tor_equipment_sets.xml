@@ -20212,7 +20212,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_dw_irondrake_template" culture="Culture.sturgia">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_dwarf_drakegun" />
+      <Equipment slot="Item0" id="tor_dw_weapon_gun_drakegun" />
       <Equipment slot="Item1" id="Item.tor_dw_drakegun_cannister" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_ironbreaker_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_ironbreaker_001" />
@@ -20221,7 +20221,7 @@
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_ironbreaker_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_dwarf_drakegun" />
+      <Equipment slot="Item0" id="tor_dw_weapon_gun_drakegun" />
       <Equipment slot="Item1" id="Item.tor_dw_drakegun_cannister" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_ironbreaker_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_ironbreaker_001" />
