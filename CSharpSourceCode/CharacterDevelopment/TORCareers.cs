@@ -153,7 +153,7 @@ namespace TOR_Core.CharacterDevelopment
             _knightOldWorld.Initialize("Knight of the Old World", null,"KnightlyStrike", CareerAbilityChargeSupplier.KnightOldWorldChargeSupplier, 500);
             _ironbreaker.Initialize("Ironbreaker", null,"Impenetrable", CareerAbilityChargeSupplier.IronbreakerChargeSupplier, 500, typeof(ImpenetrableScript));
             _slayer.Initialize("Slayer", null,"DoomSeeking", CareerAbilityChargeSupplier.SlayerChargeSupplier, 500, typeof(ImpenetrableScript));
-            _warden.Initialize("Warden",null,"HawkEye");
+            _warden.Initialize("Warden",null,"HawkEye",null,100,typeof(HawkEyeScript));
         }
     }
 }

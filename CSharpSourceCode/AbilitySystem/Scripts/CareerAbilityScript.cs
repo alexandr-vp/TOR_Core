@@ -7,6 +7,7 @@ using TaleWorlds.Library;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.Scripts
 {
@@ -41,7 +42,11 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         protected override void OnBeforeTick(float dt)
         {
-            if (!CasterAgent.IsActive()) Stop();
+            if (!CasterAgent.IsActive())
+            {
+                TORCommon.Say("stop");
+                Stop();
+            }
         }
 
         protected override bool ShouldMove() => true;
