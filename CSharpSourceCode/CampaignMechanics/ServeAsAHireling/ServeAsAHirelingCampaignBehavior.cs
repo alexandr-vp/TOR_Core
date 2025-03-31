@@ -76,6 +76,45 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             CampaignEvents.OnClanChangedKingdomEvent.AddNonSerializedListener(this,LeaveKingdomEvent);
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnMobilePartyDestroyed);
             CampaignEvents.RaidCompletedEvent.AddNonSerializedListener(this, OnRaidCompleted);
+            CampaignEvents.OnQuarterDailyPartyTick.AddNonSerializedListener(this, IgnoreHirelingPartyRefresh);
+        }
+
+        private void IgnoreHirelingPartyRefresh(MobileParty mobileParty)
+        {
+            /* setting MainParty to be ignored so that it can't have battles against it initiated
+             * 
+             * the player party is sometimes targeted by an enemy party while they are hired which leads to the player being the LeaderHero for their map event side despite supposedly being "just a merc hired by the noble"
+             * this leads to the player having a conversation with the enemy LeaderHero as well as being able to choose if their side surrenders and having the default encounterAttack menu displayed
+             * there is also a rare occurence where the followedNoble's party is attacked and engaged in a map event while the player's party is attacked and placed in a separate map event
+             * 
+             * the MainParty can instead be set to ignored periodically while in service which will prevent the AI parties from considering them a valid attack target and consequently only targetting the followedNoble
+             * this is already used in OnTick to prevent the player party from being attacked while they are avoiding battle, but this can instead be expanded to apply while enlisted and at a lower frequency than every game tick
+             * 
+             * party.ShouldBeIgnored is used in 2 places :
+             * - MobilePartyAi.GetBestInitiativeBehavior which prevents the AI from targetting the ignored party (wanted behaviour)
+             * - PlayerEncounter.FindNonAttachedNpcPartiesWhoWillJoinEvent which searches among parties around the player encounter location for allies of the player/enemies of the player's enemy; when it checks for !ShouldBeIgnored for parties on the player side, it also checks for !MainParty which means any nearby npc party can join the player encounter regardless of the ShouldBeIgnored state of the MainParty
+             * 
+             * so, no predictable impact on which parties participate in the battle when the StartBattleAction is used to create a map event that includes the player, and avoids any bugs related to the AI and the player party
+             * should have no persisting issue because it's set for limited duration at a time; if it does persist, that's a relatively easy-to-notice issue that indicates that enlistment is incorrectly being ended (which is possible atm on live since there have been a variety of reports about parties not recruiting despite the player having since left enlistment)
+             * if the visual for the player party is also fixed at some point, it would avoid the incongruency of the player being attacked when they have no visual on the map and are "just part of the noble's party"
+             * 
+             * Tested with : 
+             * army v army
+             * army v siege camp
+             * siege camp v army
+             * bandits (cultist, outlaws, ungors)
+             * army v party
+             * party v army
+             * party v party
+             * and instances where parties had allied armies in proximity
+             * In all cases, the hireling player choosing to join the battle would include the noble's party, any nearby parties, and any parties attached to an army
+             */
+            if (MobileParty.MainParty == mobileParty && _hirelingEnlisted)
+            {
+                //InformationManager.DisplayMessage(new InformationMessage("Player party ignore refresh, hour in day : " + CampaignTime.Now.GetHourOfDay.ToString(), Colors.Magenta));
+                //the moment at which this runs can be between 5-7 hours apart, therefore using 8 to cover all possibilties
+                MobileParty.MainParty.IgnoreForHours(8f);
+            }
         }
 
         private void OnRaidCompleted(BattleSideEnum side, RaidEventComponent component)
@@ -107,6 +146,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         private void SkillGain()
         {
+            
             if (_hirelingEnlisted)
             {
                 if (_currentTrainedSkill == null)
@@ -216,8 +256,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                     ChangeCrimeRatingAction.Apply(_hirelingEnlistingLord.MapFaction, 55f);
                     foreach (Clan clan in _hirelingEnlistingLord.Clan.Kingdom.Clans)
                     {
-                        bool flag2 = !clan.IsUnderMercenaryService;
-                        if (flag2)
+                        if (!clan.IsUnderMercenaryService)
                         {
                             ChangeRelationAction.ApplyPlayerRelation(clan.Leader, -10);
                         }   
@@ -693,7 +732,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         {
             if (_hirelingEnlisted && _hirelingEnlistingLord != null && _hirelingEnlistingLord.PartyBelongedTo != null)
             {
-
+                /*this becomes a redundant check with the IgnoreHirelingPartyRefresh event; the main party will be set to Ignore on every tick due to the overlapping time periods
+                 *the downtime between the player joining and the first refresh tick is covered by the player party being Ignored for 8 hours after enlisting
                 if (_hirelingLordIsFightingWithoutPlayer || _hirelingEnlistingLord.PartyBelongedTo?.BesiegerCamp != null || _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement != null || (_hirelingEnlistingLord.PartyBelongedTo.MapEvent!=null && _hirelingEnlistingLord.PartyBelongedTo.MapEvent.IsRaid))
                 {
                     if (!MobileParty.MainParty.ShouldBeIgnored)
@@ -701,6 +741,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                         MobileParty.MainParty.IgnoreForHours(1);
                     }
                 }
+                */
                 
                 var menu = Campaign.Current.GameMenuManager.GetGameMenu("hireling_menu");
                 _durationInDays = Campaign.Current.CampaignStartTime.ElapsedDaysUntilNow - _entryServiceTimeStamp;
@@ -755,6 +796,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             _hirelingEnlistingLord = CharacterObject.OneToOneConversationCharacter.HeroObject;
             HidePlayerParty();
             DisbandParty();
+            //sets the player party to be ignored so it can't be targeted; refreshed with the IgnoreHirelingPartyRefresh event
+            MobileParty.MainParty.IgnoreForHours(8f);
             Hero.MainHero.AddAttribute("enlisted");
             
             ChangeKingdomAction.ApplyByJoinFactionAsMercenary(Hero.MainHero.Clan, _hirelingEnlistingLord.Clan.Kingdom, 25, false);
