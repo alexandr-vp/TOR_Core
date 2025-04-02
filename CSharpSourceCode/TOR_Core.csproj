@@ -467,7 +467,10 @@
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\DynamicItemTraitScripts.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\ITriggeredScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\KnockDownScript.cs" />
-    <Compile Include="BattleMechanics\TriggeredEffect\Scripts\OnHitScripts.cs" />
+    <Compile Include="Items\InventoryUseScripts\IInventoryUseScript.cs" />
+    <Compile Include="Items\InventoryUseScripts\SkillBookScript.cs" />
+    <Compile Include="Items\WeaponHitScripts\IWeaponHitScript.cs" />
+    <Compile Include="Items\WeaponHitScripts\KnightlyStrikeHitScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\PrefabSpawnerScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\SummonScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\TraitHelper.cs" />
@@ -693,7 +696,7 @@
     <Compile Include="Items\ExtendedItemObjectProperties.cs" />
     <Compile Include="Items\ItemTrait.cs" />
     <Compile Include="Items\ItemTraitAgentComponent.cs" />
-    <Compile Include="Items\IWeaponHitEffect.cs" />
+    <Compile Include="Items\ItemTraitManager.cs" />
     <Compile Include="Items\TorInventoryItemTupleWidget.cs" />
     <Compile Include="Items\TorItemMenuVM.cs" />
     <Compile Include="Items\TorImageIdentifierWidget.cs" />
@@ -856,6 +859,7 @@
       <Version>4.5.0</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>XCOPY "$(TargetDir)*" "$(TargetDir)..\Win64_Shipping_wEditor\" /S /Y /I</PostBuildEvent>

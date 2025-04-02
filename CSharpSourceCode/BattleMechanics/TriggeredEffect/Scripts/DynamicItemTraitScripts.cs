@@ -2,27 +2,24 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
-using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
-using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment.CareerSystem;
-using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
 {
-    
+
     public class ApplySwiftShiverTrait : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            /*
             if(triggeredAgents.Count() > 0)
             {
   
@@ -48,6 +45,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
+            */
         }
     }
     
@@ -55,6 +53,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            /*
             if(triggeredAgents.Count() > 0)
             {
                 var trait = new ItemTrait
@@ -75,6 +74,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
+            */
         }
     }
     
@@ -82,6 +82,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            /*
             if(triggeredAgents.Count() > 0)
             {
                 var trait = new ItemTrait
@@ -106,6 +107,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
+            */
         }
     }
     
@@ -113,6 +115,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            /*
             if(triggeredAgents.Count() > 0)
             {
                 var trait = new ItemTrait();
@@ -137,6 +140,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
+            */
         }
     }
 
@@ -144,6 +148,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            /*
             var additionalDamage = new DamageProportionTuple();
             additionalDamage.DamageType = DamageType.Physical;
             additionalDamage.Percent = 0.2f;
@@ -202,6 +207,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
+            */
         }
     }
     
@@ -209,6 +215,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            /*
             if(triggeredAgents.Count() > 0)
             {
                 var trait = new ItemTrait();
@@ -232,6 +239,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
+            */
         }
     }
     
@@ -239,6 +247,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            /*
             if(triggeredAgents.Count() > 0)
             {
                 var trait = new ItemTrait();
@@ -263,6 +272,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
+            */
         }
     }
     
@@ -270,6 +280,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            /*
             if(triggeredAgents.Count() > 0)
             {
                 var trait = new ItemTrait();
@@ -294,6 +305,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
+            */
         }
     }
     
@@ -301,6 +313,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            /*
             if(triggeredAgents.Count() > 0)
             {
                 var trait = new ItemTrait();
@@ -326,6 +339,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
+            */
         }
     }
     
@@ -333,6 +347,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            /*
             if(triggeredAgents.Count() > 0)
             {
                 var trait = new ItemTrait();
@@ -357,6 +372,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
+            */
         }
     }
     
@@ -364,6 +380,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            /*
             if(triggeredAgents.Count() > 0)
             {
                 var trait = new ItemTrait();
@@ -388,6 +405,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
+            */
         }
     }
     
@@ -395,6 +413,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            /*
             if(triggeredAgents.Count() > 0)
             {
                 var trait = new ItemTrait();
@@ -422,6 +441,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
+            */
         }
     }
     
@@ -429,6 +449,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            /*
             if(triggeredAgents.Count() > 0)
             {
                 var trait = new ItemTrait();
@@ -461,6 +482,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
+            */
         }
     }
     
@@ -468,6 +490,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            /*
             if(triggeredAgents.Count() > 0)
             {
                 var trait = new ItemTrait();
@@ -489,6 +512,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
+            */
         }
     }
     
@@ -496,6 +520,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            /*
             if(triggeredAgents.Count() > 0)
             {
                 var trait = new ItemTrait();
@@ -519,6 +544,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
+            */
         }
     }
 
@@ -526,6 +552,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
+            /*
             if (triggeredAgents.Count() > 0)
             {
                 var trait = new ItemTrait();
@@ -550,33 +577,20 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
+            */
         }
     }
     
     public class SpiritLeech: ITriggeredScript
     {
-        /*
-         * Leech consists of a damage over time (dot) and heal over time (hot) effect. the dot is handled via the XMLs while the hot is applied here.
-         * The ability takes only the strongest unit (or hero) into account, since it otherwise would stack and scale too much.
-         * the duration of the dot is affecting the duration of the hot.a
-         * P and Z
-         */
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            
             var targets = triggeredAgents.ToList();
-
-
             if (targets.Count <= 0) return;
-            
             var target = targets[0];
-
             target = targets.FirstOrDefaultQ(x => x.IsHero) ?? targets.MaxBy(x => x.Character.Level);
-
             var tier = target.Character.GetBattleTier();
-            
             triggeredByAgent.ApplyStatusEffect("spirit_leech_heal",triggeredByAgent,tier * duration);
-
         }
     }
 }

@@ -12,6 +12,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
+using TOR_Core.Items.InventoryUseScripts;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.SkillBooks
@@ -96,7 +97,7 @@ namespace TOR_Core.CampaignMechanics.SkillBooks
 
         public bool IsSkillBook(ItemObject book)
         {
-            return book.GetTraits().Any(trait => trait.SkillTuple != null);
+            return book.GetTraits().Any(trait => trait.OnInventoryUseScript?.ScriptName == typeof(SkillBookScript).FullName);
         }
 
         /** 
@@ -121,8 +122,6 @@ namespace TOR_Core.CampaignMechanics.SkillBooks
             GameTexts.SetVariable ("SKILLBOOK", bookName);
             if (!IsBookUseful(_currentBookObject))
             {
-                
-                
                 var text = new TextObject ("{=tor_skill_book_done_notification_str}You feel as if there is nothing left to gain from reading {SKILLBOOK}");
                 TORCommon.Say(text);
                 _readingProgress[CurrentBook] = hoursToComplete;

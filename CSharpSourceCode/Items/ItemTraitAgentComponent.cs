@@ -187,7 +187,7 @@ namespace TOR_Core.Items
                 _currentPresets[i] = new Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>(item.Item1, item.Item2, false);
             }
             var weapon = Agent.WieldedWeapon;
-            if (weapon.Item != null && weapon.Item.HasTrait(Agent) && !weapon.CurrentUsageItem.IsRangedWeapon)
+            if (weapon.Item != null && weapon.Item.HasAnyTrait(Agent) && !weapon.CurrentUsageItem.IsRangedWeapon)
             {
                 var info = weapon.Item.GetTorSpecificData(Agent);
                 if (info != null)

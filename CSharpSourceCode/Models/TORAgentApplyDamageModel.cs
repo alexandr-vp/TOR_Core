@@ -257,7 +257,7 @@ namespace TOR_Core.Models
                  armorItems = agent.Character.GetCharacterEquipment(EquipmentIndex.ArmorItemBeginSlot);
                  foreach (var item in armorItems)
                  {
-                     if (item.HasTrait())
+                     if (item.HasAnyTrait())
                          itemTraits.AddRange(item.GetTraits(agent));
                  }
                  //equipment amplifiers, also implies dynamic traits
@@ -403,7 +403,7 @@ namespace TOR_Core.Models
                  items = agent.Character.GetCharacterEquipment(EquipmentIndex.ArmorItemBeginSlot);
                  foreach (var item in items)
                  {
-                     if (item.HasTrait())
+                     if (item.HasAnyTrait())
                          itemTraits.AddRange(item.GetTraits(agent));
                  }
 

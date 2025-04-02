@@ -9,7 +9,7 @@ using TOR_Core.BattleMechanics.DamageSystem;
 namespace TOR_Core.Extensions.ExtendedInfoSystem
 {
     /// <summary>
-    /// Contains Tow data of single unit or character template. 
+    /// Contains TOR data of single unit or character template. 
     /// </summary>
     public class CharacterExtendedInfo
     {
@@ -30,7 +30,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
     }
 
     [Serializable]
-    public class ResourceCostTuple
+    public class ResourceCostTuple : IEquatable<ResourceCostTuple>
     {
         [XmlAttribute]
         public string ResourceType = string.Empty;
@@ -38,40 +38,159 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         public int UpkeepCost = 0;
         [XmlAttribute]
         public int UpgradeCost = 0;
+
+        public bool Equals(ResourceCostTuple other)
+        {
+            if (other == null) return false;
+            return ResourceType == other.ResourceType &&
+                   UpkeepCost == other.UpkeepCost &&
+                   UpgradeCost == other.UpgradeCost;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as ResourceCostTuple);
+        }
+
+        public override int GetHashCode()
+        {
+            return (ResourceType, UpkeepCost, UpgradeCost).GetHashCode();
+        }
+
+        public static bool operator ==(ResourceCostTuple left, ResourceCostTuple right)
+        {
+            if (ReferenceEquals(left, right)) return true;
+            if (left is null || right is null) return false;
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ResourceCostTuple left, ResourceCostTuple right)
+        {
+            return !(left == right);
+        }
     }
 
     [Serializable]
-    public class ResistanceTuple
+    public class ResistanceTuple : IEquatable<ResistanceTuple>
     {
         [XmlAttribute]
         public DamageType ResistedDamageType = DamageType.Invalid;
         [XmlAttribute]
         public float ReductionPercent = 0;
+
+        public bool Equals(ResistanceTuple other)
+        {
+            if (other == null) return false;
+            return ResistedDamageType == other.ResistedDamageType &&
+                   ReductionPercent == other.ReductionPercent;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as ResistanceTuple);
+        }
+
+        public override int GetHashCode()
+        {
+            return (ResistedDamageType, ReductionPercent).GetHashCode();
+        }
+
+        public static bool operator ==(ResistanceTuple left, ResistanceTuple right)
+        {
+            if (ReferenceEquals(left, right)) return true;
+            if (left is null || right is null) return false;
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ResistanceTuple left, ResistanceTuple right)
+        {
+            return !(left == right);
+        }
     }
 
     [Serializable]
-    public class AmplifierTuple
+    public class AmplifierTuple : IEquatable<AmplifierTuple>
     {
         [XmlAttribute]
         public DamageType AmplifiedDamageType = DamageType.Invalid;
         [XmlAttribute]
         public float DamageAmplifier = 0;
+
+        public bool Equals(AmplifierTuple other)
+        {
+            if (other == null) return false;
+            return AmplifiedDamageType == other.AmplifiedDamageType &&
+                   DamageAmplifier == other.DamageAmplifier;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as AmplifierTuple);
+        }
+
+        public override int GetHashCode()
+        {
+            return (AmplifiedDamageType, DamageAmplifier).GetHashCode();
+        }
+
+        public static bool operator ==(AmplifierTuple left, AmplifierTuple right)
+        {
+            if (ReferenceEquals(left, right)) return true;
+            if (left is null || right is null) return false;
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(AmplifierTuple left, AmplifierTuple right)
+        {
+            return !(left == right);
+        }
     }
 
     [Serializable]
-    public class DamageProportionTuple
+    public class DamageProportionTuple : IEquatable<DamageProportionTuple>
     {
         [XmlAttribute]
         public DamageType DamageType = DamageType.Invalid;
         [XmlAttribute]
         public float Percent = 1;
+
         public DamageProportionTuple()
         {
         }
+
         public DamageProportionTuple(DamageType damageType, float percent)
         {
             DamageType = damageType;
             Percent = percent;
+        }
+
+        public bool Equals(DamageProportionTuple other)
+        {
+            if (other == null) return false;
+            return DamageType == other.DamageType &&
+                   Percent == other.Percent;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as DamageProportionTuple);
+        }
+
+        public override int GetHashCode()
+        {
+            return (DamageType, Percent).GetHashCode();
+        }
+
+        public static bool operator ==(DamageProportionTuple left, DamageProportionTuple right)
+        {
+            if (ReferenceEquals(left, right)) return true;
+            if (left is null || right is null) return false;
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(DamageProportionTuple left, DamageProportionTuple right)
+        {
+            return !(left == right);
         }
     }
 
@@ -84,7 +203,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         public readonly float[] DamagePercentages;
         public readonly float[] ResistancePercentages;
         public readonly float[] AdditionalDamagePercentages;
-       
+
         public AgentPropertyContainer(float[] damageProportions, float[] damagePercentages, float[] resistancePercentages, float[] additionalDamagePercentages)
         {
             DamageProportions = damageProportions;
@@ -94,15 +213,15 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         }
 
         public static AgentPropertyContainer InitNew()
-        { 
-            float[] damageProportions= new float[(int)DamageType.All+1];
+        {
+            float[] damageProportions = new float[(int)DamageType.All + 1];
             damageProportions[(int)DamageType.Physical] = 1;
-            float[] damagePercentages= new float[(int)DamageType.All+1];  
-            float[] resistancePercentages= new float[(int)DamageType.All+1]; 
-            float[] additionalDamagePercentages= new float[(int)DamageType.All+1];
+            float[] damagePercentages = new float[(int)DamageType.All + 1];
+            float[] resistancePercentages = new float[(int)DamageType.All + 1];
+            float[] additionalDamagePercentages = new float[(int)DamageType.All + 1];
             return new AgentPropertyContainer(damageProportions, damagePercentages, resistancePercentages, additionalDamagePercentages);
         }
-        
+
     }
 
     public enum PropertyMask : int
@@ -118,6 +237,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         Ranged = 1,
         Melee = 2,
         Spell = 4,
-        All = Ranged|Melee|Spell
+        All = Ranged | Melee | Spell
     }
 }
+

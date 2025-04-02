@@ -2,11 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
-using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
 using TOR_Core.Extensions;
+using TOR_Core.Items.WeaponHitScripts;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Items
@@ -31,7 +30,6 @@ namespace TOR_Core.Items
             {
                 Agent.Main.GetComponent<ItemTraitAgentComponent>().OnTickAsMainAgent(dt);
             }
-            
         }
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
@@ -39,7 +37,7 @@ namespace TOR_Core.Items
             if (affectedAgent == affectorAgent)
                 return;
 
-            if (affectorWeapon.Item != null && affectorWeapon.Item.HasTrait(affectorAgent))
+            if (affectorWeapon.Item != null && affectorWeapon.Item.HasAnyTrait(affectorAgent))
             {
                 var relevantTraits = affectorWeapon.Item.GetTraits(affectorAgent).Where(x => x.ImbuedStatusEffectId != "none");
                 if (relevantTraits != null && relevantTraits.Count() > 0)
@@ -52,7 +50,7 @@ namespace TOR_Core.Items
                 }
 
                 var onHitTraits = affectorWeapon.Item.GetTraits(affectorAgent)
-                    .Where(x => x.ImbuedStatusEffectId != "none" || x.OnHitScriptName != "none");
+                    .Where(x => x.OnWeaponHitScript.ScriptName != "none");
 
                 if (onHitTraits != null && onHitTraits.Count() > 0)
                 {
@@ -60,7 +58,7 @@ namespace TOR_Core.Items
                     {
                         try
                         {
-                            var obj = Activator.CreateInstance(Type.GetType(trait.OnHitScriptName));
+                            var obj = Activator.CreateInstance(Type.GetType(trait.OnWeaponHitScript.ScriptName));
                             if( obj is IWeaponHitScript)
                             {
                                 var script = obj as IWeaponHitScript;
@@ -69,10 +67,9 @@ namespace TOR_Core.Items
                         }
                         catch(Exception)
                         {
-                            TORCommon.Log("Tried to create magicweapon onhitscript: " + trait.OnHitScriptName + ", but failed.", NLog.LogLevel.Error);
+                            TORCommon.Log("Tried to create magicweapon onhitscript: " + trait.OnWeaponHitScript.ScriptName + ", but failed.", NLog.LogLevel.Error);
                         }
                     }
-                    
                 }
             }
         }
@@ -100,7 +97,6 @@ namespace TOR_Core.Items
                                     victim.ApplyStatusEffect(trait.ImbuedStatusEffectId, attacker, 5, false);
                                 }
                             }
-               
                         }
                     }
                     
@@ -131,9 +127,7 @@ namespace TOR_Core.Items
                             {
                                 missile.Entity.AddParticleSystemComponent(trait.WeaponParticlePreset.ParticlePrefab);  
                             }
-                           
                         }
-
                     }
                 }
             }

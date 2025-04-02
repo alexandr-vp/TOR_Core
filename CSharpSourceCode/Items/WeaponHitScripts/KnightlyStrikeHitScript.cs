@@ -8,15 +8,15 @@ using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
 
-namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
+namespace TOR_Core.Items.WeaponHitScripts;
 
-public class KnightlyStrikeOnHitScript: IWeaponHitScript
+public class KnightlyStrikeHitScript : IWeaponHitScript
 {
     public void OnHit(Agent attackingAgent, Agent attackedAgent, int inflictedDamge, MissionWeapon missionWeapon)
     {
-        if(inflictedDamge<=15)
+        if (inflictedDamge <= 15)
             return;
-        
+
         var statusEffectComponent = attackingAgent.GetComponent<StatusEffectComponent>();
 
         var knightlyStrikes = new List<string>();
@@ -27,12 +27,12 @@ public class KnightlyStrikeOnHitScript: IWeaponHitScript
             var list = statusEffectComponent.GetTemporaryAttributes(true).Where(x => x == "KnightlyStrike").ToList();
             knightlyStrikes.AddRange(list);
         }
-        
+
         if (Hero.MainHero.HasCareerChoice("WrathAgainstChaosKeystone"))
         {
-            attackingAgent.ApplyStatusEffect("knightly_strike_ws",attackingAgent,5,true,false,false);
+            attackingAgent.ApplyStatusEffect("knightly_strike_ws", attackingAgent, 5, true, false, false);
         }
-        
+
         if (knightlyStrikes.Count > 0)
         {
             return;
@@ -44,6 +44,5 @@ public class KnightlyStrikeOnHitScript: IWeaponHitScript
         {
             weaponComponent.RemoveTraitFromWieldedWeapon("KnightlyStrike");
         }
-
     }
 }

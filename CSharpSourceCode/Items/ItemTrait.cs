@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.Items
 {
     [Serializable]
+    [XmlInclude(typeof(ItemTrait))]
     public class ItemTrait : IEquatable<ItemTrait>
     {
         [XmlAttribute]
@@ -18,9 +21,9 @@ namespace TOR_Core.Items
         [XmlElement]
         public DamageProportionTuple AdditionalDamageTuple { get; set; }
         [XmlElement]
-        public SkillTuple SkillTuple { get; set; }
-        [XmlAttribute]
-        public string OnHitScriptName { get; set; } = "none";
+        public ScriptTuple OnWeaponHitScript { get; set; }
+        [XmlElement]
+        public ScriptTuple OnInventoryUseScript { get; set; }
         [XmlAttribute]
         public string ImbuedStatusEffectId { get; set; } = "none";
         [XmlAttribute]
@@ -30,37 +33,131 @@ namespace TOR_Core.Items
         [XmlElement]
         public WeaponParticlePreset WeaponParticlePreset { get; set; }
 
+        private ItemTrait() { }
+
+        public static List<ItemTrait> All => ItemTraitManager.Instance.GetItemTraits();
+
         public bool Equals(ItemTrait other)
         {
+            if (other == null) return false;
+
             return ItemTraitName == other.ItemTraitName &&
-                ItemTraitDescription == other.ItemTraitDescription &&
-                OnHitScriptName == other.OnHitScriptName &&
-                ImbuedStatusEffectId == other.ImbuedStatusEffectId &&
-                WeaponParticlePreset.ParticlePrefab == other.WeaponParticlePreset.ParticlePrefab &&
-                WeaponParticlePreset.IsUniqueSingleCopy == other.WeaponParticlePreset.IsUniqueSingleCopy;
+                   ItemTraitDescription == other.ItemTraitDescription &&
+                   Equals(ResistanceTuple, other.ResistanceTuple) &&
+                   Equals(AmplifierTuple, other.AmplifierTuple) &&
+                   Equals(AdditionalDamageTuple, other.AdditionalDamageTuple) &&
+                   Equals(OnWeaponHitScript, other.OnWeaponHitScript) &&
+                   Equals(OnInventoryUseScript, other.OnInventoryUseScript) &&
+                   ImbuedStatusEffectId == other.ImbuedStatusEffectId &&
+                   ImbuedStatusEffectChance == other.ImbuedStatusEffectChance &&
+                   IconName == other.IconName &&
+                   Equals(WeaponParticlePreset, other.WeaponParticlePreset);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as ItemTrait);
+        }
+
+        public override int GetHashCode()
+        {
+            return (ItemTraitName, ItemTraitDescription, ResistanceTuple, AmplifierTuple, AdditionalDamageTuple, OnWeaponHitScript, OnInventoryUseScript, ImbuedStatusEffectId, ImbuedStatusEffectChance, IconName, WeaponParticlePreset).GetHashCode();
+        }
+
+        public static bool operator ==(ItemTrait left, ItemTrait right)
+        {
+            if (ReferenceEquals(left, right)) return true;
+            if (left is null || right is null) return false;
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ItemTrait left, ItemTrait right)
+        {
+            return !(left == right);
         }
     }
 
     [Serializable]
-    public class WeaponParticlePreset
+    public class WeaponParticlePreset : IEquatable<WeaponParticlePreset>
     {
         [XmlAttribute]
         public string ParticlePrefab { get; set; } = "invalid";
         [XmlAttribute]
         public bool IsUniqueSingleCopy { get; set; } = false;
+
+        public bool Equals(WeaponParticlePreset other)
+        {
+            if (other == null) return false;
+            return ParticlePrefab == other.ParticlePrefab &&
+                   IsUniqueSingleCopy == other.IsUniqueSingleCopy;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as WeaponParticlePreset);
+        }
+
+        public override int GetHashCode()
+        {
+            return (ParticlePrefab, IsUniqueSingleCopy).GetHashCode();
+        }
+
+        public static bool operator ==(WeaponParticlePreset left, WeaponParticlePreset right)
+        {
+            if (ReferenceEquals(left, right)) return true;
+            if (left is null || right is null) return false;
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(WeaponParticlePreset left, WeaponParticlePreset right)
+        {
+            return !(left == right);
+        }
     }
 
     [Serializable]
-    public class SkillTuple
+    public class ScriptTuple : IEquatable<ScriptTuple>
     {
         [XmlAttribute]
+        public string ScriptName { get; set; }
+        [XmlElement("Arguments")]
+        public List<string> ScriptArguments { get; set; }
+
+        public bool Equals(ScriptTuple other)
+        {
+            if (other == null) return false;
+            return ScriptName == other.ScriptName &&
+                   ScriptArguments.SequenceEqual(other.ScriptArguments);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as ScriptTuple);
+        }
+
+        public override int GetHashCode()
+        {
+            return (ScriptName, ScriptArguments).GetHashCode();
+        }
+
+        public static bool operator ==(ScriptTuple left, ScriptTuple right)
+        {
+            if (ReferenceEquals(left, right)) return true;
+            if (left is null || right is null) return false;
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ScriptTuple left, ScriptTuple right)
+        {
+            return !(left == right);
+        }
+    }
+    
+    public class SkillTuple
+    {
         public bool IsAbility { get; set; } = false;
-        [XmlAttribute]
         public string SkillId { get; set; }
-        [XmlAttribute]
         public float SkillExp { get; set; } = 0;
-        [XmlAttribute]
         public float LearningTime { get; set; } = 1;
-        
     }
 }

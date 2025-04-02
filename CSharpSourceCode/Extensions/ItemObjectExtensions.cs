@@ -51,7 +51,7 @@ namespace TOR_Core.Extensions
             return result;
         }
 
-        public static bool HasTrait(this ItemObject item)
+        public static bool HasAnyTrait(this ItemObject item)
         {
             if (item.GetTraits() != null)
             {
@@ -60,7 +60,7 @@ namespace TOR_Core.Extensions
             else return false;
         }
 
-        public static bool HasTrait(this ItemObject item, Agent agent)
+        public static bool HasAnyTrait(this ItemObject item, Agent agent)
         {
             if (item.GetTraits(agent) != null)
             {

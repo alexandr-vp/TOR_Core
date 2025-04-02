@@ -1,29 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
-using TOR_Core.AbilitySystem.SpellBook;
-using TOR_Core.AbilitySystem.Spells;
-using TOR_Core.AbilitySystem.Spells.Prayers;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
 using TOR_Core.CampaignMechanics.Religion;
-using TOR_Core.CharacterDevelopment.CareerSystem.Button;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
-using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
@@ -33,9 +24,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
     public static class CareerHelper
     {
-        public static float AddSkillEffectToValue(CareerChoiceObject careerChoice, Agent agent, List<SkillObject> relevantSkills, float scalingFactor, bool highestOnly = false , bool onlyWielded=false)
+        public static float AddSkillEffectToValue(CareerChoiceObject careerChoice, Agent agent, List<SkillObject> relevantSkills, float scalingFactor, bool highestOnly = false, bool onlyWielded = false)
         {
-            float skillValue=0f;
+            float skillValue = 0f;
             if (agent != null && agent.IsHero && relevantSkills != null && relevantSkills.Count > 0)
             {
                 if (onlyWielded)
@@ -48,17 +39,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                         foreach (var weapon in getWeaponEquipment)
                         {
                             var skill = weapon.PrimaryWeapon.RelevantSkill;
-                            if (relevantSkills.Contains(skill)&& value<agent.GetHero().GetSkillValue(skill))
+                            if (relevantSkills.Contains(skill) && value < agent.GetHero().GetSkillValue(skill))
                             {
                                 value = agent.GetHero().GetSkillValue(skill);
                             }
                         }
-                        
-                        skillValueWielded= value;
+
+                        skillValueWielded = value;
                     }
-                    skillValue= skillValueWielded;
+                    skillValue = skillValueWielded;
                 }
-                else 
+                else
                 if (highestOnly)
                 {
                     skillValue = relevantSkills.Max(x => agent.GetHero().GetSkillValue(x));
@@ -67,18 +58,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     foreach (var skill in relevantSkills)
                     {
                         skillValue += agent.GetHero().GetSkillValue(skill);
-                 
+
                     }
-                
+
                 if (careerChoice == TORCareerChoices.GetChoice("ProtectorOfTheWeakKeyStone"))
                 {
                     if (agent.WieldedWeapon.Item?.PrimaryWeapon?.SwingDamageType != DamageTypes.Blunt) return 0f;
                 }
             }
 
-            return skillValue*scalingFactor;
+            return skillValue * scalingFactor;
         }
-        
+
         public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, AttackTypeMask mask, bool asFactor = false)
         {
             var choices = hero.GetAllCareerChoices();
@@ -93,7 +84,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     var attackMask = choice.Passive.AttackTypeMask;
                     if ((mask & attackMask) == 0) //if mask does NOT contains attackmask
                         continue;
-                    
+
                     var value = choice.Passive.EffectMagnitude;
                     if (choice.Passive.InterpretAsPercentage)
                     {
@@ -108,28 +99,28 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
             }
         }
-        
-        public static bool IsValidCareerMissionInteractionBetweenAgents(Agent affectorAgent , Agent affectedAgent)
+
+        public static bool IsValidCareerMissionInteractionBetweenAgents(Agent affectorAgent, Agent affectedAgent)
         {
             if (Campaign.Current == null) return false;
             if (!Hero.MainHero.HasAnyCareer()) return false;
             if (affectorAgent == null) return false;
             if (Hero.MainHero.HasCareer(TORCareers.Necromancer) && affectorAgent.HasAttribute("NecromancerChampion")) return true;
             if (Agent.Main == null) return false;
-            
-            
-            if(affectorAgent.IsMount||affectedAgent.IsMount) return false;
+
+
+            if (affectorAgent.IsMount || affectedAgent.IsMount) return false;
 
             return affectorAgent.BelongsToMainParty() || affectedAgent.BelongsToMainParty();
         }
-        
-        public static void ApplyCareerAbilityCharge( int amount, ChargeType chargeType, AttackTypeMask attackTypeMask,Agent affector=null,Agent affected =null, AttackCollisionData collisionData = new AttackCollisionData())
+
+        public static void ApplyCareerAbilityCharge(int amount, ChargeType chargeType, AttackTypeMask attackTypeMask, Agent affector = null, Agent affected = null, AttackCollisionData collisionData = new AttackCollisionData())
         {
             if (Agent.Main == null) return;
             var cAbility = Agent.Main.GetComponent<AbilityComponent>();
             if (cAbility != null)
             {
-                var value = CalculateChargeForCareer(chargeType, amount, affector,affected, attackTypeMask, collisionData);
+                var value = CalculateChargeForCareer(chargeType, amount, affector, affected, attackTypeMask, collisionData);
                 if (value > 0)
                 {
                     cAbility.CareerAbility.AddCharge(value);
@@ -162,9 +153,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             return 0;
         }
-        
-        
-        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, bool asFactor = true, CharacterObject characterObject=null)
+
+        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, bool asFactor = true, CharacterObject characterObject = null)
         {
             var choices = hero.GetAllCareerChoices();
             foreach (var choiceID in choices)
@@ -172,29 +162,29 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 var choice = TORCareerChoices.GetChoice(choiceID);
 
                 if (choice?.Passive == null || choice.Passive.PassiveEffectType != passiveEffectType) continue;
-                
+
                 if (characterObject == null)
                 {
                     characterObject = hero.CharacterObject;
                 }
-                    
+
                 var passive = choice.Passive;
-                
-                if(!passive.IsValidCharacterObject(characterObject)) continue;
-                    
+
+                if (!passive.IsValidCharacterObject(characterObject)) continue;
+
                 if (passive.WithFactorFlatSwitch)
                 {
                     asFactor = !asFactor;
                 }
-                    
+
                 var value = passive.EffectMagnitude;
                 var text = choice.BelongsToGroup.Name;
-                    
+
                 if (passive.InterpretAsPercentage)
                 {
                     value /= 100;
                 }
-                    
+
                 if (asFactor)
                 {
                     number.AddFactor(value, text);
@@ -207,33 +197,33 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public static void ApplySkillBonusForTroops(ref ExplainedNumber resultNumber, SkillObject skillObject, BasicCharacterObject troopCharacterObject)
         {
             var choices = Hero.MainHero.GetAllCareerChoices();
-            
+
             if (troopCharacterObject == null)
             {
                 return;
             }
-            
+
             foreach (var choiceID in choices)
             {
                 var choice = TORCareerChoices.GetChoice(choiceID);
-                
+
                 if (choice?.Passive == null || choice.Passive.PassiveEffectType != PassiveEffectType.TroopSkill) continue;
 
                 if (!choice.Passive.IsValidCharacterObject(troopCharacterObject as CharacterObject))
                 {
                     continue;
                 }
-                
+
                 var skillEffectID = choice.Passive.TargetEffect;
 
                 if (!skillEffectID.Contains(skillObject.StringId))
                 {
                     continue;
                 }
-                
+
                 var value = choice.Passive.EffectMagnitude;
-                
-                
+
+
                 resultNumber.Add(value, choice.BelongsToGroup.Name);
             }
         }
@@ -263,20 +253,20 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     {
                         ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopResistance);
                     }
-                    
+
                     return damageValues;
                 default:
                     return null;
             }
         }
 
-        private static void ApplyCareerPassivesForDamageValues(Agent agent,Agent victim, ref float[] values, AttackTypeMask attackMask, PassiveEffectType type)
+        private static void ApplyCareerPassivesForDamageValues(Agent agent, Agent victim, ref float[] values, AttackTypeMask attackMask, PassiveEffectType type)
         {
             if (type != PassiveEffectType.Damage &&
                 type != PassiveEffectType.TroopDamage &&
                 type != PassiveEffectType.Resistance &&
                 type != PassiveEffectType.TroopResistance) return;
-            
+
             var choices = Hero.MainHero.GetAllCareerChoices();
             foreach (var choiceID in choices)
             {
@@ -286,7 +276,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
                 if (choice.Passive != null && (choice.Passive.PassiveEffectType == type))
                 {
-                    if(!choice.Passive.IsValidCombatInteraction(agent, victim, attackMask)) continue;
+                    if (!choice.Passive.IsValidCombatInteraction(agent, victim, attackMask)) continue;
                     var passive = choice.Passive;
                     var mask = passive.AttackTypeMask;
                     if ((mask & attackMask) == 0) //if mask does NOT contains attackmask
@@ -304,9 +294,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             float value = 0;
             description = new TextObject("");
             if (careerPerk == null) return 0;
-            
+
             float effect = careerPerk.GetPassiveValue();
-            value = (troop.Character.TroopWage*troop.Number) * effect;
+            value = (troop.Character.TroopWage * troop.Number) * effect;
             description = careerPerk.BelongsToGroup.Name;
 
             return value;
@@ -315,28 +305,28 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public static bool IsMagicCapableCareer(CareerObject career)
         {
             if (career == null) return false;
-            
-            if (career == TORCareers.Mercenary|| 
-                career == TORCareers.MinorVampire || 
+
+            if (career == TORCareers.Mercenary ||
+                career == TORCareers.MinorVampire ||
                 career == TORCareers.GrailDamsel ||
-                career == TORCareers.Necromancer||
+                career == TORCareers.Necromancer ||
                 career == TORCareers.Necrarch)
                 return true;
 
             return false;
         }
 
-        public static List<(string PrayerID,int Rank) > GetBattlePrayerList(CareerObject career)
+        public static List<(string PrayerID, int Rank)> GetBattlePrayerList(CareerObject career)
         {
             List<(string PrayerID, int Rank)> prayers = new List<(string, int)>();
-            
-            
+
+
             if (career == TORCareers.WarriorPriest)
             {
-                prayers.Add(("HealingHand",2));
-                prayers.Add(("ArmourOfRighteousness",3));
-                prayers.Add(("Vanquish",3));
-                prayers.Add(( "CometOfSigmar", 4));
+                prayers.Add(("HealingHand", 2));
+                prayers.Add(("ArmourOfRighteousness", 3));
+                prayers.Add(("Vanquish", 3));
+                prayers.Add(("CometOfSigmar", 4));
                 return prayers;
             }
 
@@ -345,16 +335,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 prayers.Add(("AuraOfTheLady", 2));
                 prayers.Add(("ShieldOfCombat", 3));
                 prayers.Add(("LadysFavour", 3));
-                prayers.Add(( "AerialShield", 4));
+                prayers.Add(("AerialShield", 4));
                 return prayers;
             }
 
             if (career == TORCareers.WarriorPriestUlric)
             {
-                prayers.Add(("UlricsGift",2));
-                prayers.Add(("HeartOfTheWolf",3));
-                prayers.Add(("IceStorm",3));
-                prayers.Add(( "SnowKingDecree", 4));
+                prayers.Add(("UlricsGift", 2));
+                prayers.Add(("HeartOfTheWolf", 3));
+                prayers.Add(("IceStorm", 3));
+                prayers.Add(("SnowKingDecree", 4));
                 return prayers;
             }
 
@@ -375,7 +365,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public static CareerButtonBehaviorBase GetCareerButton()
         {
-            
+
             var career = Hero.MainHero.GetCareer();
 
             if (career != null)
@@ -385,12 +375,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             return null;
         }
-        
+
         public static string GetButtonSprite()
         {
-            var career= Hero.MainHero.GetCareer();
+            var career = Hero.MainHero.GetCareer();
             if (career == null) return "";
-            
+
             var button = GetCareerButton();
             if (button != null)
             {
@@ -399,18 +389,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             return "";
         }
-        
-        
+
+
         public static void PowerstoneEffectAssignment(Agent agent)
         {
             var statuseffectComponent = agent.GetComponent<StatusEffectComponent>();
 
-            var button =  CareerHelper.GetCareerButton() as ImperialMagisterCareerButtonBehavior;
-            if (statuseffectComponent != null && button!=null)
+            var button = CareerHelper.GetCareerButton() as ImperialMagisterCareerButtonBehavior;
+            if (statuseffectComponent != null && button != null)
             {
                 var powerstone = button.GetPowerstone(agent.Character as CharacterObject);
 
-                if (powerstone!=null)
+                if (powerstone != null)
                 {
                     AddMissionPermanentEffect(agent, powerstone.EffectId);
                 }
@@ -420,26 +410,26 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public static void AddDefaultPermanentMissionEffect(Agent agent, string effectID)
         {
             var statuseffectComponent = agent.GetComponent<StatusEffectComponent>();
-            
+
             if (statuseffectComponent != null)
             {
                 AddMissionPermanentEffect(agent, effectID);
             }
         }
-        
+
 
         private static void AddMissionPermanentEffect(Agent agent, string effectID)
         {
             var template = TriggeredEffectManager.GetTemplateWithId(effectID);
-                    
-            if(template==null) return;
-                    
+
+            if (template == null) return;
+
             foreach (var effect in template.ImbuedStatusEffects)
             {
-                agent.ApplyStatusEffect(effect,Agent.Main,99999);
+                agent.ApplyStatusEffect(effect, Agent.Main, 99999);
             }
 
-            if (template!=null&&template.ScriptNameToTrigger != "none")
+            if (template != null && template.ScriptNameToTrigger != "none")
             {
                 try
                 {
@@ -447,7 +437,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     if (obj is ITriggeredScript)
                     {
                         var script = obj as ITriggeredScript;
-                        script.OnTrigger(agent.Position, Agent.Main, new List<Agent>(){agent}, 9999);
+                        script.OnTrigger(agent.Position, Agent.Main, new List<Agent>() { agent }, 9999);
                     }
                 }
                 catch (Exception)
@@ -456,8 +446,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
             }
         }
-        
-        
+
+
         public enum ChargeCollisionFlag
         {
             None,
@@ -472,7 +462,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                    career == TORCareers.WarriorPriestUlric ||
                    career == TORCareers.GrailDamsel;
         }
-        
+
         public static string GetGodCareerIsDevotedTo(CareerObject careerObject)
         {
             if (careerObject == TORCareers.GrailDamsel) return "cult_of_lady";
@@ -484,30 +474,29 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public static void RemovePowerstone(List<string> attributes)
         {
-            var button =  CareerHelper.GetCareerButton() as ImperialMagisterCareerButtonBehavior;
-
-            if (button != null)
+            if (GetCareerButton() is ImperialMagisterCareerButtonBehavior button)
             {
                 var stones = button.AvailablePowerStones;
-                
+
                 foreach (var attribute in attributes)
                 {
                     var removedStone = stones.FirstOrDefault(x => x.Id == attribute);
 
                     if (removedStone != null)
                     {
-                        Hero.MainHero.AddCustomResource("Prestige",removedStone.ScrapPrestigeGain);
+                        Hero.MainHero.AddCustomResource("Prestige", removedStone.ScrapPrestigeGain);
                         break;
                     }
                 }
             }
         }
-        
+
+        /*
         public static ItemTrait GetTraitForReligion(Hero hero, ReligionObject religionObject)
         {
             var traitName = "ReligionKnightlyStrikeTrait";
             var religion = Hero.MainHero.GetDominantReligion();
-            
+
             ItemTrait trait = new ItemTrait();
             trait.ItemTraitName = traitName;
             if (religion == null || Hero.MainHero.GetDevotionLevelForReligion(religion) < DevotionLevel.Fanatic)
@@ -515,31 +504,31 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 var damageTuple = new DamageProportionTuple { DamageType = DamageType.Physical, Percent = 0.2f };
                 trait.AdditionalDamageTuple = damageTuple;
             }
-            
+
             switch (religion.StringId)
             {
                 case "cult_of_sigmar":
-                {
-                   
-                    var damageTuple = new DamageProportionTuple { DamageType = DamageType.Holy, Percent = 0.2f };
-                    trait.AdditionalDamageTuple = damageTuple;
-                    trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
-                    break;
-                }
+                    {
+
+                        var damageTuple = new DamageProportionTuple { DamageType = DamageType.Holy, Percent = 0.2f };
+                        trait.AdditionalDamageTuple = damageTuple;
+                        trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
+                        break;
+                    }
                 case "cult_of_ulric":
-                {
-                    var damageTuple = new DamageProportionTuple { DamageType = DamageType.Frost, Percent = 0.2f };
-                    trait.AdditionalDamageTuple = damageTuple;
-                    trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
-                    break;
-                }
+                    {
+                        var damageTuple = new DamageProportionTuple { DamageType = DamageType.Frost, Percent = 0.2f };
+                        trait.AdditionalDamageTuple = damageTuple;
+                        trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
+                        break;
+                    }
                 case "cult_of_taal":
-                {
-                    var damageTuple = new DamageProportionTuple { DamageType = DamageType.Holy, Percent = 0.2f };
-                    trait.AdditionalDamageTuple = damageTuple;
-                    trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
-                    break;
-                }
+                    {
+                        var damageTuple = new DamageProportionTuple { DamageType = DamageType.Holy, Percent = 0.2f };
+                        trait.AdditionalDamageTuple = damageTuple;
+                        trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
+                        break;
+                    }
                 case "cult_of_manaan":
                     trait.AdditionalDamageTuple.DamageType = DamageType.Lightning;
                     trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "electric_weapon" };
@@ -552,13 +541,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             return trait;
         }
+        */
 
         public static void RemoveCareerRelatedTroopAttributes(MobileParty mobileParty, string troopId,
             MobilePartyExtendedInfo mobilePartyinfo)
         {
-            if(!mobileParty.IsMainParty) return;
-            
-            if(Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
+            if (!mobileParty.IsMainParty) return;
+
+            if (Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
             {
                 RemovePowerstone(mobilePartyinfo.TroopAttributes[troopId]);
             }
@@ -567,10 +557,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public static void PuritySealAssignment(Agent agent)
         {
             MobilePartyExtendedInfo extendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
-            
-            var button =  CareerHelper.GetCareerButton() as KnightOldWorldCareerButtonBehavior;
+
+            var button = GetCareerButton() as KnightOldWorldCareerButtonBehavior;
             var seals = button.GetAllPuritySeals();
-            extendedInfo.TroopAttributes.TryGetValue(agent.Character.StringId , out var attributes);
+            extendedInfo.TroopAttributes.TryGetValue(agent.Character.StringId, out var attributes);
 
             if (attributes == null)
             {
