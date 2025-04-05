@@ -105,7 +105,7 @@ namespace TOR_Core.Models
                 }
             }
 
-            if (playerHero.HasCareer(TORCareers.Slayer))
+            if (playerHero.HasCareer(TORCareers.Warden))
             {
                 if (playerHero.HasCareerChoice("WardenOfAtylwythPassive3"))
                 {
@@ -128,9 +128,7 @@ namespace TOR_Core.Models
                         {
                             number.Add(choice.Passive.EffectMagnitude,choice.Description);
                         }
-                        
                     }
-
                     
                     var info = playerHero.GetExtendedInfo();
                     var abilities = info.AllAbilities;

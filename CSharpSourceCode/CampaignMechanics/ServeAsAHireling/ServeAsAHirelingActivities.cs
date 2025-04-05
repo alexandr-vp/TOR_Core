@@ -12,7 +12,7 @@ public class ServeAsAHirelingActivities
     public ServeAsAHirelingActivities()
     {
         _activitySets = new Dictionary<CareerObject, List<SkillObject>>();
-        _activitySets = new Dictionary<CareerObject, List<SkillObject>>()
+        _activitySets = new Dictionary<CareerObject, List<SkillObject>>
         {
             //Mousillon
             {
@@ -196,8 +196,7 @@ public class ServeAsAHirelingActivities
             },
             
         };
-
-
+        
         foreach (var career in TORCareers.All)
         {
             if (!_activitySets.ContainsKey(career))
@@ -205,9 +204,6 @@ public class ServeAsAHirelingActivities
                 throw new Exception("Zerca register the hireling career acitivities, you dumb ass! missing : "+career.Name);
             }
         }
-        
-        
-        
     }
     
     public List<SkillObject> GetHirelingActivities(CareerObject careerObject)

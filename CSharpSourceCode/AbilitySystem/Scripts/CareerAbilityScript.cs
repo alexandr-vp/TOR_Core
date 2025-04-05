@@ -1,13 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.Library;
 using TOR_Core.BattleMechanics.TriggeredEffect;
-using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.Scripts
 {
@@ -44,7 +38,6 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             if (!CasterAgent.IsActive())
             {
-                TORCommon.Say("stop");
                 Stop();
             }
         }

@@ -1126,7 +1126,7 @@
                              DamageAmount="0"
                              Radius="5"
                              HasShockWave="false"
-                             TargetType="Friendly"
+                             TargetType="Self"
                              ImbuedStatusEffectDuration="20"
                              DamageVariance="0"
                              ScriptNameToTrigger="none">
