@@ -186,32 +186,83 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             obj.AddDialogLine("trainer_prophetesse_goodbye", "saygoodbye", "close_window", "{=tor_spelltrainer_prophetesse_goodbye_str}Go forth, and may the Lady's grace illuminate your path.", isMorgianaLeFay, null, 200, null);
             obj.AddDialogLine("trainer_prophetesse_afterlearnspells", "openbook_prophetesse", "hub_prophetesse", "{=tor_spelltrainer_prophetesse_close_book_str}You have grasped this weave with prowess. Carry this knowledge, and may it serve you well, as a beacon of the Lady's blessings.", null, openbookconsequence, 200, null);
             
+            
+            bool isMorgianaLeFay()
+            {
+                if(!spelltrainerstartcondition()) return false;
+                var partner = CharacterObject.OneToOneConversationCharacter;
+                if (partner.HeroObject!=null&& partner.HeroObject.Template.StringId == _prophetessTrainerId)
+                {
+                    return true;
+                }
+
+                return false;
+            }
         }
 
         private void SpellsingerDialogs(CampaignGameStarter obj)
         { 
+            List<LoreObject> SpellweaverLores =  LoreObject.GetAll().Where(x=> x.ID == "HighMagic" || x.ID == "DarkMagic").ToList();
+            
             obj.AddDialogLine("trainer_spellsinger_start", "start", "choices_spellsinger", "{=tor_spelltrainer_prophetesse_start_str}I welcome you child of Athel Loren.", isSpellsingerTrainer, null, 200, null);
             obj.AddDialogLine("trainer_spellsinger_start", "hub_spellsinger", "choices_spellsinger", "{=tor_spelltrainer_prophetesse_choices_str}Is there more you seek? Speak your desires.", isSpellsingerTrainer, null, 200, null);
-            obj.AddPlayerLine("trainer_spellsinger_learnspells", "choices_spellsinger", "openbook_spellsinger", "{=tor_spelltrainer_prophetesse_open_book_str}I seek further knowledge of Athel Loren's Magic.", () => MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition(), null, 200, null);
-            obj.AddPlayerLine("trainer_spellsinger_spellweaver", "choices_spellsinger", "spellweaver_choice_dialog", "{=tor_spelltrainer_prophetesse_open_book_str}I want to become a spellweaver.", () => MobileParty.MainParty.HasSpellCasterMember()&& spellsingerCondition() && SpellweaverCondition() , null, 200, null);
-            obj.AddPlayerLine("trainer_spellsinger_learnlore", "choices_spellsinger", "spellweaver_choice_lores", "{=tor_spelltrainer_prophetesse_open_book_str}Teach me one of Ariels many pathways.", () => MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition() && SpellsingerAdditonalLoreCondition(), null, 200, null);
-
-            obj.AddDialogLine("trainer_spellsinger_weaver", "spellweaver_choice_dialog", "spellweaver_choice_player", "{=tor_spelltrainer_prophetesse_goodbye_str}A spellsinger, can pick either the pathway of the Darkweaver or the one of the Highweaver. Choose wisely", isSpellsingerTrainer, null, 200, null);
-            obj.AddPlayerLine("spellweaver_choice_player", "spellweaver_choice_player", "choices_spellsinger", "{=tor_spelltrainer_prophetesse_open_book_str}Let me choose.", () => MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition(), spellweaverPrompt, 200, null);
             
-            obj.AddDialogLine("trainer_spellsinger_lores", "spellweaver_choice_lores", "spellweaver_choice_lores_player", "{=tor_spelltrainer_prophetesse_goodbye_str}You can learn additional aspects of the magic of the forest. Choose wisely (not more than 2 additional lores, 6 in total)", isSpellsingerTrainer, null, 200, null);
-            obj.AddPlayerLine("spellweaver_choice_lores_player", "spellweaver_choice_lores_player", "choices_spellsinger", "{=tor_spelltrainer_prophetesse_open_book_str}Let me choose.", () => MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition(), additionalLoresPrompt, 200, null);
+            obj.AddPlayerLine("trainer_spellsinger_learnmagic", "choices_spellsinger", "trainer_spellsinger_learnmagic_answer", "{=tor_spelltrianer_spellsinger_learn_magic_warden_str}Greetings wise Spellsinger. I am seeking the capabilities of performing magic.", () => Hero.MainHero.HasCareer(TORCareers.Warden) && !Hero.MainHero.IsSpellCaster(), null, 200, null);
+            obj.AddPlayerLine("trainer_spellsinger_learnmagic_second_lore", "choices_spellsinger", "trainer_spellsinger_learnmagic_answer_secondlore", "{=tor_spelltrianer_spellsinger_learn_magic_warden_second_lore_str} I want to enhance my magic capabilities.", () => Hero.MainHero.HasCareer(TORCareers.Warden)&&
+                Hero.MainHero.HasUnlockedCareerChoiceTier(3)&& Hero.MainHero.GetSkillValue(TORSkills.SpellCraft)>200,null, 200, null);
+            obj.AddDialogLine("trainer_spellsinger_learnmagic_answer_secondlore", "trainer_spellsinger_learnmagic_answer_secondlore", "trainer_spellsinger_learnmagic_secondlore__answer_player", "{=tor_spelltrianer_spellsinger_learn_magic_warden_answer_str}You truely choose the path of ariel. But the forest demand another tribute. Pay it and I will teach you more", isSpellsingerTrainer, null, 200, null);
+
+            obj.AddPlayerLine("trainer_spellsinger_learnmagic_answer_player_secondlore_agree", "trainer_spellsinger_learnmagic_secondlore__answer_player", "hub_spellsinger", "{=tor_spelltrianer_spellsinger_learn_magic_warden_agree_str}Yes I am.", null, learnMagicWardenSecondLore, 200, null);
+            obj.AddPlayerLine("trainer_spellsinger_learnmagic_answer_player_secondlore_decline", "trainer_spellsinger_learnmagic_secondlore__answer_player", "hub_spellsinger", "{=tor_spelltrianer_spellsinger_learn_magic_warden_decline_str}I have to think about this.", null, null, 200, null);
+
+            
+            
+            obj.AddDialogLine("trainer_spellsinger_learnmagic_answer", "trainer_spellsinger_learnmagic_answer", "trainer_spellsinger_learnmagic_answer_player", "{=tor_spelltrianer_spellsinger_learn_magic_warden_answer_str}Hm. You are not a spellsinger, yet I see your potential. If you are willing to show me how much you are bound to the forest. I am willing to teach you the first steps of the path of Ariel", isSpellsingerTrainer, null, 200, null);
+            
+            obj.AddPlayerLine("trainer_spellsinger_learnmagic_answer_player_agree", "trainer_spellsinger_learnmagic_answer_player", "hub_spellsinger", "{=tor_spelltrianer_spellsinger_learn_magic_warden_agree_str}Yes I am.", null, learnMagicWarden, 200, null);
+            obj.AddPlayerLine("trainer_spellsinger_learnmagic_answer_player_decline", "trainer_spellsinger_learnmagic_answer_player", "hub_spellsinger", "{=tor_spelltrianer_spellsinger_learn_magic_warden_decline_str}I have to think about this.", null, null, 200, null);
+            
+            obj.AddPlayerLine("trainer_spellsinger_learnspells", "choices_spellsinger", "openbook_spellsinger", "{=tor_spelltrianer_spellsinger_open_book_str}I seek further knowledge of Athel Loren's Magic.", () => MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition(), null, 200, null);
+            obj.AddPlayerLine("trainer_spellsinger_spellweaver", "choices_spellsinger", "spellweaver_choice_dialog", "{=tor_spelltrianer_spellweaver_str}I want to become a spellweaver.", () => Hero.MainHero.HasCareer(TORCareers.Spellsinger) && spellsingerCondition() && SpellweaverCondition()  , null, 200, null);
+            obj.AddPlayerLine("trainer_spellsinger_spellweaver", "choices_spellsinger", "spellweaver_companion_choice_dialog",
+                "{=tor_spelltrianer_spellweaver_companion_str}My companion is ready to become a spellweaver.",
+                () => Hero.MainHero.HasCareer(TORCareers.Spellsinger) && MobileParty.MainParty.HasSpellCasterMember() && spellsingerCondition() &&
+                      (Hero.MainHero.HasKnownLore("HighMagic") || Hero.MainHero.HasKnownLore("DarkMagic")) && MobileParty.MainParty.GetMemberHeroes()
+                          .AnyQ(x => x.IsSpellCaster() && x.CharacterObject.IsElf() &&  x != Hero.MainHero &&  !(x.HasKnownLore("DarkMagic") || x.HasKnownLore("HighMagic")))&&
+                Hero.MainHero.HasUnlockedCareerChoiceTier(3) , null, 200, null);
+            
+            obj.AddPlayerLine("trainer_spellsinger_learnlore", "choices_spellsinger", "choices_spellsinger", "{=tor_spelltrianer_spellsinger_open_book_str}Teach me one of Ariels many pathways.", () => MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition() && SpellsingerAdditonalLoreCondition(), AdditionalLoresPrompt, 200, null);
+
+            obj.AddDialogLine("trainer_spellsinger_weaver", "spellweaver_choice_dialog", "spellweaver_choice_player", "{=tor_spelltrianer_spellsinger_goodbye_str}A spellsinger, can pick either the pathway of the Darkweaver or the one of the Highweaver. Choose wisely", isSpellsingerTrainer, null, 200, null);
+            obj.AddPlayerLine("spellweaver_choice_player", "spellweaver_choice_player", "choices_spellsinger", "{=tor_spelltrianer_spellweaver_choice_str}Let me choose.", () => MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition(), spellweaverPrompt, 200, null);
+            
+            obj.AddDialogLine("spellweaver_companion_choice_dialog", "spellweaver_companion_choice_dialog", "spellweaver_choice_lores_companion", "{=tor_spelltrianer_spellsinger_goodbye_str}A Highweaver, or Darkweaver... tough choice", isSpellsingerTrainer, null, 200, null);
+            obj.AddPlayerLine("spellweaver_choice_lores_companion", "spellweaver_choice_lores_companion", "choices_spellsinger", "{=tor_spelltrianer_spellsinger_open_book_str}Let me choose.", () => MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition(), spellweaverCompanionPrompt, 200, null);
 
             
             
             obj.AddDialogLine("trainer_spellsinger_weaver", "spellweaver_choice_dialog", "close_window", "{=tor_spelltrainer_prophetesse_goodbye_str}May Ariel guide you on all your paths through her garden.", isSpellsingerTrainer, null, 200, null);
 
             
-            obj.AddPlayerLine("trainer_spellsinger_scrollShop", "choices_spellsinger", "hub_spellsinger", "{=tor_spelltrainer_prophetesse_damselsecond_lore_str} I feel that {SPELLSINGERNAME} has reached  a new level of magical potential, it is time for a new Spellweaver", ()=> MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition()&&damselSecondLoreCondition(), damselSecondLoreConsequence, 200, null);
             obj.AddPlayerLine("trainer_spellsinger_playergoodbye", "choices_spellsinger", "saygoodbye", "{=tor_spelltrainer_prophetesse_player_goodbye_str}Ariel with you. ", null, null, 200, null);
             obj.AddDialogLine("trainer_spellsinger_goodbye", "saygoodbye", "close_window", "{=tor_spelltrainer_prophetesse_goodbye_str}May Ariel guide you on all your paths through her garden.", isSpellsingerTrainer, null, 200, null);
             obj.AddDialogLine("trainer_spellsinger_afterlearnspells", "openbook_spellsinger", "hub_spellsinger", "{=tor_spelltrainer_prophetesse_close_book_str}A new Facette of Ariels infinte knowledge.", null, openbookconsequence, 200, null);
 
+
+            void learnMagicWarden()
+            {
+                Hero.MainHero.AddKnownLore("LoreOfLife");
+                Hero.MainHero.AddCultureSpecificCustomResource(-2500);
+                Hero.MainHero.AddAttribute("SpellCaster");
+                Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+            }
+            
+            void learnMagicWardenSecondLore()
+            {
+                Hero.MainHero.AddKnownLore("LoreOfBeasts");
+                Hero.MainHero.AddCultureSpecificCustomResource(-2500);
+            }
+            
             bool SpellsingerAdditonalLoreCondition()
             {
                 if (!Hero.MainHero.HasUnlockedCareerChoiceTier(3))
@@ -231,14 +282,15 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 return true;
             }
 
-            void additionalLoresPrompt()
+            void AdditionalLoresPrompt()
             {
                 List<InquiryElement> list = new List<InquiryElement>();
                 var lores = LoreObject.GetAll();
 
                 var additionalLores = lores.WhereQ(x => !x.DisabledForCultures.Contains(TORConstants.Cultures.ASRAI)).ToList();
-        
 
+                additionalLores = additionalLores.WhereQ(x => x.ID != "DarkMagic" && x.ID != "HighMagic").ToList();
+                
                 var model = Campaign.Current.Models.GetAbilityModel();
                 foreach (var item in additionalLores)
                 {
@@ -248,7 +300,15 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             
                     list.Add(new InquiryElement(item, item.Name, null));
                 }
-                var inquirydata = new MultiSelectionInquiryData(new TextObject("{=tor_magic_lore_prompt_label_str}Choose Lore").ToString(), new TextObject("{=tor_magic_lore_prompt_description_str}Choose a lore to specialize in.").ToString(), list, true, 1, 1, "Confirm", "Cancel", OnChooseLore, OnCancelLore);
+
+                var inquirydata = new MultiSelectionInquiryData(new TextObject("{=tor_magic_lore_prompt_label_str}Choose Lore").ToString(),
+                    new TextObject("{=tor_magic_lore_prompt_description_str}Choose a lore to specialize in.").ToString(), list, true, 1, 1, "Confirm",
+                    "Cancel", data =>
+                    {
+                        OnChooseLore(data);
+                        Hero.MainHero.AddCultureSpecificCustomResource(-1000);
+                    },null);
+                
                 MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
             }
             
@@ -266,15 +326,56 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
                 return false;
             }
+
+            void spellweaverCompanionPrompt()
+            {
+                List<InquiryElement> list = new List<InquiryElement>();
+                var heroes = (from hero in Hero.MainHero.PartyBelongedTo.GetMemberHeroes() where hero != Hero.MainHero where hero.IsSpellCaster() where hero.CharacterObject.IsElf() select hero).ToList();
+
+                foreach (var hero in heroes)
+                {
+                    list.Add(new InquiryElement(hero,hero.FirstName.ToString(),null));
+                }
+                
+                var inquirydata = new MultiSelectionInquiryData(new TextObject("{=tor_magic_lore_prompt_label_str}Choose Companion").ToString(), new TextObject("{=tor_magic_lore_prompt_description_str}Which companion should become a Spellcaster?.").ToString(), list, true, 1, 1, "Confirm", "Cancel", OnChooseCompanion, null);
+                MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
+
+            }
+
+
+            void OnChooseCompanion(List<InquiryElement> inquiryElements)
+            {
+                spellweaverCompanionChooseLore((Hero)inquiryElements[0].Identifier);
+            }
+            
+            void spellweaverCompanionChooseLore(Hero hero)
+            {
+                List<InquiryElement> list = new List<InquiryElement>();
+                var weaverLores = SpellweaverLores;
+                
+                foreach (var item in weaverLores)
+                {
+                
+                    list.Add(new InquiryElement(item, item.Name, null));
+                }
+                
+                var inquirydata = new MultiSelectionInquiryData(new TextObject("{=tor_magic_lore_prompt_label_str}Choose Lore for your companion").ToString(), new TextObject("{=tor_magic_lore_prompt_description_str}Choose a lore to specialize in.").ToString(), list, true, 1, 1, "Confirm", "Cancel", (args) => OnChooseCompanionLore(hero, args), OnCancelLore);
+                MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
+            }
+            
+            void OnChooseCompanionLore(Hero hero, List<InquiryElement> obj)
+            {
+                var lore = (LoreObject)obj[0].Identifier;
+                hero.AddKnownLore(lore.ID);
+                InformationManager.HideInquiry();
+            }
+            
             void spellweaverPrompt()
             {
                 List<InquiryElement> list = new List<InquiryElement>();
-                var lores = LoreObject.GetAll();
 
-                var weaverLores = lores.Where(x => x.ID == "HighMagic" || x.ID == "DarkMagic").ToListQ();
-            
-
-                var model = Campaign.Current.Models.GetAbilityModel();
+                var weaverLores = SpellweaverLores;
+                
                 foreach (var item in weaverLores)
                 {
                 
@@ -284,7 +385,12 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
             }
             
+            
+            
+
         }
+
+    
 
         private void AddDialogs(CampaignGameStarter obj)
         {
@@ -369,18 +475,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
             return false;
         }
-
-        private bool isMorgianaLeFay()
-        {
-            if(!spelltrainerstartcondition()) return false;
-            var partner = CharacterObject.OneToOneConversationCharacter;
-            if (partner.HeroObject!=null&& partner.HeroObject.Template.StringId == _prophetessTrainerId)
-            {
-                return true;
-            }
-
-            return false;
-        }
         
         private bool isSpellsingerTrainer()
         {
@@ -439,7 +533,9 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private bool magictestcondition()
         {
-            if (isMorgianaLeFay()) return false;
+            var partner = CharacterObject.OneToOneConversationCharacter;
+            var culture = partner.Culture.StringId;
+            if (partner.Culture.StringId is TORConstants.Cultures.ASRAI or TORConstants.Cultures.BRETONNIA ) return false;
             if (!CareerHelper.IsMagicCapableCareer(Hero.MainHero.GetCareer())) return false;
             
             var flag = false;
@@ -447,7 +543,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             if (flag)
             {
                 TextObject text;
-                var culture = Hero.OneToOneConversationHero.Culture.StringId;
+                
                 switch (culture)
                 {
                     case "empire":

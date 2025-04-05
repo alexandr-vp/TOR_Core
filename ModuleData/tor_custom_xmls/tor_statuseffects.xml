@@ -2012,6 +2012,82 @@
 		<temporary_attribute>Impenetrable</temporary_attribute>	
 	</StatusEffectTemplate>
 	
+	
+	<StatusEffectTemplate
+		id="hawk_eye_debuff_melee"
+		particle_id="summer_heat"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.25"
+		applies_for_attack_type="Melee"
+		type="Resistance"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="hawk_eye_debuff_mvs"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.60"
+		applies_for_attack_type="All"
+		type="MovementManipulation"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="hawk_eye_debuff_range"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.25"
+		applies_for_attack_type="Ranged"
+		type="Resistance"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="hawk_eye_debuff_ats"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.25"
+		applies_for_attack_type="All"
+		type="AttackSpeedManipulation"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+	
+	
+	<StatusEffectTemplate
+		id="hawk_eye_debuff_mag"
+		particle_id="flock_of_doom"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.25"
+		applies_for_attack_type="All"
+		type="Resistance"
+		damage_type="Magical">
+	</StatusEffectTemplate>
+	
+	
+	<StatusEffectTemplate
+		id="hawk_eye_buff_mvs"
+		particle_id="black_knightly_charge_res"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.25"
+		applies_for_attack_type="All"
+		type="MovementManipulation"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+	
+	
+	<StatusEffectTemplate
+		id="hawk_eye_buff_ats"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.25"
+		applies_for_attack_type="All"
+		type="AttackSpeedManipulation"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+	
+	
+	
 	<StatusEffectTemplate
 		id="impenetrable_fire_res"
 		particle_id=""

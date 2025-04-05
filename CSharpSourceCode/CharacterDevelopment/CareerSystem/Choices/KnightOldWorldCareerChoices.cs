@@ -113,7 +113,7 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
 
     protected override void InitializeKeyStones()
     {
-        _knightOldWorldRoot.Initialize(CareerID, "{=knight_old_world_root_str}Adds a load for your next melee hit, adding 20% extra damage. For every point in one handed combat, your damage increases by 1% during the effect. The effect stays for a maximum of 15 seconds. For every keystone you get another use, enhancing your strike. Ability is charged by dealing melee damage. Attacks below 15 damage neither cost charges or apply effects", null, true,
+        _knightOldWorldRoot.Initialize(CareerID, "{=knight_old_world_root_str}The Knight focuses on his grand mission, which results in a 20% boost to damage for the next melee hit. For every point in the One Handed skill, your damage increases by 1% during the effect. The boost lasts for a maximum of 15 seconds. For every Keystone enabled, you acquire another use, enhancing your strikes. Deal melee damage to recharge your ability.", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()

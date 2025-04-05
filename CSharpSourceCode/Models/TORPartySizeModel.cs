@@ -104,6 +104,40 @@ namespace TOR_Core.Models
                     number.Add(3*abilities.Count);
                 }
             }
+
+            if (playerHero.HasCareer(TORCareers.Slayer))
+            {
+                if (playerHero.HasCareerChoice("WardenOfAtylwythPassive3"))
+                {
+                    var choice = TORCareerChoices.GetChoice("WardenOfAtylwythPassive3");
+                    foreach (var hero in playerHero.PartyBelongedTo.GetMemberHeroes())
+                    {
+                        if (hero == playerHero)
+                        {
+                            continue;
+                        }
+                        if(!hero.CharacterObject.IsElf())
+                            continue;
+
+                        if (hero.Culture.StringId != TORConstants.Cultures.ASRAI)
+                        {
+                            continue;
+                        }
+
+                        if (hero.HasAttribute("Captain"))
+                        {
+                            number.Add(choice.Passive.EffectMagnitude,choice.Description);
+                        }
+                        
+                    }
+
+                    
+                    var info = playerHero.GetExtendedInfo();
+                    var abilities = info.AllAbilities;
+                    
+                    number.Add(3*abilities.Count);
+                }
+            }
         }
     }
 }

@@ -345,6 +345,7 @@
     <Compile Include="AbilitySystem\Scripts\BombardmentScript.cs" />
     <Compile Include="AbilitySystem\Scripts\CareerAbilityMissleScript.cs" />
     <Compile Include="AbilitySystem\Scripts\CareerAbilityScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\HawkEyeScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ImpenetrableScript.cs" />
     <Compile Include="AbilitySystem\Scripts\MindControlScript.cs" />
     <Compile Include="AbilitySystem\Scripts\HealScript.cs" />
@@ -516,6 +517,7 @@
     <Compile Include="CampaignMechanics\RaiseDead\GraveyardNightWatchPartyComponent.cs" />
     <Compile Include="CampaignMechanics\RaiseDead\PostBattleCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\RaiseDead\RaiseDeadInTownBehavior.cs" />
+    <Compile Include="CampaignMechanics\RaiseDead\TreeSpiritHelpers.cs" />
     <Compile Include="CampaignMechanics\RegimentsOfRenown\RORCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\RegimentsOfRenown\RORManager.cs" />
     <Compile Include="CampaignMechanics\RegimentsOfRenown\ToRSettlementNameplateVM.cs" />
@@ -591,6 +593,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\SpellsingerCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\TORCareerChoicesBase.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\VampireCountCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\WardenCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestUlricCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WaywatcherCareerChoices.cs" />

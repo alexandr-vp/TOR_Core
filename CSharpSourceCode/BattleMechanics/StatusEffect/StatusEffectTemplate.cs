@@ -82,6 +82,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 DoNotAttachToAgentSkeleton = DoNotAttachToAgentSkeleton,
                 BaseEffectValue = BaseEffectValue,
                 Type = Type,
+                AttackTypeMask = AttackTypeMask,
                 DamageType = DamageType,
                 TemporaryAttributes = TemporaryAttributes
             };

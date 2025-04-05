@@ -14,17 +14,22 @@ namespace TOR_Core.CharacterDevelopment
         private SkillEffect _gunReloadSpeed;
         private SkillEffect _gunAccuracy;
         private SkillEffect _spellEffectiveness;
+        private SkillEffect _prayerEffectiveness;
         private SkillEffect _spellDuration;
         private SkillEffect _windsRechargeRate;
         private SkillEffect _maxWinds;
         private SkillEffect _faithWardSave;
         private SkillEffect _blessingDuration;
+        private SkillEffect _prayerDuration;
 
         public static TORSkillEffects Instance { get; private set; }
         public static SkillEffect GunReloadSpeed => Instance._gunReloadSpeed;
         public static SkillEffect GunAccuracy => Instance._gunAccuracy;
         public static SkillEffect SpellEffectiveness => Instance._spellEffectiveness;
+        public static SkillEffect PrayerEffectiveness => Instance._prayerEffectiveness;
         public static SkillEffect SpellDuration => Instance._spellDuration;
+        
+        public static SkillEffect PrayerDuration => Instance._prayerDuration;
         public static SkillEffect WindsRechargeRate => Instance._windsRechargeRate;
         public static SkillEffect MaxWinds => Instance._maxWinds;
         public static SkillEffect FaithWardSave => Instance._faithWardSave;
@@ -41,6 +46,8 @@ namespace TOR_Core.CharacterDevelopment
             _maxWinds = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("MaxWinds"));
             _faithWardSave = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("FaithWardSave"));
             _blessingDuration = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("BlessingDuration"));
+            _prayerEffectiveness = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("PrayerEffectiveness"));
+            _prayerDuration = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("PrayerDuration"));
 
             _gunReloadSpeed.Initialize(new TextObject("{=tor_skills_gun_reload_speed_str}Gunpowder firearms reload speed: +{a0} %", null),
             [
@@ -81,6 +88,16 @@ namespace TOR_Core.CharacterDevelopment
             [
                 TORSkills.Faith
             ], SkillEffect.PerkRole.PartyLeader, 1f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
+            
+            _prayerEffectiveness.Initialize(new TextObject("{=tor_skills_spell_effectiveness_str}Prayer effectiveness(Only Priests): +{a0} %", null),
+            [
+                TORSkills.Faith
+            ], SkillEffect.PerkRole.Personal, 0.025f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
+            
+            _prayerDuration.Initialize(new TextObject("{=tor_skills_blessing_duration_str}Prayer duration increase(Only Priests): +{a0} %", null),
+            [
+                TORSkills.Faith
+            ], SkillEffect.PerkRole.Personal, 0.025f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
         }
     }
 }

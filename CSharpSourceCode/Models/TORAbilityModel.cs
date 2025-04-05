@@ -35,7 +35,7 @@ namespace TOR_Core.Models
             return ability.AbilityType switch
             {
                 AbilityType.Spell => TORSkillEffects.SpellEffectiveness,
-                AbilityType.Prayer => TORSkillEffects.SpellEffectiveness,
+                AbilityType.Prayer => TORSkillEffects.PrayerEffectiveness,
                 _ => null,
             };
         }
@@ -45,7 +45,7 @@ namespace TOR_Core.Models
             return ability.AbilityType switch
             {
                 AbilityType.Spell => TORSkillEffects.SpellDuration,
-                AbilityType.Prayer => TORSkillEffects.SpellDuration,//Thats a bug: there is no prayer duration amplification by skills
+                AbilityType.Prayer => TORSkillEffects.PrayerDuration,//Thats a bug: there is no prayer duration amplification by skills
                 _ => null,
             };
         }
@@ -336,7 +336,7 @@ namespace TOR_Core.Models
 
                 weightmalus = Mathf.Min(weightmalus, 0.85f);
 
-                if (Hero.MainHero.HasCareerChoice("ArkaynePassive1"))
+                if (Hero.MainHero.HasCareerChoice("ArkaynePassive1") || Hero.MainHero.HasCareerChoice("WardenOfTalsynPassive1"))
                 {
                     weightmalus = 0;
                 }
@@ -461,7 +461,16 @@ namespace TOR_Core.Models
 
                         if (choices.Contains("WellspringOfDharPassive3"))
                         {
-                            var choice = TORCareerChoices.GetChoice("WellspringOfDharPassive3");
+                            if (baseCharacter.IsElf())
+                            {
+                                var choice = TORCareerChoices.GetChoice("WellspringOfDharPassive3");
+                                explainedNumber.Add(choice.GetPassiveValue());
+                            }
+                        }
+                        
+                        if (choices.Contains("WardenOfArgwylonPassive4"))
+                        {
+                            var choice = TORCareerChoices.GetChoice("WardenOfArgwylonPassive4");
                             explainedNumber.Add(choice.GetPassiveValue());
                         }
                         

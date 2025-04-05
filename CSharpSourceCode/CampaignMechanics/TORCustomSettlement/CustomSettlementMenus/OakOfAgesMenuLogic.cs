@@ -17,7 +17,9 @@ using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -25,7 +27,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 
 public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBaseSettlementMenuLogic(campaignGameStarter)
 {
-    private const int TreemanPrice = 800;
+    private const int TreemanPrice = 1200;
     private const int PartySizeUpgradeCost = 100;
     private const int HealthUpgradeCost = 125;
     private const int GainUpgradeCost = 150;
@@ -219,14 +221,14 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             OakOfAgeMenuInit);
         
         starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_B", "{tor_custom_settlement_menu_cursed_site_ghost_str}Commune with the forest. 100 {FORESTHARMONY}", 
-             (args) => CanBindTreeSpirits() && CanBindDryads(args), _ =>
+             (args) => TreeSpiritHelpers.CanBindTreeSpirits() && CanBindDryads(args), _ =>
              {
                  Hero.MainHero.AddCustomResource("ForestHarmony",-100);
                  GameMenu.SwitchToMenu("oak_of_ages_tree_spirits_menu_bind_dryads");
              });
 
         
-        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_B", "Rouse Treemen. 800 {FORESTHARMONY}", args => CanBindTreeSpirits() && CanBindTreeman(args),
+        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_B", "Rouse Treemen. 800 {FORESTHARMONY}", args => TreeSpiritHelpers.CanBindTreeSpirits() && CanBindTreeman(args),
             AddTreemen);
         
         starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_C", "Relief Treespirits",null, (args) 
@@ -252,7 +254,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             return true;
         }, delegate { GameMenu.SwitchToMenu("oak_of_ages_menu"); });
         
-        starter.AddGameMenu("dryads_result","You were able to bind {NUMBEROFTROOPS} dryads to your party",null);
+        starter.AddGameMenu("dryads_result","{DRYAD_RESULT}",null);
         starter.AddGameMenuOption("dryads_result", "dryads_result_leave", "back...", delegate(MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
@@ -280,19 +282,24 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             Hero.MainHero.AddCultureSpecificCustomResource(gainedSpiritHarmony);
         }
 
-        bool CanBindTreeSpirits()
-        {
-            var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
-            return heroes.Any(hero => hero.IsSpellSinger());
-        }
+       
 
         bool CanBindTreeman(MenuCallbackArgs args)
         {
             args.IsEnabled = Hero.MainHero.GetCultureSpecificCustomResourceValue() >= TreemanPrice;
-            
-            if(Hero.MainHero.PartyBelongedTo.Party.MemberRoster.GetTroopRoster().Any(x=> x.Character.StringId == "tor_we_treeman"))
+
+            if (Hero.MainHero.GetSkillValue(TORSkills.SpellCraft) < 200)
             {
-                args.Tooltip = new TextObject("A treeman already follows your party");
+                return false;
+            }
+            
+            var capableSpellsinger =  MobileParty.MainParty.GetMemberHeroes().Where(x=> x.CharacterObject.IsElf()).MaxBy(x => x.GetSkillValue(TORSkills.SpellCraft));
+
+            var amount = capableSpellsinger.GetSkillValue(TORSkills.SpellCraft)/100;
+            
+            if(capableSpellsinger.PartyBelongedTo.Party.MemberRoster.GetTroopRoster().Where(x=> x.Character.StringId.Contains("treeman")).Count()>amount)
+            {
+                args.Tooltip = new TextObject("Too many treeman already follow your party");
                 args.IsEnabled = false;
             }
             return true;
@@ -333,7 +340,16 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
                     int raisePower = Math.Max(1, (int)Hero.MainHero.GetExtendedInfo().SpellCastingLevel);
                     var count = MBRandom.RandomInt(1, 3);
                     
-                    count *= raisePower;
+                    var capableSpellsinger = MobileParty.MainParty.GetMemberHeroes().Where(x=> x.CharacterObject.IsElf()).MaxBy(x => x.GetSkillValue(TORSkills.SpellCraft));
+                    
+                    var gainChance = TreeSpiritHelpers.GetSuccessChance(capableSpellsinger);
+
+
+                    if (MBRandom.RandomFloat > gainChance)
+                    {
+                        return;
+                    }
+                    
                     if (freeSlots > 0)
                     {
                         if (freeSlots < count) count = freeSlots;
@@ -352,6 +368,15 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             PlayerEncounter.Current.IsPlayerWaiting = false;
             args.MenuContext.GameMenu.EndWait();
             args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(0f);
+
+            if (numberOfTroopsFromInteraction == 0)
+            {
+                GameTexts.SetVariable("DRYAD_RESULT", "You were unable to bind any tree spirits");
+            }
+            else
+            {
+                GameTexts.SetVariable("DRYAD_RESULT", "You were able to bind {NUMBEROFTROOPS} dryads to your party.");
+            }
             GameMenu.SwitchToMenu("dryads_result");
         }
     }

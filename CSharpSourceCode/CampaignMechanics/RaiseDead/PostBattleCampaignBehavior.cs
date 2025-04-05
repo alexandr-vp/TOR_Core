@@ -37,7 +37,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
                 
 
-                if (!heroes.Any(x => x.IsSpellCaster() && x.HasKnownLore("LoreOfLife") && x.CharacterObject.IsElf()))
+                if (!TreeSpiritHelpers.CanBindTreeSpirits())
                 {
                     return;
                 }
@@ -158,9 +158,9 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
 
 
-            var maximumNumber = Hero.MainHero.Level;
+            var maximumNumber = Hero.MainHero.Level/2;
 
-            var gainChance = Mathf.Min(0.7f, spellsinger.GetSkillValue(TORSkills.SpellCraft) * 0.006f);
+            var gainChance = TreeSpiritHelpers.GetSuccessChance(spellsinger);
             
             for (int i = 0; i <= maximumNumber; i++)
             {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -179,6 +179,17 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _baneOfChaos;
         private CareerChoiceGroupObject _lastJourney;
 
+        
+        //Warden
+        
+        private CareerChoiceGroupObject _wardenOfCavaroc;
+        private CareerChoiceGroupObject _wardenOfCythral;
+        private CareerChoiceGroupObject _wardenOfTorgovann;
+        private CareerChoiceGroupObject _wardenOfAtylwyth;
+        private CareerChoiceGroupObject _wardenOfWydrioth;
+        private CareerChoiceGroupObject _wardenOfTalsyn;
+        private CareerChoiceGroupObject _wardenOfArgwylon;
+        
         public TORCareerChoiceGroups()
         {
             Instance = this;
@@ -344,6 +355,7 @@ namespace TOR_Core.CharacterDevelopment
             _gromrilArmor = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_gromrilArmor).UnderscoreFirstCharToUpper()));
             _runeWeapons = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_runeWeapons).UnderscoreFirstCharToUpper()));
             
+            //Slayer
             _axeOfGrimnir = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_axeOfGrimnir).UnderscoreFirstCharToUpper()));
             _shameOfTheAncestors = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_shameOfTheAncestors).UnderscoreFirstCharToUpper()));
             _deadlyDetermination = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_deadlyDetermination).UnderscoreFirstCharToUpper()));
@@ -351,7 +363,15 @@ namespace TOR_Core.CharacterDevelopment
             _giantSlayer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_giantSlayer).UnderscoreFirstCharToUpper()));
             _baneOfChaos = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_baneOfChaos).UnderscoreFirstCharToUpper()));
             _lastJourney = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_lastJourney).UnderscoreFirstCharToUpper()));
-
+            
+            //Warden of Athel Loren
+            _wardenOfCavaroc = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_wardenOfCavaroc).UnderscoreFirstCharToUpper()));
+            _wardenOfCythral = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_wardenOfCythral).UnderscoreFirstCharToUpper()));
+            _wardenOfTorgovann = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_wardenOfTorgovann).UnderscoreFirstCharToUpper()));
+            _wardenOfAtylwyth = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_wardenOfAtylwyth).UnderscoreFirstCharToUpper()));
+            _wardenOfWydrioth = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_wardenOfWydrioth).UnderscoreFirstCharToUpper()));
+            _wardenOfTalsyn = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_wardenOfTalsyn).UnderscoreFirstCharToUpper()));
+            _wardenOfArgwylon = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_wardenOfArgwylon).UnderscoreFirstCharToUpper()));
         }
 
         private void InitializeAll()
@@ -1086,6 +1106,46 @@ namespace TOR_Core.CharacterDevelopment
                 return true;
             });
             _lastJourney.Initialize("{=last_journey_choice_group_str}The Last Journey", TORCareers.Slayer, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier>= 4;
+            });
+            
+            
+            //warden of Athel Loren
+            
+            _wardenOfCavaroc.Initialize("{=warden_of_cavaroc_choice_group_str}Warden of Cavaroc", TORCareers.Warden, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _wardenOfCythral.Initialize("{=warden_of_cythral_choice_group_str}Warden of  Cythral and Anmyr", TORCareers.Warden, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _wardenOfWydrioth.Initialize("{=warden_of_wydrioth_choice_group_str}Warden of Wydrioth", TORCareers.Warden, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _wardenOfAtylwyth.Initialize("{=warden_of_atylwyth_choice_group_str}Warden of Atylwyth", TORCareers.Warden, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier>= 2;
+            });
+            _wardenOfTorgovann.Initialize("{=warden_of_torgovann_choice_group_str}Warden of Torgovann", TORCareers.Warden, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier>= 2;
+            });
+            
+            _wardenOfTalsyn.Initialize("{=warden_of_talsyn_choice_group_str}Warden of Talsyn", TORCareers.Warden, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier>= 4;
+            });
+            _wardenOfArgwylon.Initialize("{=_warden_of_argwylon_choice_group_str}Warden of Argwylon", TORCareers.Warden, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier>= 4;

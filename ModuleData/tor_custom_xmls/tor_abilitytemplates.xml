@@ -4578,7 +4578,54 @@
         </LightColorRGB>
         <TriggeredEffect>apply_knightly_strike_trait</TriggeredEffect>
     </AbilityTemplate>
-
+	
+	<AbilityTemplate StringID="HawkEye"
+                     Name="{=wind_of_death_label_str}Hawk Eye"
+                     SpriteName="windofdeath_icon"
+                     CoolDown="100"
+                     WindsOfMagicCost="0"
+                     BaseMisCastChance="0.3"
+                     Duration="25"
+                     Radius="5"
+                     AbilityType="CareerAbility"
+                     AbilityEffectType="CareerAbilityEffect"
+                     BaseMovementSpeed="0.3"
+                     TickInterval="2"
+                     TriggerType="EveryTick"
+                     HasLight="false"
+                     LightIntensity="0"
+                     LightRadius="0"
+                     LightFlickeringMagnitude="0"
+                     LightFlickeringInterval="0"
+                     ShadowCastEnabled="false"
+                     ParticleEffectPrefab="hawk_ability"
+                     ParticleEffectSizeModifier="1"
+                     SoundEffectToPlay="windofdeath_whispers"
+                     ShouldSoundLoopOverDuration="false"
+                     CastType="WindUp"
+                     CastTime="0.5"
+                     AnimationActionName="act_release_heavy_thrown"
+                     Offset="2"
+                     CrosshairType="TargetedAOE"
+                     AbilityTargetType="GroundAtPosition"
+                     MinDistance="2"
+                     MaxDistance="75"
+                     TargetCapturingRadius="3"
+                     MaxRandomDeviation="1"
+                     SpellTier="4"
+                     TooltipDescription="{=wind_of_death_description_str}Invoke the spirits of the dead to consume the souls of the living. Applies medium damage while moving along its path.">
+        <LightColorRGB x="255"
+                       y="170"
+                       z="0"
+                       w="-1">
+            <AsVec2>
+                <x>255</x>
+                <y>170</y>
+            </AsVec2>
+        </LightColorRGB>
+        <TriggeredEffect>apply_hawk_eye</TriggeredEffect>
+    </AbilityTemplate>
+	
 	<AbilityTemplate StringID="Impenetrable"
                      Name="{=impenetrable_label_str}Impenetrable"
                      SpriteName="impenetrable_icon"

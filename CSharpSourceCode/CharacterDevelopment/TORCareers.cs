@@ -33,6 +33,8 @@ namespace TOR_Core.CharacterDevelopment
         private CareerObject _knightOldWorld;
         private CareerObject _ironbreaker;
         private CareerObject _slayer;
+        private CareerObject _warden;
+
         public TORCareers()
         {
             Instance = this;
@@ -81,6 +83,8 @@ namespace TOR_Core.CharacterDevelopment
         public static CareerObject Ironbreaker => Instance._ironbreaker;
         
         public static CareerObject Slayer => Instance._slayer;
+        
+        public static CareerObject Warden => Instance._warden;
 
         private void RegisterAll()
         {
@@ -103,6 +107,7 @@ namespace TOR_Core.CharacterDevelopment
             _knightOldWorld = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("KnightOldWorld"));
             _ironbreaker = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Ironbreaker"));
             _slayer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Slayer"));
+            _warden = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Warden"));
             
             _allCareers =
             [
@@ -123,7 +128,8 @@ namespace TOR_Core.CharacterDevelopment
                 _greyLord,
                 _knightOldWorld,
                 _ironbreaker,
-                _slayer
+                _slayer,
+                _warden
             ];
         }
 
@@ -147,6 +153,7 @@ namespace TOR_Core.CharacterDevelopment
             _knightOldWorld.Initialize("Knight of the Old World", null,"KnightlyStrike", CareerAbilityChargeSupplier.KnightOldWorldChargeSupplier, 500);
             _ironbreaker.Initialize("Ironbreaker", null,"Impenetrable", CareerAbilityChargeSupplier.IronbreakerChargeSupplier, 500, typeof(ImpenetrableScript));
             _slayer.Initialize("Slayer", null,"DoomSeeking", CareerAbilityChargeSupplier.SlayerChargeSupplier, 500, typeof(ImpenetrableScript));
+            _warden.Initialize("Warden",null,"HawkEye",null,100,typeof(HawkEyeScript));
         }
     }
 }
