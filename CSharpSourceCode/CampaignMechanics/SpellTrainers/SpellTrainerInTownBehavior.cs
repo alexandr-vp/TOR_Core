@@ -64,7 +64,8 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             {
                 return location.GetLocationCharacter(trainer) != null;
             }
-            else return false;
+
+            return false;
         }
 
         private Hero GetTrainerForTown(Settlement settlement)
@@ -135,8 +136,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                    hero.SetName(template.Name, template.Name);
                 }
             }
-
-           
         }
 
         private void OnSessionLaunched(CampaignGameStarter obj)
@@ -339,7 +338,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 
                 var inquirydata = new MultiSelectionInquiryData(new TextObject("{=tor_magic_lore_prompt_label_str}Choose Companion").ToString(), new TextObject("{=tor_magic_lore_prompt_description_str}Which companion should become a Spellcaster?.").ToString(), list, true, 1, 1, "Confirm", "Cancel", OnChooseCompanion, null);
                 MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
-
             }
 
 
@@ -355,11 +353,10 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 
                 foreach (var item in weaverLores)
                 {
-                
                     list.Add(new InquiryElement(item, item.Name, null));
                 }
                 
-                var inquirydata = new MultiSelectionInquiryData(new TextObject("{=tor_magic_lore_prompt_label_str}Choose Lore for your companion").ToString(), new TextObject("{=tor_magic_lore_prompt_description_str}Choose a lore to specialize in.").ToString(), list, true, 1, 1, "Confirm", "Cancel", (args) => OnChooseCompanionLore(hero, args), OnCancelLore);
+                var inquirydata = new MultiSelectionInquiryData(new TextObject("{=tor_magic_lore_prompt_label_str}Choose Lore for your companion").ToString(), new TextObject("{=tor_magic_lore_prompt_description_str}Choose a lore to specialize in.").ToString(), list, true, 1, 1, "Confirm", "Cancel", args => OnChooseCompanionLore(hero, args), OnCancelLore);
                 MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
             }
             
@@ -384,13 +381,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 var inquirydata = new MultiSelectionInquiryData(new TextObject("{=tor_magic_lore_prompt_label_str}Choose Lore").ToString(), new TextObject("{=tor_magic_lore_prompt_description_str}Choose a lore to specialize in.").ToString(), list, true, 1, 1, "Confirm", "Cancel", OnChooseLore, OnCancelLore);
                 MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
             }
-            
-            
-            
-
         }
-
-    
 
         private void AddDialogs(CampaignGameStarter obj)
         {
@@ -465,14 +456,10 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                     {
                         return true;
                     }
-
                     return false;
                 }
-
                 return false;
             }
-            
-
             return false;
         }
         
@@ -485,10 +472,8 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             {
                 return true;
             }
-
             return false;
         }
-
         
         private bool damselSecondLoreCondition()
         {
@@ -528,7 +513,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         {
             var partner = CharacterObject.OneToOneConversationCharacter;
             if (partner != null && partner.HeroObject != null && partner.HeroObject.IsSpellTrainer()) return true;
-            else return false;
+            return false;
         }
 
         private bool magictestcondition()
@@ -562,7 +547,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                         break;
                 }
                 MBTextManager.SetTextVariable("TEST_QUESTION", text);
-
             }
             return flag;
         }
@@ -699,6 +683,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                     text = "You shouldn't see this.";
                     break;
             }
+            
             MBTextManager.SetTextVariable("SPECIALIZE_PROMPT", text);
             return true;
         }
@@ -711,7 +696,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             var model = Campaign.Current.Models.GetAbilityModel();
             foreach (var item in lores)
             {
-                
                 if (item.ID == "MinorMagic"  || Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)) continue;
 
                 if(!model.IsValidLoreForCharacter(Hero.MainHero, item)) continue;
