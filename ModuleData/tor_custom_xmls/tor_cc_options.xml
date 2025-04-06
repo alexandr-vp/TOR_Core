@@ -52,7 +52,7 @@
 			<string>Athletics</string>
 			<string>Tactics</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Control</AttributeToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>{=tor_cc_option2_label_str}Imperial Sergeant</OptionText>
 		<OptionFlavourText>{=tor_cc_option2_text_str}Your father had not only served with distinction but survived long enough to receive the title of Sergeant, a veteran that has spilled the blood of beastmen and bandits alike.</OptionFlavourText>
 	</CharacterCreationOption>
@@ -125,7 +125,7 @@
 			<string>Tactics</string>
 			<string>Crafting</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
 		<OptionText>{=tor_cc_option8_label_str}Blacksmith apprentice</OptionText>
 		<OptionFlavourText>{=tor_cc_option8_text_str}Conflict was never ending for the Empire and neither was the work of its Blacksmiths, you chose to turn your strength into a trade as you bent metals to your will under the tutelage of the local smith. Your first sword may have been wonky but it was still sharp!</OptionFlavourText>
 	</CharacterCreationOption>
@@ -149,7 +149,7 @@
 			<string>Gunpowder</string>
 			<string>Engineering</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Control</AttributeToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>{=tor_cc_option10_label_str}Engineering Student</OptionText>
 		<OptionFlavourText>{=tor_cc_option10_text_str}Stories of the Colleges of Nuln had always been your favourite, it seemed Ranald blessed you when a Master Engineer looking for an apprentice decided you would be the perfect candidate. </OptionFlavourText>
 	</CharacterCreationOption>
@@ -171,7 +171,7 @@
 	<CharacterCreationOption Id="option12" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_magister_apprentice_3">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
-			<string>Athletics</string>
+			<string>Leadership</string>
 			<string>Spellcraft</string>
 			<string>Tactics</string>
 		</SkillsToIncrease>
@@ -198,7 +198,7 @@
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Roguery</string>
-			<string>Riding</string>
+			<string>Gunpowder</string>
 			<string>Crossbow</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
@@ -209,12 +209,12 @@
 
 	<CharacterCreationOption Id="option_empire_knight" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_empire_knight_3">
 		<SkillsToIncrease>
-			<string>Charm</string>
+			<string>Riding</string>
 			<string>Steward</string>			
-			<string>Trade</string>
-			<string>Trade</string>
+			<string>Polearm</string>
+			<string>Leadership</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Social</AttributeToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
 		<OptionText>{=tor_cc_option15_label_str}Intiate Knight</OptionText>
 		<PositiveEffectText>{=tor_cc_option15_effect_str}Knight of the Old World Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option15_text_str}Most nobles of the Empire are not recruited to any standing armies, instead they aim to join one of the Empire's brotherhoods of Knightly Orders. To do so a noble must first forsake any responsibilities and rights of inheritance and then pass a severe rite of initiation. The Knightly Orders of the Empire treat their internal hierarchy quite seriously, with every novice trained in combat and the Order's code. </OptionFlavourText>
@@ -250,7 +250,7 @@
 			<string>Throwing</string>
 			<string>Athletics</string>
 			<string>Roguery</string>
-			<string>Polearm</string>
+			<string>OneHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Control</AttributeToIncrease>
 		<OptionText>{=tor_cc_option18_label_str}Graverobbers</OptionText>
@@ -259,10 +259,10 @@
 
 	<CharacterCreationOption Id="option19" Culture="khuzait" StageNumber="1" EquipmentSetId="tor_cc_fisherfolk_1">
 		<SkillsToIncrease>
-			<string>Steward</string>
+			<string>Scouting</string>
 			<string>Medicine</string>
 			<string>Athletics</string>
-			<string>Engineering</string>
+			<string>Trade</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
 		<OptionText>{=tor_cc_option19_label_str}Fisherfolk</OptionText>
@@ -272,7 +272,7 @@
 	<CharacterCreationOption Id="option20" Culture="khuzait" StageNumber="1" EquipmentSetId="tor_cc_orphan_1">
 		<SkillsToIncrease>
 			<string>Athletics</string>
-			<string>OneHanded</string>
+			<string>Throwing</string>
 			<string>Tactics</string>
 			<string>Roguery</string>
 		</SkillsToIncrease>
@@ -284,7 +284,7 @@
 	<!-- VC stage 2 -->
 	<CharacterCreationOption Id="option21" Culture="khuzait" StageNumber="2" EquipmentSetId="tor_cc_noble_attendant_2">
 		<SkillsToIncrease>
-			<string>Scouting</string>
+			<string>Tactics</string>
 			<string>Charm</string>
 			<string>Riding</string>
 			<string>Steward</string>
@@ -299,7 +299,7 @@
 			<string>Medicine</string>
 			<string>Spellcraft</string>
 			<string>Spellcraft</string>
-			<string>Polearm</string>
+			<string>Roguery</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
 		<OptionText>{=tor_cc_option22_label_str}Necromancer's apprentice </OptionText>
@@ -309,7 +309,7 @@
 	<CharacterCreationOption Id="option23" Culture="khuzait" StageNumber="2" EquipmentSetId="tor_cc_peat_farmer_2">
 		<SkillsToIncrease>
 			<string>Crafting</string>
-			<string>OneHanded</string>
+			<string>Trade</string>
 			<string>Polearm</string>
 			<string>Athletics</string>
 		</SkillsToIncrease>
@@ -320,9 +320,9 @@
 
 	<CharacterCreationOption Id="option24" Culture="khuzait" StageNumber="2" EquipmentSetId="tor_cc_stableboy_2">
 		<SkillsToIncrease>
-			<string>Engineering</string>
+			<string>Tactics</string>
 			<string>TwoHanded</string>
-			<string>OneHanded</string>
+			<string>Polearm</string>
 			<string>Bow</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
@@ -360,7 +360,7 @@
 	<CharacterCreationOption Id="option27" Culture="khuzait" StageNumber="3" EquipmentSetId="tor_cc_novice_necromancer_3">
 		<SkillsToIncrease>
 			<string>Medicine</string>
-			<string>Crafting</string>
+			<string>Athletics</string>
 			<string>Spellcraft</string>
 			<string>Roguery</string>
 		</SkillsToIncrease>
@@ -399,9 +399,9 @@
 	<CharacterCreationOption Id="option30" Culture="khuzait" StageNumber="3" EquipmentSetId="tor_cc_vagabond_3">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
-			<string>Roguery</string>
+			<string>Bow</string>
 			<string>Athletics</string>
-			<string>TwoHanded</string>
+			<string>Trade</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<OptionText>{=tor_cc_option30_label_str}Vagabond</OptionText>
@@ -436,10 +436,10 @@
 
 	<CharacterCreationOption Id="option33" Culture="vlandia" StageNumber="1" EquipmentSetId="tor_cc_sailors_1">
 		<SkillsToIncrease>
-			<string>OneHanded</string>
+			<string>Polearm</string>
 			<string>Charm</string>
 			<string>Scouting</string>
-			<string>Gunpowder</string>
+			<string>Bow</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>{=tor_cc_option33_label_str}Bretonnian Sailors</OptionText>
@@ -462,7 +462,7 @@
 		<SkillsToIncrease>
 			<string>Medicine</string>
 			<string>Trade</string>
-			<string>Polearm</string>
+			<string>Steward</string>
 			<string>Charm</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
@@ -475,7 +475,7 @@
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Polearm</string>
-			<string>Charm</string>
+			<string>Riding</string>
 			<string>Leadership</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
@@ -488,7 +488,7 @@
 			<string>TwoHanded</string>
 			<string>Polearm</string>
 			<string>Athletics</string>
-			<string>Engineering</string>
+			<string>Tactics</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>{=tor_cc_option37_label_str}Man-at-Arms</OptionText>
@@ -498,7 +498,7 @@
 	<CharacterCreationOption Id="option38" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_highwayman_2">
 		<SkillsToIncrease>
 			<string>Bow</string>
-			<string>Tactics</string>
+			<string>Roguery</string>
 			<string>Charm</string>
 			<string>Scouting</string>
 		</SkillsToIncrease>
@@ -509,9 +509,9 @@
 
 	<CharacterCreationOption Id="option39" Culture="vlandia" StageNumber="2" EquipmentSetId="tor_cc_apprentice_craftsmen_2">
 		<SkillsToIncrease>
-			<string>Engineering</string>
+			<string>Trade</string>
 			<string>Crafting</string>
-			<string>OneHanded</string>
+			<string>Trade</string>
 			<string>Steward</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
@@ -539,7 +539,7 @@
 			<string>Riding</string>
 			<string>Tactics</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
 		<OptionText>{=tor_cc_option41_label_str}Knight Errant</OptionText>
 		<PositiveEffectText>{=tor_cc_option41_effect_str}"Knight of Bretonnia" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option41_text_str}You have chosen to set out on the path of a knight of Bretonnia. The trail of dutiful chivalry is a hard one - many foes and battles await you. But, if you are worthy, at the end of your quest you will receive the greatest blessing known to men; a sip from the Grail of the Lady.</OptionFlavourText>
@@ -561,11 +561,11 @@
 	<CharacterCreationOption Id="option43" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_yeoman_warden_3">
 		<SkillsToIncrease>
 			<string>Tactics</string>
-			<string>TwoHanded</string>
+			<string>Leadership</string>
 			<string>OneHanded</string>
 			<string>Bow</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<AttributeToIncrease>Control</AttributeToIncrease>
 		<OptionText>{=tor_cc_option43_label_str}Yeoman Warden</OptionText>
 		<PositiveEffectText>{=tor_cc_option43_effect_str}"Mercenary" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option43_text_str}You proved your worth to your lord and he rewarded you with the title of Yeoman. As such, you were at times placed in command of other peasants or expected to act as an outrider while on campaign.</OptionFlavourText>
@@ -574,7 +574,7 @@
 	<CharacterCreationOption Id="option44" Culture="vlandia" StageNumber="3" EquipmentSetId="tor_cc_freemen_3">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
-			<string>Steward</string>
+			<string>Throwing</string>
 			<string>Crafting</string>
 			<string>Trade</string>
 		</SkillsToIncrease>

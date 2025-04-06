@@ -226,7 +226,7 @@
 		id="fireball_dot" 
 		particle_id="torch_fire_sparks"
 		particle_intensity="High"
-		base_effect_value="10"
+		base_effect_value="4"
 		type="DamageOverTime"
 		damage_type="Fire">
 	</StatusEffectTemplate> 
