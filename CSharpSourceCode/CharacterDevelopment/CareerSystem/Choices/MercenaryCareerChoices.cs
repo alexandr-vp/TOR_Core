@@ -169,7 +169,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _veteranKeystone.Initialize(CareerID, "{=veteran_keystone_str}Increases melee damage during the career ability by 15%.", "Knightly", false,
+            _veteranKeystone.Initialize(CareerID, "{=veteran_keystone_str}Increases melee damage during the career ability by 15%.", "Veteran", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()

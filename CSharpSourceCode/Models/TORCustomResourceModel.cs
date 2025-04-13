@@ -27,7 +27,7 @@ public class TORCustomResourceModel : GameModel
             var number = new ExplainedNumber(0,true);
             if (hero.GetCultureSpecificCustomResource() != null)
             {
-                var upkeep =  GetCalculatedCustomResourceUpkeep(hero, hero.GetCultureSpecificCustomResource().StringId);
+                var upkeep = GetCalculatedCustomResourceUpkeep(hero, hero.GetCultureSpecificCustomResource().StringId);
                 
                 if (upkeep.ResultNumber < 0)
                 {
@@ -319,7 +319,7 @@ public class TORCustomResourceModel : GameModel
                 var garrison = settlement.Town.GarrisonParty.MemberRoster.GetTroopRoster();
                 foreach (var elem in garrison)
                 {
-                    if (elem.Character.HasCustomResourceUpgradeRequirement())
+                    if (elem.Character.HasCustomResourceUpkeepRequirement())
                     {
                         var resource = elem.Character.GetCustomResourceRequiredForUpkeep();
                         

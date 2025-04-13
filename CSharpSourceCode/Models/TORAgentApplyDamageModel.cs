@@ -23,11 +23,17 @@ namespace TOR_Core.Models
     {
         public override void DecideMissileWeaponFlags(Agent attackerAgent, MissionWeapon missileWeapon, ref WeaponFlags missileWeaponFlags)
         {
+            //doesn't matter if Agent is null here because the methods will do nothing if that's the case
             base.DecideMissileWeaponFlags(attackerAgent, missileWeapon, ref missileWeaponFlags);
             var character = attackerAgent.Character as CharacterObject;
             if (character != null && !missileWeapon.IsEmpty)
             {
-                if (missileWeapon.CurrentUsageItem.WeaponClass == WeaponClass.Cartridge && character.GetPerkValue(TORPerks.GunPowder.PiercingShots)) missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
+                //GetPartyLeaderCharacter can return a null and therefore a NRE on .GetPerkValue; I assume this occurs in the case of a gunpowder troop that's in a garrison
+                //declaring it here, then null and perk checking inside the conditional
+                CharacterObject partyLeader = attackerAgent.GetPartyLeaderCharacter();
+                //Gunpowder piercing weapon check needs : gunpowder weapon, and the shooter to have the piercing shots perk or the party leader to have the perk
+                //while the description states only troops, the conditional is less restrictive and allows other heroes in the party to pierce as long as the leader has the perk
+                if (missileWeapon.CurrentUsageItem.WeaponClass == WeaponClass.Cartridge && character.GetPerkValue(TORPerks.GunPowder.PiercingShots) || (partyLeader != null && partyLeader.GetPerkValue(TORPerks.GunPowder.PiercingShots))) missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
 
                 if (attackerAgent.IsMainAgent && Hero.MainHero.HasAnyCareer())
                 {
