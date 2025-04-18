@@ -44,7 +44,7 @@ namespace TOR_Core.AbilitySystem.Spells
                 _lores.Add("DarkMagic", new LoreObject("DarkMagic", "Dark Magic", "darkmagic_symbol", new List<string>() { TORConstants.Cultures.EMPIRE, TORConstants.Cultures.BRETONNIA}, true));
                 _lores.Add("Necromancy", new LoreObject("Necromancy", "Necromancy", "necromancy_symbol", new List<string>() { TORConstants.Cultures.EMPIRE, TORConstants.Cultures.BRETONNIA , TORConstants.Cultures.ASRAI, TORConstants.Cultures.EONIR}));
                 
-                _lores.Add("LoreOfDeath", new LoreObject("LoreOfDeath", "Lore of Death", "firemagic_symbol", new List<string>() {TORConstants.Cultures.BRETONNIA,TORConstants.Cultures.ASRAI, }));
+                _lores.Add("LoreOfDeath", new LoreObject("LoreOfDeath", "Lore of Death", "deathmagic_symbol", new List<string>() {TORConstants.Cultures.BRETONNIA,TORConstants.Cultures.ASRAI, }));
             }
             return _lores.Values.ToList();
         }

@@ -896,7 +896,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="1" UpgradeCost="100" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="3" UpgradeCost="75" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_knight_of_the_black_grail">
     <Abilities />
@@ -911,7 +911,7 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
       <DamageProportionTuple DamageType="Magical" Percent="0.40" />
     </DamageProportions>
-    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="6" UpgradeCost="400" />
+    <ResourceCost ResourceType="DarkEnergy" UpkeepCost="8" UpgradeCost="150" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_caravan_guard">
     <Abilities />
