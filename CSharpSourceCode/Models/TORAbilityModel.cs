@@ -45,7 +45,7 @@ namespace TOR_Core.Models
             return ability.AbilityType switch
             {
                 AbilityType.Spell => TORSkillEffects.SpellDuration,
-                AbilityType.Prayer => TORSkillEffects.PrayerDuration,//Thats a bug: there is no prayer duration amplification by skills
+                AbilityType.Prayer => TORSkillEffects.PrayerDuration,
                 _ => null,
             };
         }
