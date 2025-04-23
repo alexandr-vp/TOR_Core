@@ -246,6 +246,8 @@
   <string id="str_faction_formal_name_for_culture.battania" text="{=faction_formal_name_for_culture_battania_str}Athel Loren" />
   <string id="str_faction_formal_name_for_culture.eonir" text="{=faction_formal_name_for_culture_eonir_str}Laurelorn Forest" />
   <string id="str_faction_formal_name_for_culture.chaos_culture" text="{=faction_formal_name_for_culture_chaos_culture_str}Forces of Chaos" />
+  <string id="str_faction_formal_name_for_culture.druchii" text="{=faction_formal_name_for_culture_druchii_str}Druchii Slavers" />
+  
 
   <string id="str_faction_informal_name_for_culture.khuzait" text="{=faction_informal_name_for_culture_khuzait_str}Sylvania" />
   <string id="str_faction_informal_name_for_culture.empire" text="{=faction_informal_name_for_culture_empire_str}the Empire" />
@@ -254,6 +256,8 @@
   <string id="str_faction_informal_name_for_culture.battania" text="{=faction_informal_name_for_culture_battania_str}Athel Loren" />
   <string id="str_faction_informal_name_for_culture.eonir" text="{=faction_informal_name_for_culture_eonir_str}Laurelorn" />
   <string id="str_faction_informal_name_for_culture.chaos_culture" text="{=faction_informal_name_for_culture_chaos_culture_str}Chaos" />
+  <string id="str_faction_informal_name_for_culture.druchii" text="{=faction_informal_name_for_culture_druchii_str}Druchii Slavers" />
+  
 
   <string id="str_adjective_for_culture.khuzait" text="{=adjective_for_culture_khuzait_str}vampire" />
   <string id="str_adjective_for_culture.empire" text="{=adjective_for_culture_empire_str}imperial" />
@@ -262,6 +266,8 @@
   <string id="str_adjective_for_culture.battania" text="{=adjective_for_culture_battania_str}asrai" />
   <string id="str_adjective_for_culture.eonir" text="{=adjective_for_culture_eonir_str}eonir" />
   <string id="str_adjective_for_culture.chaos_culture" text="{=adjective_for_culture_chaos_culture_str}chaos" />
+  <string id="str_adjective_for_culture.druchii" text="{=adjective_for_culture_druchii_str}druchii" />
+  
 
   <string id="str_neutral_term_for_culture.khuzait" text="{=neutral_term_for_culture_khuzait_str}sylvanians" />
   <string id="str_neutral_term_for_culture.empire" text="{=neutral_term_for_culture_empire_str}imperials" />
@@ -270,6 +276,8 @@
   <string id="str_neutral_term_for_culture.battania" text="{=neutral_term_for_culture_battania_str}asrai" />
   <string id="str_neutral_term_for_culture.eonir" text="{=neutral_term_for_culture_eonir_str}eonir" />
   <string id="str_neutral_term_for_culture.chaos_culture" text="{=neutral_term_for_culture_chaos_culture_str}chaos" />
+  <string id="str_neutral_term_for_culture.druchii" text="{=neutral_term_for_culture_druchii_str}druchii" />
+  
 
 
   <string id="tor_feudal_oath_line1.averland" text="{=tor_feudal_oath_line1_averland_str}I hereby swear to serve the Grand County of Averland." />
