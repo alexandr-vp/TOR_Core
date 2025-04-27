@@ -13,6 +13,7 @@ using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Items.InventoryUseScripts;
 using TOR_Core.Quests;
 
 namespace TOR_Core.SaveGameSystem
@@ -46,12 +47,15 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(WorldRootsComponent), 21);
             AddClassDefinition(typeof(ArcheryContestTournamentGame), 22);
             AddClassDefinition(typeof(TorItemDuplicationData), 23);
+            AddInterfaceDefinition(typeof(IInventoryUseScript), 24);
+            AddClassDefinition(typeof(BaseInventoryUseScript), 25);
+            AddClassDefinition(typeof(SkillBookScript), 26);
         }
 
         protected override void DefineEnumTypes()
         {
-            AddEnumDefinition(typeof(EngineerQuestStates), 24);
-            AddEnumDefinition(typeof(SpellCastingLevel), 25);
+            AddEnumDefinition(typeof(EngineerQuestStates), 27);
+            AddEnumDefinition(typeof(SpellCastingLevel), 28);
         }
 
         protected override void DefineContainerDefinitions()
@@ -70,6 +74,8 @@ namespace TOR_Core.SaveGameSystem
             ConstructContainerDefinition(typeof(Dictionary<string, string>));
             ConstructContainerDefinition(typeof(Dictionary<ItemObject, TorItemDuplicationData>));
             ConstructContainerDefinition(typeof(Dictionary<string, List<string>>));
+            ConstructContainerDefinition(typeof(List<BaseInventoryUseScript>));
+            ConstructContainerDefinition(typeof(Dictionary<string, List<BaseInventoryUseScript>>));
         }
     }
 }

@@ -163,10 +163,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
                 if (choice?.Passive == null || choice.Passive.PassiveEffectType != passiveEffectType) continue;
 
-                if (characterObject == null)
-                {
-                    characterObject = hero.CharacterObject;
-                }
+                characterObject ??= hero.CharacterObject;
 
                 var passive = choice.Passive;
 
@@ -318,7 +315,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public static List<(string PrayerID, int Rank)> GetBattlePrayerList(CareerObject career)
         {
-            List<(string PrayerID, int Rank)> prayers = new List<(string, int)>();
+            List<(string PrayerID, int Rank)> prayers = new();
 
 
             if (career == TORCareers.WarriorPriest)
@@ -395,8 +392,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             var statuseffectComponent = agent.GetComponent<StatusEffectComponent>();
 
-            var button = CareerHelper.GetCareerButton() as ImperialMagisterCareerButtonBehavior;
-            if (statuseffectComponent != null && button != null)
+            if (statuseffectComponent != null && GetCareerButton() is ImperialMagisterCareerButtonBehavior button)
             {
                 var powerstone = button.GetPowerstone(agent.Character as CharacterObject);
 
@@ -437,7 +433,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                     if (obj is ITriggeredScript)
                     {
                         var script = obj as ITriggeredScript;
-                        script.OnTrigger(agent.Position, Agent.Main, new List<Agent>() { agent }, 9999);
+                        script.OnTrigger(agent.Position, Agent.Main, [agent], 9999);
                     }
                 }
                 catch (Exception)
@@ -491,57 +487,40 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
         }
 
-        /*
         public static ItemTrait GetTraitForReligion(Hero hero, ReligionObject religionObject)
         {
-            var traitName = "ReligionKnightlyStrikeTrait";
+            ItemTrait result = ItemTrait.Invalid;
             var religion = Hero.MainHero.GetDominantReligion();
 
-            ItemTrait trait = new ItemTrait();
-            trait.ItemTraitName = traitName;
             if (religion == null || Hero.MainHero.GetDevotionLevelForReligion(religion) < DevotionLevel.Fanatic)
             {
-                var damageTuple = new DamageProportionTuple { DamageType = DamageType.Physical, Percent = 0.2f };
-                trait.AdditionalDamageTuple = damageTuple;
+                result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "religion_default");
+                return result ?? ItemTrait.Invalid;
             }
 
             switch (religion.StringId)
             {
                 case "cult_of_sigmar":
-                    {
-
-                        var damageTuple = new DamageProportionTuple { DamageType = DamageType.Holy, Percent = 0.2f };
-                        trait.AdditionalDamageTuple = damageTuple;
-                        trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
-                        break;
-                    }
+                    result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "religion_sigmar");
+                    break;
                 case "cult_of_ulric":
-                    {
-                        var damageTuple = new DamageProportionTuple { DamageType = DamageType.Frost, Percent = 0.2f };
-                        trait.AdditionalDamageTuple = damageTuple;
-                        trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
-                        break;
-                    }
+                    result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "religion_ulric");
+                    break;
                 case "cult_of_taal":
-                    {
-                        var damageTuple = new DamageProportionTuple { DamageType = DamageType.Holy, Percent = 0.2f };
-                        trait.AdditionalDamageTuple = damageTuple;
-                        trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
-                        break;
-                    }
+                    result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "religion_taal");
+                    break;
                 case "cult_of_manaan":
-                    trait.AdditionalDamageTuple.DamageType = DamageType.Lightning;
-                    trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "electric_weapon" };
+                    result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "religion_manaan");
                     break;
                 case "cult_of_shallya":
-                    trait.AdditionalDamageTuple.DamageType = DamageType.Holy;
-                    trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
+                    result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "religion_shallya");
+                    break;
+                default:
                     break;
             }
 
-            return trait;
+            return result ?? ItemTrait.Invalid;
         }
-        */
 
         public static void RemoveCareerRelatedTroopAttributes(MobileParty mobileParty, string troopId,
             MobilePartyExtendedInfo mobilePartyinfo)

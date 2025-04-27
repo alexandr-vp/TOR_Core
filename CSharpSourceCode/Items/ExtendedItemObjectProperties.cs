@@ -14,16 +14,17 @@ namespace TOR_Core.Items
         [XmlElement]
         public string Description = "";
         [XmlArray("DamageProportions")]
-        public List<DamageProportionTuple> DamageProportions = new List<DamageProportionTuple>();
+        public List<DamageProportionTuple> DamageProportions = [];
         [XmlArray("ItemTraits")]
-        public List<ItemTrait> ItemTraits = new List<ItemTrait>();
+        [XmlArrayItem("ItemTrait")]
+        public List<string> ItemTraits = [];
 
         public ExtendedItemObjectProperties() { }
 
-        public ExtendedItemObjectProperties(string id, DamageType defaultDamageType= DamageType.Physical)
+        private ExtendedItemObjectProperties(string id, DamageType defaultDamageType= DamageType.Physical)
         {
             ItemStringId = id;
-            DamageProportionTuple proportionTuple = new DamageProportionTuple
+            DamageProportionTuple proportionTuple = new()
             {
                 DamageType = defaultDamageType,
                 Percent = 1f
@@ -37,19 +38,17 @@ namespace TOR_Core.Items
 
         public ExtendedItemObjectProperties Clone()
         {
-            var prop = new ExtendedItemObjectProperties();
-            prop.ItemStringId = ItemStringId;
-            prop.Description = Description;
-            prop.ItemTraits = new List<ItemTrait>();
-            foreach(var trait in ItemTraits)
+            var prop = new ExtendedItemObjectProperties
+            {
+                ItemStringId = ItemStringId,
+                Description = Description,
+                ItemTraits = []
+            };
+            foreach (var trait in ItemTraits)
             {
                 prop.ItemTraits.Add(trait);
             }
-            prop.DamageProportions = new List<DamageProportionTuple>();
-            foreach(var item in DamageProportions)
-            {
-                prop.DamageProportions.Add(item);
-            }
+            prop.DamageProportions = [.. DamageProportions];
             return prop;
         }
     }

@@ -10,10 +10,8 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.Items
 {
-    public class WeaponEffectMissionLogic : MissionLogic
+    public class WeaponHitScriptsMissionLogic : MissionLogic
     {
-        private List<Mission.Missile> _missiles;
-        
         public override void OnAgentBuild(Agent agent, Banner banner)
         {
             if (agent.IsHuman)
@@ -39,18 +37,17 @@ namespace TOR_Core.Items
 
             if (affectorWeapon.Item != null && affectorWeapon.Item.HasAnyTrait(affectorAgent))
             {
-                var relevantTraits = affectorWeapon.Item.GetTraits(affectorAgent).Where(x => x.ImbuedStatusEffectId != "none");
+                var relevantTraits = affectorWeapon.Item.GetTraits(affectorAgent).Where(x => x.ImbuedStatusEffectId != "none" && x.ImbuedStatusEffectId != null);
                 if (relevantTraits != null && relevantTraits.Count() > 0)
                 {
                     foreach (var trait in relevantTraits)
                     {
                         affectedAgent.ApplyStatusEffect(trait.ImbuedStatusEffectId, affectorAgent, 5, false);
-                        
                     }
                 }
 
                 var onHitTraits = affectorWeapon.Item.GetTraits(affectorAgent)
-                    .Where(x => x.OnWeaponHitScript.ScriptName != "none");
+                    .Where(x => x.OnWeaponHitScript != null && string.IsNullOrWhiteSpace(x.OnWeaponHitScript.WeaponScriptName) && x.OnWeaponHitScript.WeaponScriptName != "invalid");
 
                 if (onHitTraits != null && onHitTraits.Count() > 0)
                 {
@@ -58,16 +55,23 @@ namespace TOR_Core.Items
                     {
                         try
                         {
-                            var obj = Activator.CreateInstance(Type.GetType(trait.OnWeaponHitScript.ScriptName));
-                            if( obj is IWeaponHitScript)
+                            object script;
+                            if (trait.OnWeaponHitScript.WeaponScriptArguments != null && trait.OnWeaponHitScript.WeaponScriptArguments.Count > 0)
                             {
-                                var script = obj as IWeaponHitScript;
-                                script.OnHit(affectorAgent, affectedAgent, blow.InflictedDamage,affectorWeapon);
+                                script = Activator.CreateInstance(Type.GetType(trait.OnWeaponHitScript.WeaponScriptName), [trait.OnWeaponHitScript.WeaponScriptArguments.ToArray()]);
+                            }
+                            else
+                            {
+                                script = Activator.CreateInstance(Type.GetType(trait.OnWeaponHitScript.WeaponScriptName));
+                            }
+                            if (script is BaseWeaponHitScript weaponHitScript)
+                            {
+                                weaponHitScript.OnHit(affectorAgent, affectedAgent, blow.InflictedDamage,affectorWeapon);
                             }
                         }
                         catch(Exception)
                         {
-                            TORCommon.Log("Tried to create magicweapon onhitscript: " + trait.OnWeaponHitScript.ScriptName + ", but failed.", NLog.LogLevel.Error);
+                            TORCommon.Log("Tried to create magicweapon onhitscript: " + trait.OnWeaponHitScript.WeaponScriptName + ", but failed.", NLog.LogLevel.Error);
                         }
                     }
                 }
@@ -135,7 +139,7 @@ namespace TOR_Core.Items
 
         private bool HasWeaponWithTrait(Agent agent, out List<ItemTrait> list)
         { 
-            list = new List<ItemTrait>();
+            list = [];
             if (agent.IsHuman)
             {
                 var weapon = agent.WieldedWeapon;

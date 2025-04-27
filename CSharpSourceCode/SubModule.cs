@@ -46,7 +46,6 @@ using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
-using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignSupport.TownBehaviours;
@@ -102,6 +101,7 @@ namespace TOR_Core
             InkStoryManager.Initialize();
             AnimationTriggerManager.LoadAnimationTriggers();
             CustomResourceManager.Initialize();
+            ItemTraitManager.LoadItemTraits();
         }
 
         private Assembly ResolveDllPath(object sender, ResolveEventArgs args)
@@ -122,7 +122,7 @@ namespace TOR_Core
                 TORGameStarterHelper.CleanCampaignStarter(starter);
                 starter.AddBehavior(new ExtendedInfoManager());
                 starter.AddBehavior(new ChaosCampaignBehavior());
-                starter.AddBehavior(new TORSkillBookCampaignBehavior());
+                starter.AddBehavior(new InventoryUseScriptsCampaignBehavior());
                 starter.AddBehavior(new TORCustomSettlementCampaignBehavior());
                 starter.AddBehavior(new RaidingPartyCampaignBehavior());
                 //starter.AddBehavior(new InvasionCampaignBehavior());
@@ -251,7 +251,7 @@ namespace TOR_Core
             mission.AddMissionBehavior(new AbilityManagerMissionLogic());
             mission.AddMissionBehavior(new AbilityHUDMissionView());
             mission.AddMissionBehavior(new CustomCrosshairMissionBehavior());
-            mission.AddMissionBehavior(new WeaponEffectMissionLogic());
+            mission.AddMissionBehavior(new WeaponHitScriptsMissionLogic());
             mission.AddMissionBehavior(new CustomBannerMissionLogic());
             mission.AddMissionBehavior(new DismembermentMissionLogic());
             mission.AddMissionBehavior(new MoraleMissionLogic());

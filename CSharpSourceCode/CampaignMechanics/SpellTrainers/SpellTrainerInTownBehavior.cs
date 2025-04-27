@@ -1,10 +1,8 @@
 using Helpers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
-using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Inventory;
 using TaleWorlds.CampaignSystem.Party;
@@ -19,7 +17,6 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
-using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -163,7 +160,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             ItemRoster roster = new ItemRoster();
 
             MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
-                .Where(item => TORSkillBookCampaignBehavior.Instance.IsSkillBook(item))
+                .Where(item => item.IsInventoryUsable() && item.GetTraits().Any(trait => trait.OnInventoryUseScript.InventoryScriptName.Contains("SkillBookScript")))
                 .ToList()
                 .ForEach(item => roster.Add(new ItemRosterElement(item, MBRandom.RandomInt(1, 5))));
 

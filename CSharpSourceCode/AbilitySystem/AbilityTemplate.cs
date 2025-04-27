@@ -52,7 +52,7 @@ namespace TOR_Core.AbilitySystem
         [XmlAttribute]
         public TriggerType TriggerType { get; set; } = TriggerType.OnCollision;
         [XmlElement("TriggeredEffect")]
-        public List<string> TriggeredEffects { get; set; } = new List<string>();
+        public List<string> TriggeredEffects { get; set; } = [];
         [XmlAttribute]
         public bool HasLight { get; set; } = true;
         [XmlAttribute]
@@ -122,14 +122,14 @@ namespace TOR_Core.AbilitySystem
         {
             get
             {
-                switch (SpellTier)
+                return SpellTier switch
                 {
-                    case 1: return 5000;
-                    case 2: return 10000;
-                    case 3: return 25000;
-                    case 4: return 50000;
-                    default: return 0;
-                }
+                    1 => 5000,
+                    2 => 10000,
+                    3 => 25000,
+                    4 => 50000,
+                    _ => 0,
+                };
             }
         }
 

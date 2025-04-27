@@ -1,4 +1,5 @@
-﻿using TaleWorlds.Core.ViewModelCollection.Information;
+﻿using System.Linq;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 
 namespace TOR_Core.Items
@@ -8,8 +9,15 @@ namespace TOR_Core.Items
         private HintViewModel _hintText;
         private string _icon;
 
-        public TorItemTraitVM(ItemTrait trait)
+        public TorItemTraitVM(string traitId)
         {
+            var trait = ItemTrait.All.FirstOrDefault(t => t.ItemTraitStringId == traitId);
+            if (trait == null)
+            {
+                _hintText = new HintViewModel(new TaleWorlds.Localization.TextObject($"No itemtrait with id: {traitId} exists."));
+                _icon = "<img src=\"winds_icon_45\"/>";
+                return;
+            }
             _hintText = new HintViewModel(new TaleWorlds.Localization.TextObject(trait.ItemTraitDescription));
             _icon = "<img src=\"" + trait.IconName + "\"/>";
         }

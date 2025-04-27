@@ -19,22 +19,10 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            /*
             if(triggeredAgents.Count() > 0)
             {
-  
-                var additionalDamage = new DamageProportionTuple();
-
-                additionalDamage.DamageType = DamageType.Magical;
-                additionalDamage.Percent = 0.15f;
-                var trait = new ItemTrait
-                {
-                    ItemTraitName = "Swiftshiver shards Trait",
-                    ItemTraitDescription = "The damage is increased by 20% extra magical damage",
-                    WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "magic_trait" },
-                    AdditionalDamageTuple = additionalDamage,
-                    OnHitScriptName = "none"
-                };
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "ca_swiftshiver_shards");
+                if (trait == null) return;
 
                 foreach (Agent agent in triggeredAgents)
                 {
@@ -45,7 +33,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
-            */
         }
     }
     
@@ -53,17 +40,10 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            /*
             if(triggeredAgents.Count() > 0)
             {
-                var trait = new ItemTrait
-                {
-                    ItemTraitName = "Hagbane Trait",
-                    ItemTraitDescription = "The weapon has been poisoned. Slows down enemies",
-                    ImbuedStatusEffectId = "hagbane_debuff",
-                    WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "hagbane_trait" },
-                    OnHitScriptName = "none"
-                };
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "ca_hagbane");
+                if (trait == null) return;
 
                 foreach (Agent agent in triggeredAgents)
                 {
@@ -74,7 +54,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
-            */
         }
     }
     
@@ -82,22 +61,11 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            /*
             if(triggeredAgents.Count() > 0)
             {
-                var trait = new ItemTrait
-                {
-                    ItemTraitName = "Starfire shards Trait",
-                    ItemTraitDescription = "Adds Armor penetration effect, fire damage and dot",
-                    ImbuedStatusEffectId = "starfire_debuff",
-                    WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_flaming_weapon" },
-                    AdditionalDamageTuple = new DamageProportionTuple
-                    {
-                        DamageType = DamageType.Fire, Percent = 0.20f
-                    },
-                    OnHitScriptName = "none"
-                };
-                
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "ca_starfire_shards");
+                if (trait == null) return;
+
                 foreach (Agent agent in triggeredAgents)
                 {
                     var comp = agent.GetComponent<ItemTraitAgentComponent>();
@@ -107,7 +75,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
-            */
         }
     }
     
@@ -115,21 +82,10 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            /*
             if(triggeredAgents.Count() > 0)
             {
-                var trait = new ItemTrait();
-                var additionalDamage = new DamageProportionTuple();
-
-                additionalDamage.DamageType = DamageType.Fire;
-                additionalDamage.Percent = 0.25f;
-                
-                trait.ItemTraitName = "Flaming Sword";
-                trait.ItemTraitDescription = "This sword is on fire. It deals fire damage and applies the burning damage over time effect.";
-                trait.ImbuedStatusEffectId = "fireball_dot";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_flaming_weapon" };
-                trait.AdditionalDamageTuple = additionalDamage;
-                trait.OnHitScriptName = "none";
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "flaming_weapon");
+                if (trait == null) return;
 
                 foreach (Agent agent in triggeredAgents)
                 {
@@ -140,7 +96,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
-            */
         }
     }
 
@@ -148,7 +103,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            /*
             var additionalDamage = new DamageProportionTuple();
             additionalDamage.DamageType = DamageType.Physical;
             additionalDamage.Percent = 0.2f;
@@ -179,16 +133,11 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             if (Hero.MainHero.HasCareerChoice("PathOfGloryKeystone"))
             {
                 var holyTrait = CareerHelper.GetTraitForReligion(Hero.MainHero, Hero.MainHero.GetDominantReligion());
-                traitList.Add(holyTrait);
+                if(holyTrait != null && holyTrait != ItemTrait.Invalid) traitList.Add(holyTrait);
             }
-            
-            var defaultTrait = new ItemTrait();
-            defaultTrait.ItemTraitName = "KnightlyStrike";
-            defaultTrait.ItemTraitDescription = " Charge your weapon with knightly power";
-            defaultTrait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_flaming_weapon" };
-            defaultTrait.OnHitScriptName = "TOR_Core.BattleMechanics.TriggeredEffect.Scripts.KnightlyStrikeOnHitScript";
-            defaultTrait.AdditionalDamageTuple = additionalDamage;
-            traitList.Add(defaultTrait);
+
+            var knightlytrait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "ca_knightlystrike");
+            if (knightlytrait != null) traitList.Add(knightlytrait);
 
             triggeredByAgent.ApplyStatusEffect("knightly_strike",triggeredByAgent,30,false,false,true);
             for (int i = 0; i < additionalLoads; i++)
@@ -207,7 +156,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
-            */
         }
     }
     
@@ -215,20 +163,10 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            /*
             if(triggeredAgents.Count() > 0)
             {
-                var trait = new ItemTrait();
-                var additionalDamage = new DamageProportionTuple();
-
-                additionalDamage.DamageType = DamageType.Fire;
-                additionalDamage.Percent = 0.15f;
-                
-                trait.ItemTraitName = "Lesser Flaming Sword";
-                trait.ItemTraitDescription = "This sword is on fire. It deals additional fire damage.";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_flaming_weapon" };
-                trait.AdditionalDamageTuple = additionalDamage;
-                trait.OnHitScriptName = "none";
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "lesser_flaming_weapon");
+                if (trait == null) return;
 
                 foreach (Agent agent in triggeredAgents)
                 {
@@ -239,7 +177,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
-            */
         }
     }
     
@@ -247,21 +184,10 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            /*
             if(triggeredAgents.Count() > 0)
             {
-                var trait = new ItemTrait();
-                var additionalDamage = new DamageProportionTuple();
-
-                additionalDamage.DamageType = DamageType.Magical;
-                additionalDamage.Percent = 0.25f;
-                
-                trait.ItemTraitName = "Hysh infused Sword";
-                trait.ItemTraitDescription = "This sword is guided by Hysh. It deals magical damage.";
-                trait.ImbuedStatusEffectId = "powerstone_light_mov_debuff";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
-                trait.AdditionalDamageTuple = additionalDamage;
-                trait.OnHitScriptName = "none";
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "lesser_hysh_weapon");
+                if (trait == null) return;
 
                 foreach (Agent agent in triggeredAgents)
                 {
@@ -272,7 +198,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
-            */
         }
     }
     
@@ -280,21 +205,10 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            /*
             if(triggeredAgents.Count() > 0)
             {
-                var trait = new ItemTrait();
-                var additionalDamage = new DamageProportionTuple();
-
-                additionalDamage.DamageType = DamageType.Magical;
-                additionalDamage.Percent = 0.4f;
-                
-                trait.ItemTraitName = "Hysh infused Sword";
-                trait.ItemTraitDescription = "This sword is guided by Hysh. It deals magical damage.";
-                trait.ImbuedStatusEffectId = "powerstone_light_mov_debuff";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
-                trait.AdditionalDamageTuple = additionalDamage;
-                trait.OnHitScriptName = "none";
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "hysh_weapon");
+                if (trait == null) return;
 
                 foreach (Agent agent in triggeredAgents)
                 {
@@ -305,7 +219,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
-            */
         }
     }
     
@@ -313,22 +226,10 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            /*
             if(triggeredAgents.Count() > 0)
             {
-                var trait = new ItemTrait();
-                var additionalDamage = new DamageProportionTuple();
-
-                additionalDamage.DamageType = DamageType.Lightning;
-                additionalDamage.Percent = 0.2f;
-                
-                trait.ItemTraitName = "Azyr infused weapon";
-                trait.ItemTraitDescription = "This weapon is guided by Azyr. It deals lightning damage.";
-                trait.ImbuedStatusEffectId = "none";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "electric_weapon" };
-                
-                trait.AdditionalDamageTuple = additionalDamage;
-                trait.OnHitScriptName = "none";
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "lesser_azyr_weapon");
+                if (trait == null) return;
 
                 foreach (Agent agent in triggeredAgents)
                 {
@@ -339,7 +240,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
-            */
         }
     }
     
@@ -347,226 +247,10 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            /*
-            if(triggeredAgents.Count() > 0)
-            {
-                var trait = new ItemTrait();
-                var additionalDamage = new DamageProportionTuple();
-
-                additionalDamage.DamageType = DamageType.Lightning;
-                additionalDamage.Percent = 0.4f;
-                
-                trait.ItemTraitName = "Azyr infused weapon";
-                trait.ItemTraitDescription = "This sword is guided by Azyr. It deals electrical damage.";
-                trait.ImbuedStatusEffectId = "none";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "electric_weapon" };
-                trait.AdditionalDamageTuple = additionalDamage;
-                trait.OnHitScriptName = "none";
-
-                foreach (Agent agent in triggeredAgents)
-                {
-                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
-                    if(comp != null)
-                    {
-                        comp.AddTraitToWieldedWeapon(trait, duration);
-                    }
-                }
-            }
-            */
-        }
-    }
-    
-    public class ApplyDeathDamageItemTraitScript : ITriggeredScript
-    {
-        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
-        {
-            /*
-            if(triggeredAgents.Count() > 0)
-            {
-                var trait = new ItemTrait();
-                var additionalDamage = new DamageProportionTuple();
-
-                additionalDamage.DamageType = DamageType.Magical;
-                additionalDamage.Percent = 0.4f;
-                
-                trait.ItemTraitName = "Shyish infused weapon";
-                trait.ItemTraitDescription = "This sword is guided by shyish. It deals electrical damage.";
-                trait.ImbuedStatusEffectId = "none";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_death_weapon_effect" };
-                trait.AdditionalDamageTuple = additionalDamage;
-                trait.OnHitScriptName = "none";
-
-                foreach (Agent agent in triggeredAgents)
-                {
-                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
-                    if(comp != null)
-                    {
-                        comp.AddTraitToWieldedWeapon(trait, duration);
-                    }
-                }
-            }
-            */
-        }
-    }
-    
-    public class ApplyGreaterHeavensItemTraitScript : ITriggeredScript
-    {
-        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
-        {
-            /*
-            if(triggeredAgents.Count() > 0)
-            {
-                var trait = new ItemTrait();
-                var additionalDamage = new DamageProportionTuple();
-
-                additionalDamage.DamageType = DamageType.Lightning;
-                additionalDamage.Percent = 0.3f;
-                
-                additionalDamage.DamageType = DamageType.Frost;
-                additionalDamage.Percent = 0.3f;
-                
-                trait.ItemTraitName = "Azyr infused weapon";
-                trait.ItemTraitDescription = "This sword is guided by Azyr. It deals electrical damage.";
-                trait.ImbuedStatusEffectId = "powerstone_heavens_debuff";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_heavens_weapon" };
-                trait.AdditionalDamageTuple = additionalDamage;
-                trait.OnHitScriptName = "none";
-
-                foreach (Agent agent in triggeredAgents)
-                {
-                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
-                    if(comp != null)
-                    {
-                        comp.AddTraitToWieldedWeapon(trait, duration);
-                    }
-                }
-            }
-            */
-        }
-    }
-    
-    public class ApplyMetalItemTraitScript : ITriggeredScript
-    {
-        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
-        {
-            /*
-            if(triggeredAgents.Count() > 0)
-            {
-                var trait = new ItemTrait();
-                var trait2 = new ItemTrait();
-                var additionalDamage = new DamageProportionTuple();
-                var additionalDamage2 = new DamageProportionTuple();
-
-                additionalDamage.DamageType = DamageType.Fire;
-                additionalDamage.Percent = 0.2f;
-                
-                additionalDamage2.DamageType = DamageType.Magical;
-                additionalDamage2.Percent = 0.2f;
-                
-                trait.ItemTraitName = "Chamon infused weapon";
-                trait.ItemTraitDescription = "This weapon is guided by chamon. It deals lightning damage.";
-                trait.ImbuedStatusEffectId = "none";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_flaming_weapon" };
-                trait.AdditionalDamageTuple = additionalDamage;
-                trait.OnHitScriptName = "none";
-                
-                trait2.AdditionalDamageTuple  = additionalDamage2;
-
-                foreach (Agent agent in triggeredAgents)
-                {
-                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
-                    if(comp != null)
-                    {
-                        comp.AddTraitToWieldedWeapon(trait, duration);
-                        comp.AddTraitToWieldedWeapon(trait2,duration);
-                    }
-                }
-            }
-            */
-        }
-    }
-    
-    public class ApplyQuickSilverWeaponItemTraitScript : ITriggeredScript
-    {
-        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
-        {
-            /*
-            if(triggeredAgents.Count() > 0)
-            {
-                var trait = new ItemTrait();
-                var additionalDamage = new DamageProportionTuple();
-                additionalDamage.DamageType = DamageType.Physical;
-                additionalDamage.Percent = 0.25f;
-                trait.ItemTraitName = "Quick silver Weapon Enchantment";
-                trait.ItemTraitDescription = "Quicksilver surrounds your weapons.";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_quicksilver_swords" };
-                trait.AdditionalDamageTuple = additionalDamage;
-                trait.OnHitScriptName = "none";
-
-                foreach (Agent agent in triggeredAgents)
-                {
-                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
-                    if(comp != null)
-                    {
-                        comp.AddTraitToWieldedWeapon(trait, duration);
-                    }
-                }
-            }
-            */
-        }
-    }
-    
-    public class ApplyHolyItemTraitScript : ITriggeredScript
-    {
-        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
-        {
-            /*
-            if(triggeredAgents.Count() > 0)
-            {
-                var trait = new ItemTrait();
-                var additionalDamage = new DamageProportionTuple();
-
-                additionalDamage.DamageType = DamageType.Holy;
-                additionalDamage.Percent = 0.30f;
-                
-                trait.ItemTraitName = "Holy Weapon Enchantment";
-                trait.ItemTraitDescription = "This sword is on fire. It deals fire damage and applies the burning damage over time effect.";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_holy_weapon" };
-                trait.AdditionalDamageTuple = additionalDamage;
-                trait.OnHitScriptName = "none";
-
-                foreach (Agent agent in triggeredAgents)
-                {
-                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
-                    if(comp != null)
-                    {
-                        comp.AddTraitToWieldedWeapon(trait, duration);
-                    }
-                }
-            }
-            */
-        }
-    }
-
-    public class EnchantWeaponScript : ITriggeredScript
-    {
-        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
-        {
-            /*
             if (triggeredAgents.Count() > 0)
             {
-                var trait = new ItemTrait();
-                var additionalDamage = new DamageProportionTuple();
-
-                additionalDamage.DamageType = DamageType.Magical;
-                additionalDamage.Percent = 0.10f;
-
-                trait.ItemTraitName = "Enchanted Weapon";
-                trait.ItemTraitDescription = "This weapon deals additional magic damage.";
-                trait.ImbuedStatusEffectId = "none";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_magic_weapon" };
-                trait.AdditionalDamageTuple = additionalDamage;
-                trait.OnHitScriptName = "none";
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "azyr_weapon");
+                if (trait == null) return;
 
                 foreach (Agent agent in triggeredAgents)
                 {
@@ -577,7 +261,132 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     }
                 }
             }
-            */
+        }
+    }
+    
+    public class ApplyDeathDamageItemTraitScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if (triggeredAgents.Count() > 0)
+            {
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "shyish_weapon");
+                if (trait == null) return;
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if (comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+    
+    public class ApplyGreaterHeavensItemTraitScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if (triggeredAgents.Count() > 0)
+            {
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "greater_azyr_weapon");
+                if (trait == null) return;
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if (comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+    
+    public class ApplyMetalItemTraitScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if (triggeredAgents.Count() > 0)
+            {
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "chamon_weapon");
+                if (trait == null) return;
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if (comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+    
+    public class ApplyQuickSilverWeaponItemTraitScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if (triggeredAgents.Count() > 0)
+            {
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "quicksilver_weapon");
+                if (trait == null) return;
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if (comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+    
+    public class ApplyHolyItemTraitScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if (triggeredAgents.Count() > 0)
+            {
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "holy_weapon_30");
+                if (trait == null) return;
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if (comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+
+    public class EnchantWeaponScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if (triggeredAgents.Count() > 0)
+            {
+                var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "magical_weapon_10");
+                if (trait == null) return;
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if (comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
         }
     }
     

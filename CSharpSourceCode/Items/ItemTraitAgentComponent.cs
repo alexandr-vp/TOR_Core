@@ -167,7 +167,7 @@ namespace TOR_Core.Items
                 var weapon = Agent.WieldedWeapon;
                 if(weapon.CurrentUsageItem != null)
                 {
-                    var match = _dynamicTraits.FirstOrDefault(x => x.Item1.Item == weapon.Item && x.Item2.ItemTraitName  == traitName);
+                    var match = _dynamicTraits.FirstOrDefault(x => x.Item1.Item == weapon.Item && x.Item2.ItemTraitStringId  == traitName);
                     if (match != null)
                     {
                         _dynamicTraits.Remove(match);
@@ -189,10 +189,10 @@ namespace TOR_Core.Items
             var weapon = Agent.WieldedWeapon;
             if (weapon.Item != null && weapon.Item.HasAnyTrait(Agent) && !weapon.CurrentUsageItem.IsRangedWeapon)
             {
-                var info = weapon.Item.GetTorSpecificData(Agent);
-                if (info != null)
+                var traits = weapon.Item.GetTraits(Agent);
+                if (traits.Count > 0)
                 {
-                    var traitsWithParticles = info.ItemTraits.FindAll(x => x.WeaponParticlePreset != null && x.WeaponParticlePreset.ParticlePrefab != "invalid" && x.WeaponParticlePreset.ParticlePrefab != "none" && !string.IsNullOrEmpty(x.WeaponParticlePreset.ParticlePrefab));
+                    var traitsWithParticles = traits.FindAll(x => x.WeaponParticlePreset != null && x.WeaponParticlePreset.ParticlePrefab != "invalid" && x.WeaponParticlePreset.ParticlePrefab != "none" && !string.IsNullOrEmpty(x.WeaponParticlePreset.ParticlePrefab));
                     foreach (var trait in traitsWithParticles)
                     {
                         ApplyParticlePreset(trait.WeaponParticlePreset, weapon);
@@ -257,6 +257,16 @@ namespace TOR_Core.Items
             foreach (var item in _dynamicTraits)
             {
                 if(item.Item1.Item == itemObject) list.Add(item.Item2);
+            }
+            return list;
+        }
+
+        public List<string> GetDynamicTraitIds(ItemObject itemObject)
+        {
+            List<string> list = [];
+            foreach (var item in _dynamicTraits)
+            {
+                if (item.Item1.Item == itemObject) list.Add(item.Item2.ItemTraitStringId);
             }
             return list;
         }

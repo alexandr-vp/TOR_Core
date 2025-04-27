@@ -10,9 +10,9 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.Items.WeaponHitScripts;
 
-public class KnightlyStrikeHitScript : IWeaponHitScript
+public class KnightlyStrikeHitScript(string[] arguments) : BaseWeaponHitScript(arguments)
 {
-    public void OnHit(Agent attackingAgent, Agent attackedAgent, int inflictedDamge, MissionWeapon missionWeapon)
+    public override void OnHit(Agent attackingAgent, Agent attackedAgent, int inflictedDamge, MissionWeapon missionWeapon)
     {
         if (inflictedDamge <= 15)
             return;

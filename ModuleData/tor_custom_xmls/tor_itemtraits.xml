@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ItemTraits>
+  <ItemTrait ItemTraitStringId="runefang" ItemTraitName="Runefang" IsCraftable="false" IconName="winds_icon_45">
+    <ItemTraitDescription>This weapon is enchanted. Deals partial magic damage and adds an extra 10% holy damage.</ItemTraitDescription>
+    <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.25" />
+    <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
+    <WeaponParticlePreset ParticlePrefab="magic_sparks" IsUniqueSingleCopy="true" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="flaming_weapon" ItemTraitName="Flaming Weapon" IsCraftable="true" ImbuedStatusEffectId="fireball_dot" ImbuedStatusEffectChance="0.25" IconName="winds_icon_45">
+    <ItemTraitDescription>This weapon is engulfed in flames. Adds extra 25% fire damage and applies burning on contact.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Fire" Percent="0.25" />
+    <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="lesser_flaming_weapon" ItemTraitName="Lesser Flaming Weapon" IsCraftable="true" ImbuedStatusEffectId="fireball_dot" ImbuedStatusEffectChance="0.25" IconName="winds_icon_45">
+    <ItemTraitDescription>This weapon is engulfed in flames. Adds extra 15% fire damage and applies burning on contact.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Fire" Percent="0.15" />
+    <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="hysh_weapon" ItemTraitName="Hysh Infused Weapon" IsCraftable="true" ImbuedStatusEffectId="powerstone_light_mov_debuff" ImbuedStatusEffectChance="0.25" IconName="winds_icon_45">
+    <ItemTraitDescription>This sword is guided by Hysh. It deals an extra 25% magical damage and slows enemies on hit.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Magical" Percent="0.40" />
+    <WeaponParticlePreset ParticlePrefab="psys_light_weapon" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="lesser_hysh_weapon" ItemTraitName="Lesser Hysh Infused Weapon" IsCraftable="true" ImbuedStatusEffectId="powerstone_light_mov_debuff" ImbuedStatusEffectChance="0.25" IconName="winds_icon_45">
+    <ItemTraitDescription>This sword is guided by Hysh. It deals an extra 40% magical damage and slows enemies on hit.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Magical" Percent="0.25" />
+    <WeaponParticlePreset ParticlePrefab="psys_light_weapon" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="greater_azyr_weapon" ItemTraitName="Greater Azyr Infused Weapon" IsCraftable="true" ImbuedStatusEffectId="powerstone_heavens_debuff" IconName="winds_icon_45">
+    <ItemTraitDescription>This weapon is guided by Azyr. It deals an extra 60% lightning damage and slows enemies on hit.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Lightning" Percent="0.60" />
+    <WeaponParticlePreset ParticlePrefab="electric_weapon" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="azyr_weapon" ItemTraitName="Azyr Infused Weapon" IsCraftable="true" IconName="winds_icon_45">
+    <ItemTraitDescription>This weapon is guided by Azyr. It deals an extra 40% lightning damage.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Lightning" Percent="0.40" />
+    <WeaponParticlePreset ParticlePrefab="electric_weapon" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="lesser_azyr_weapon" ItemTraitName="Lesser Azyr Infused Weapon" IsCraftable="true" IconName="winds_icon_45">
+    <ItemTraitDescription>This weapon is guided by Azyr. It deals an extra 20% lightning damage.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Lightning" Percent="0.20" />
+    <WeaponParticlePreset ParticlePrefab="electric_weapon" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="shyish_weapon" ItemTraitName="Shyish Infused Weapon" IsCraftable="true" IconName="winds_icon_45">
+    <ItemTraitDescription>This weapon is guided by Shyish. It deals an extra 40% magical damage.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Magical" Percent="0.40" />
+    <WeaponParticlePreset ParticlePrefab="psys_death_weapon_effect" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="chamon_weapon" ItemTraitName="Chamon Infused Weapon" IsCraftable="true" IconName="winds_icon_45">
+    <ItemTraitDescription>This weapon is guided by Chamon. It deals an extra 40% fire damage.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Fire" Percent="0.40" />
+    <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="quicksilver_weapon" ItemTraitName="Quick Silver Weapon Enchantment" IsCraftable="true" IconName="winds_icon_45">
+    <ItemTraitDescription>Quicksilver surrounds your weapon. It deals an extra 25% physical damage.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Physical" Percent="0.25" />
+    <WeaponParticlePreset ParticlePrefab="psys_quicksilver_swords" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="holy_weapon_30" ItemTraitName="Holy Weapon Enchantment" IsCraftable="true" IconName="winds_icon_45">
+    <ItemTraitDescription>Your weapon is enchanted. It deals 30% extra holy damage.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Holy" Percent="0.30" />
+    <WeaponParticlePreset ParticlePrefab="psys_holy_weapon" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="magical_weapon_10" ItemTraitName="Enchanted Weapon" IsCraftable="true" IconName="winds_icon_45">
+    <ItemTraitDescription>Your weapon is enchanted. It deals 10% extra magical damage.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Magical" Percent="0.10" />
+    <WeaponParticlePreset ParticlePrefab="psys_magic_weapon" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="fire_res_amp_10" ItemTraitName="Fire Resistance and Amplification" IsCraftable="true" IconName="winds_icon_45">
+    <ItemTraitDescription>This item provides its wearer 10% fire resistance as well as 10% fire damage amplification.</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+    <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.10" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="fire_res_10" ItemTraitName="Fire Resistance" IsCraftable="true" IconName="winds_icon_45">
+    <ItemTraitDescription>This item provides its wearer 10% fire resistance.</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="phys_res_20" ItemTraitName="Physical Resistance" IsCraftable="true" IconName="winds_icon_45">
+    <ItemTraitDescription>This item provides its wearer 20% physical resistance.</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.20" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="magical_res_amp_10" ItemTraitName="Magical Resistance and Amplification" IsCraftable="true" IconName="winds_icon_45">
+    <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+    <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="lightning_res_amp_10" ItemTraitName="Lightning Resistance and Amplification" IsCraftable="true" IconName="winds_icon_45">
+    <ItemTraitDescription>This item provides its wearer 10% lightning resistance as well as 10% lightning damage amplification.</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.10" />
+    <AmplifierTuple AmplifiedDamageType="Lightning" DamageAmplifier="0.10" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="holy_add_10" ItemTraitName="Holy Additional Damage" IsCraftable="true" IconName="blessing_icon_45">
+    <ItemTraitDescription>This item provides its wearer 10% additional holy damage</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="holy_amp_10" ItemTraitName="Holy Amplification" IsCraftable="true" IconName="blessing_icon_45">
+    <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+    <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="holy_res_amp_10" ItemTraitName="Holy Resistance and Amplification" IsCraftable="true" IconName="blessing_icon_45">
+    <ItemTraitDescription>This item provides its wearer 10% holy resistance as well as 10% holy damage amplification.</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="0.10" />
+    <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="frost_amp_10" ItemTraitName="Frost Amplification" IsCraftable="true" IconName="blessing_icon_45">
+    <ItemTraitDescription>This item provides its wearer 10% frost damage amplification</ItemTraitDescription>
+    <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.10" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_engineering" ItemTraitName="Engineering Knowledge" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 engineering skill experience points upon reading.</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Engineering</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>20</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_charm" ItemTraitName="Charmeur" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 charm skill experience points upon reading.</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Charm</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>10</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_tactics" ItemTraitName="Tactic Guide" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 tactics skill experience points upon reading.</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Tactics</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>10</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_trade" ItemTraitName="Trading Guide" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 trading skill experience points upon reading.</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Trade</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>12</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_trade_s" ItemTraitName="Small Trading Guide" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 2000 trading skill experience points upon reading.</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Trade</InventoryScriptArgument>
+        <InventoryScriptArgument>2000</InventoryScriptArgument>
+        <InventoryScriptArgument>5</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_leadership" ItemTraitName="Leadership Guide" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 leadership skill experience points upon reading.</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Leadership</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>12</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_athletics" ItemTraitName="Athletics Guide" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 athletics skill experience points upon reading.</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Athletics</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>12</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_bow" ItemTraitName="Bow Instruction" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 bow skill experience points upon reading.</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Bow</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>10</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_onehanded" ItemTraitName="Onehanded weapon Instruction" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 onehanded skill experience points upon reading.</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>OneHanded</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>12</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_twohanded" ItemTraitName="Twohanded weapon Instruction" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 twohanded skill experience points upon reading.</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>TwoHanded</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>12</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_polearm" ItemTraitName="Polearm Instruction" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 polearm skill experience points upon reading.</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Polearm</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>12</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_crossbow" ItemTraitName="Crossbow Instruction" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 crossbow skill experience points upon reading.</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Crossbow</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>10</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_crossbow_s" ItemTraitName="Small Crossbow Instruction" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 2000 crossbow skill experience points upon reading.</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Crossbow</InventoryScriptArgument>
+        <InventoryScriptArgument>2000</InventoryScriptArgument>
+        <InventoryScriptArgument>5</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_throwing" ItemTraitName="Throwing Instruction" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 throwing skill experience points upon reading.</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Throwing</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>10</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_scouting" ItemTraitName="Scout Knowledge" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 scout skill experience points upon reading.</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Scouting</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>10</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_roguery" ItemTraitName="Roguery Knowledge" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 roguery skill experience points upon reading</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Roguery</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>15</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_roguery_s" ItemTraitName="Small Roguery Knowledge" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 2000 roguery skill experience points upon reading</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Roguery</InventoryScriptArgument>
+        <InventoryScriptArgument>2000</InventoryScriptArgument>
+        <InventoryScriptArgument>10</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_crafting" ItemTraitName="Smithing Knowledge" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 smithing skill experience points upon reading</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Crafting</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>12</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_crafting_s" ItemTraitName="Smithing Knowledge" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 2000 smithing skill experience points upon reading</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Crafting</InventoryScriptArgument>
+        <InventoryScriptArgument>5001</InventoryScriptArgument>
+        <InventoryScriptArgument>13</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_riding" ItemTraitName="Riding Knowledge" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 riding skill experience points upon reading</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Riding</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>12</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_gunpowder" ItemTraitName="Gunpowder Knowledge" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 gunpowder skill experience points upon reading</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Gunpowder</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>12</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_gunpowder_s" ItemTraitName="Small Gunpowder Knowledge" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 2000 gunpowder skill experience points upon reading</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Gunpowder</InventoryScriptArgument>
+        <InventoryScriptArgument>2000</InventoryScriptArgument>
+        <InventoryScriptArgument>5</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_spellcraft" ItemTraitName="Spellcraft Knowledge" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 5000 spellcraft skill experience points upon reading</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>5000</InventoryScriptArgument>
+        <InventoryScriptArgument>12</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="learn_spellcraft_s" ItemTraitName="Small Spellcraft Knowledge" IsCraftable="false" IconName="xp_icon">
+    <ItemTraitDescription>This book provides 2000 spellcraft skill experience points upon reading</ItemTraitDescription>
+    <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.SkillBookScript">
+      <InventoryScriptArguments>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>2000</InventoryScriptArgument>
+        <InventoryScriptArgument>10</InventoryScriptArgument>
+      </InventoryScriptArguments>
+    </OnInventoryUseScript>
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_swiftshiver_shards" ItemTraitName="Swiftshiver Shards" IsCraftable="false" IconName="winds_icon_45">
+    <ItemTraitDescription>The damage is increased by 15% extra magical damage.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
+    <WeaponParticlePreset ParticlePrefab="magic_trait" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_hagbane" ItemTraitName="Hagbane Tips" IsCraftable="false" ImbuedStatusEffectId="hagbane_debuff" ImbuedStatusEffectChance="0.25" IconName="winds_icon_45">
+    <ItemTraitDescription>The weapon has been poisoned. Slows down enemies</ItemTraitDescription>
+    <WeaponParticlePreset ParticlePrefab="hagbane_trait" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_starfire_shards" ItemTraitName="Starfire Shards" IsCraftable="false" ImbuedStatusEffectId="starfire_debuff" ImbuedStatusEffectChance="0.25" IconName="winds_icon_45">
+    <ItemTraitDescription>"Adds Armor penetration effect, fire damage and dot"</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Fire" Percent="0.20" />
+    <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_knightlystrike" ItemTraitName="Knightly Strike" IsCraftable="false" IconName="winds_icon_45">
+    <ItemTraitDescription>Charge your weapon with knightly power</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Physical" Percent="0.20" />
+    <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
+    <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.KnightlyStrikeHitScript" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="religion_default" ItemTraitName="Default Religious Damage Bonus" IsCraftable="false" IconName="winds_icon_45">
+    <ItemTraitDescription>Adds 20% extra physical damage</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Physical" Percent="0.20" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="religion_sigmar" ItemTraitName="Sigmar Religious Damage Bonus" IsCraftable="false" IconName="winds_icon_45">
+    <ItemTraitDescription>Adds 20% extra holy damage</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Holy" Percent="0.20" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="religion_ulric" ItemTraitName="Ulric Religious Damage Bonus" IsCraftable="false" IconName="winds_icon_45">
+    <ItemTraitDescription>Adds 20% extra frost damage</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Frost" Percent="0.20" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="religion_taal" ItemTraitName="Taal Religious Damage Bonus" IsCraftable="false" IconName="winds_icon_45">
+    <ItemTraitDescription>Adds 20% extra holy damage</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Holy" Percent="0.20" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="religion_manaan" ItemTraitName="Manaan Religious Damage Bonus" IsCraftable="false" IconName="winds_icon_45">
+    <ItemTraitDescription>Adds 20% extra lightning damage</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Lightning" Percent="0.20" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="religion_shallya" ItemTraitName="Shallya Religious Damage Bonus" IsCraftable="false" IconName="winds_icon_45">
+    <ItemTraitDescription>Adds 20% extra holy damage</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Holy" Percent="0.20" />
+  </ItemTrait>
+</ItemTraits>

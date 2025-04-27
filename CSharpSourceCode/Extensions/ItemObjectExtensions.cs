@@ -11,11 +11,28 @@ namespace TOR_Core.Extensions
 {
     public static class ItemObjectExtensions
     {
+        public static bool IsInventoryUsable(this ItemObject item)
+        {
+            return item.GetTraits().Any(trait => trait.OnInventoryUseScript != null && !string.IsNullOrWhiteSpace(trait.OnInventoryUseScript.InventoryScriptName));
+        }
+
         public static List<ItemTrait> GetTraits(this ItemObject item)
         {
-            var result = ExtendedItemObjectManager.GetAdditionalProperties(item.StringId);
-            if (result == null) result = ExtendedItemObjectProperties.CreateDefault(item.StringId);
-            return result.ItemTraits.ToList();
+            List<ItemTrait> result = [];
+            var props = ExtendedItemObjectManager.GetAdditionalProperties(item.StringId);
+            if (props == null) props = ExtendedItemObjectProperties.CreateDefault(item.StringId);
+            if (props.ItemTraits != null && props.ItemTraits.Count > 0)
+            {
+                foreach (var trait in props.ItemTraits)
+                {
+                    var itemTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == trait);
+                    if (itemTrait != null)
+                    {
+                        result.Add(itemTrait);
+                    }
+                }
+            }
+            return result;
         }
 
         public static List<ItemTrait> GetTraits(this ItemObject item, Agent agent)
@@ -45,7 +62,7 @@ namespace TOR_Core.Extensions
             var comp = agent.GetComponent<ItemTraitAgentComponent>();
             if (comp != null)
             {
-                result.ItemTraits.AddRange(comp.GetDynamicTraits(item));
+                result.ItemTraits.AddRange(comp.GetDynamicTraitIds(item));
             }
 
             return result;

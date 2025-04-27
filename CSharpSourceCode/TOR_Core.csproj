@@ -467,6 +467,7 @@
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\DynamicItemTraitScripts.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\ITriggeredScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\KnockDownScript.cs" />
+    <Compile Include="Items\InventoryUseScriptsCampaignBehavior.cs" />
     <Compile Include="Items\InventoryUseScripts\IInventoryUseScript.cs" />
     <Compile Include="Items\InventoryUseScripts\SkillBookScript.cs" />
     <Compile Include="Items\WeaponHitScripts\IWeaponHitScript.cs" />
@@ -534,7 +535,6 @@
     <Compile Include="CampaignMechanics\Religion\ReligionObjectHelper.cs" />
     <Compile Include="CampaignMechanics\ServeAsAHireling\ServeAsAHirelingActivities.cs" />
     <Compile Include="CampaignMechanics\ServeAsAHireling\ServeAsAHirelingHelpers.cs" />
-    <Compile Include="CampaignMechanics\SkillBooks\TORSkillBookCampaignBehavior.cs" />
     <Compile Include="BattleMechanics\TORBattleAgentLogic.cs" />
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
@@ -701,7 +701,7 @@
     <Compile Include="Items\TorItemMenuVM.cs" />
     <Compile Include="Items\TorImageIdentifierWidget.cs" />
     <Compile Include="Items\TorItemTraitVM.cs" />
-    <Compile Include="Items\WeaponEffectMissionLogic.cs" />
+    <Compile Include="Items\WeaponHitScriptsMissionLogic.cs" />
     <Compile Include="Missions\ArcheryContestMissionController.cs" />
     <Compile Include="Missions\GraveyardFightMissionController.cs" />
     <Compile Include="Missions\InkDuelFightMissionController.cs" />

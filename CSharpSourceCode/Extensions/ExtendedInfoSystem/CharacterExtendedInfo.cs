@@ -152,7 +152,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         [XmlAttribute]
         public DamageType DamageType = DamageType.Invalid;
         [XmlAttribute]
-        public float Percent = 1;
+        public float Percent = 0;
 
         public DamageProportionTuple()
         {
