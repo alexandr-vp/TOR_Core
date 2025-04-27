@@ -68,7 +68,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="3" />
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="2" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_halberdier">
     <Abilities />
@@ -80,7 +80,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="7" />
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="6" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_greatsword">
     <Abilities />
@@ -186,7 +186,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="5" />
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="7" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_marksman_handgunner">
     <Abilities />
@@ -1508,6 +1508,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="CouncilFavor" UpkeepCost="0" UpgradeCost="8" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_mounted_ranger">
     <Abilities />
@@ -1517,6 +1518,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="CouncilFavor" UpkeepCost="0" UpgradeCost="25" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_cityborn_militia">
     <Abilities />
@@ -3853,7 +3855,9 @@
   <CharacterExtendedInfo id="tor_wh_retinue">
     <Abilities />
     <Attributes />
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.15" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.75" />
@@ -3863,7 +3867,9 @@
   <CharacterExtendedInfo id="tor_wh_retinue_hunter">
     <Abilities />
     <Attributes />
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.25" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.75" />
@@ -3874,7 +3880,9 @@
   <CharacterExtendedInfo id="tor_wh_retinue_headhunter">
     <Abilities />
     <Attributes />
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.75" />
