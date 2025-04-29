@@ -1,11 +1,16 @@
 ﻿using HarmonyLib;
 using System.Collections.Generic;
-using System;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TaleWorlds.MountAndBlade.View.Tableaus;
+using TaleWorlds.Engine;
+using TOR_Core.CampaignMechanics.Crafting;
+using TaleWorlds.MountAndBlade.GauntletUI.Widgets;
+using System.Linq;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.Library;
 
 namespace TOR_Core.HarmonyPatches
@@ -66,6 +71,70 @@ namespace TOR_Core.HarmonyPatches
                 return false;
             }
             return true;
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(ItemTableau), "RefreshItemTableau")]
+        public static void AddParticlesToItemIfNeeded(ItemTableau __instance, ItemRosterElement ____itemRosterElement, GameEntity ____itemTableauEntity)
+        {
+            if (TORArtisanDistrictCampaignBehavior.Instance?.ItemBeingCrafted?.EquipmentElement.Item == ____itemRosterElement.EquipmentElement.Item)
+            {
+                if (____itemRosterElement.EquipmentElement.Item != null && ____itemTableauEntity != null && ____itemRosterElement.EquipmentElement.Item.IsMeleeWeapon())
+                {
+                    ____itemTableauEntity.RemoveAllParticleSystems();
+                    if (TORArtisanDistrictCampaignBehavior.Instance?.ItemBeingCrafted?.ItemTraits?.Where(x => x.WeaponParticlePreset != null).Count() > 0)
+                    {
+                        var item = ____itemRosterElement.EquipmentElement.Item;
+                        if (item.PrimaryWeapon != null)
+                        {
+                            var length = item.PrimaryWeapon.GetRealWeaponLength();
+                            float startOffsetPrc = 0;
+                            switch (item.PrimaryWeapon.WeaponClass)
+                            {
+                                case WeaponClass.OneHandedSword:
+                                case WeaponClass.TwoHandedSword:
+                                    startOffsetPrc = 0.3f;
+                                    break;
+                                case WeaponClass.LowGripPolearm:
+                                case WeaponClass.OneHandedPolearm:
+                                case WeaponClass.TwoHandedPolearm:
+                                    startOffsetPrc = 0.7f;
+                                    break;
+                                default:
+                                    startOffsetPrc = 0.85f;
+                                    break;
+                            }
+                            float startOffset = length * startOffsetPrc;
+                            float effectlength = length - startOffset;
+                            int num = (int)(effectlength / 0.1f);
+                            if (num <= 0) num = 1;
+
+                            foreach (var itemTrait in TORArtisanDistrictCampaignBehavior.Instance.ItemBeingCrafted.ItemTraits)
+                            {
+                                if (itemTrait != null && itemTrait.WeaponParticlePreset != null)
+                                {
+                                    if (!itemTrait.WeaponParticlePreset.IsUniqueSingleCopy)
+                                    {
+                                        for (int j = 0; j < num; j++)
+                                        {
+                                            MatrixFrame localFrame = new MatrixFrame(Mat3.Identity, new Vec3(0, 0, 0));
+                                            localFrame.Elevate(startOffset + j * 0.1f);
+                                            var psys = ParticleSystem.CreateParticleSystemAttachedToEntity(itemTrait.WeaponParticlePreset.ParticlePrefab, ____itemTableauEntity, ref localFrame);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(ItemTableauWidget), "StringId", MethodType.Setter)]
+        public static void ForceUpdateRender(ItemTableauWidget __instance, string ____stringId)
+        {
+            __instance.TextureProvider?.SetProperty("StringId", ____stringId);
         }
     }
 }

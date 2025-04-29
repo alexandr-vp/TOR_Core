@@ -30,7 +30,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(CampaignGameStarter), "UnregisterNonReadyObjects")]
         public static void BeforeUnregisterNonReadyObjects()
         {
-            var behavior = Campaign.Current.GetCampaignBehavior<TORCraftingCampaignBehavior>();
+            var behavior = Campaign.Current.GetCampaignBehavior<TORArtisanDistrictCampaignBehavior>();
             behavior?.InitializeSavedCraftedItems();
         }
     }

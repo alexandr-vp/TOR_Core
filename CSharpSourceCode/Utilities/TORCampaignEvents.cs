@@ -42,9 +42,9 @@ namespace TOR_Core.Utilities
             }
         }
 
-        public void OnItemDuplicated(ItemObject newItem, ItemObject oldItem)
+        public void OnItemDuplicated(ItemObject newItem, ItemObject oldItem, List<string> traits)
         {
-            var args = new ItemDuplicatedEventArgs(newItem, oldItem);
+            var args = new ItemDuplicatedEventArgs(newItem, oldItem, traits);
             var itemDuplicatedEvent = ItemDuplicated;
             if (itemDuplicatedEvent != null)
             {
@@ -81,13 +81,15 @@ namespace TOR_Core.Utilities
 
     public class ItemDuplicatedEventArgs : EventArgs
     {
-        public ItemDuplicatedEventArgs(ItemObject newItem, ItemObject oldItem)
+        public ItemDuplicatedEventArgs(ItemObject newItem, ItemObject oldItem, List<string> traits)
         {
             NewItem = newItem;
             OldItem = oldItem;
+            Traits = traits;
         }
 
         public ItemObject NewItem { get; set; }
         public ItemObject OldItem { get; set; }
+        public List<string> Traits { get; set; }
     }
 }

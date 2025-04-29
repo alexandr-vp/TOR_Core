@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using Helpers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -10,20 +9,22 @@ using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Overlay;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.Library.NewsManager;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Items;
 using TOR_Core.Utilities;
 using static TaleWorlds.CampaignSystem.CampaignBehaviors.CraftingCampaignBehavior;
 
 namespace TOR_Core.CampaignMechanics.Crafting
 {
-    public class TORCraftingCampaignBehavior : CampaignBehaviorBase
+    public class TORArtisanDistrictCampaignBehavior : CampaignBehaviorBase
     {
         private bool _hasSmithyBeenRemoved;
         private Dictionary<ItemObject, TorItemDuplicationData> _customCraftedItems = [];
+        public static TORArtisanDistrictCampaignBehavior Instance => Campaign.Current.GetCampaignBehavior<TORArtisanDistrictCampaignBehavior>();
+        public TorItemBeingCraftedData ItemBeingCrafted { get; set; } = null;
 
         public override void RegisterEvents()
         {
@@ -38,7 +39,8 @@ namespace TOR_Core.CampaignMechanics.Crafting
             {
                 var copyfromStringId = e.OldItem.StringId;
                 var newName = e.NewItem.Name.ToString();
-                _customCraftedItems.Add(e.NewItem, new TorItemDuplicationData { OriginalItemStringId = e.OldItem.StringId, NewItemName = e.NewItem.Name.ToString() });
+                _customCraftedItems.Add(e.NewItem, new TorItemDuplicationData { OriginalItemStringId = e.OldItem.StringId, NewItemName = e.NewItem.Name.ToString(), ItemTraits = e.Traits });
+                ExtendedItemObjectManager.AddCraftedItem(copyfromStringId, e.NewItem.StringId, e.Traits);
             }
         }
 
@@ -169,18 +171,18 @@ namespace TOR_Core.CampaignMechanics.Crafting
             return MenuHelper.SetOptionProperties(args, canPlayerDo, shouldBeDisabled, disabledText);
         }
 
-        public static ItemObject CreateItemCopy(ItemObject copyFrom, string newId, string newName)
+        public static ItemObject CreateItemCopy(ItemObject copyFrom, string newId, string newName, List<string> traits = null)
         {
             var newItem = new ItemObject();
             newItem.CopyPropertiesFrom(copyFrom);
             newItem.StringId = newId;
             AccessTools.Property(typeof(ItemObject), "Name").SetValue(newItem, new TextObject(newName));
-
             newItem.Initialize();
             ItemObject.InitAsPlayerCraftedItem(ref newItem);
             newItem.DetermineItemCategoryForItem();
             MBObjectManager.Instance.RegisterObject(newItem);
             newItem.AfterInitialized();
+            TORCampaignEvents.Instance.OnItemDuplicated(newItem, copyFrom, traits);
 
             return newItem;
         }
@@ -198,6 +200,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 ItemObject.InitAsPlayerCraftedItem(ref duplicateItem);
                 duplicateItem.DetermineItemCategoryForItem();
                 duplicateItem.IsReady = true;
+                ExtendedItemObjectManager.AddCraftedItem(element.Value.OriginalItemStringId, duplicateItem.StringId, element.Value.ItemTraits);
             }
         }
 
@@ -206,7 +209,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
             dataStore.SyncData("_customCraftedItems", ref _customCraftedItems);
         }
 
-        ~TORCraftingCampaignBehavior()
+        ~TORArtisanDistrictCampaignBehavior()
         {
             TORCampaignEvents.Instance.ItemDuplicated -= OnItemDuplicated;
         }
@@ -218,5 +221,13 @@ namespace TOR_Core.CampaignMechanics.Crafting
         public string OriginalItemStringId { get; set; }
         [SaveableProperty(2)]
         public string NewItemName { get; set; }
+        [SaveableProperty(3)]
+        public List<string> ItemTraits { get; set; }
+    }
+
+    public class TorItemBeingCraftedData
+    {
+        public EquipmentElement EquipmentElement { get; set; }
+        public List<ItemTrait> ItemTraits { get; set; }
     }
 }

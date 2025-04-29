@@ -139,7 +139,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 
                     if (item != null)
                     {
-                        var hintInfo = ExtendedItemObjectManager.GetAdditionalProperties(item.StringId);
+                        var hintInfo = item.GetTorSpecificData();
                         var hintText = "";
                         if (hintInfo != null)
                         {

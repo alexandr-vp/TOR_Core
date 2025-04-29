@@ -156,7 +156,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORKingdomDecisionsCampaignBehavior());
                 starter.AddBehavior(new ServeAsAHirelingCampaignBehavior());
                 starter.AddBehavior(new TORStartupBehavior());
-                starter.AddBehavior(new TORCraftingCampaignBehavior());
+                starter.AddBehavior(new TORArtisanDistrictCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }

@@ -19,7 +19,7 @@
     </VisualDefinition>
   </VisualDefinitions>
   <Window>
-    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" DoNotAcceptEvents="true">
       <Children>
 
         <Standard.Background />
@@ -31,18 +31,131 @@
           </Children>
         </Widget>
 
-        <Widget VisualDefinition="RightPanel" Id="RightPanel" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="694" SuggestedHeight="1080" HorizontalAlignment="Right" Sprite="Crafting\right_panel_crafting" VerticalAlignment="Center" DoNotUseCustomScaleAndChildren="true" DoNotAcceptEvents="true">
-            <Children>
-                <Widget Id="RightPanelBackground" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="650" SuggestedHeight="1080" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            </Children>
+        <!--Left Panel-->
+        <Widget VisualDefinition="LeftPanel" Id="LeftPanel" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="500" HorizontalAlignment="Left" MarginLeft="60" MarginTop="160" MarginBottom="60" VerticalAlignment="Center" DoNotAcceptEvents="true">
+          <Children>
+            <RichTextWidget Id="LeftPanelText" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="Items" PositionYOffset="-45" HorizontalAlignment="Center" Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="36" />
+            <Widget Id="LeftPanelBackground" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="StdAssets\Popup\canvas" DoNotAcceptEvents="true">
+              <Children>
+
+                <ScrollablePanel Id="InventoryListScrollablePanel" HeightSizePolicy="StretchToParent" WidthSizePolicy="StretchToParent" InnerPanel="MyClipRect\InnerPanelParent" ClipRect="MyClipRect" VerticalScrollbar="..\Scrollbar\Scrollbar" AutoHideScrollBars="true" AcceptDrop="false" ClipContents="true">
+                  <Children>
+
+                    <Widget Id="MyClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true" HorizontalAlignment="Center">
+                      <Children>
+
+                        <ListPanel Id="InnerPanelParent" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                          <Children>
+
+                            <InventoryListPanel Id="InnerPanel" DataSource="{Items}" StackLayout.LayoutMethod="VerticalBottomToTop" WidthSizePolicy="StretchToParent" MarginLeft="20" HeightSizePolicy="CoverChildren" StepSize="10" EmptyNavigationWidget="..\..\..\MyClipRect">
+                              <ItemTemplate>
+                                <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50" Brush="TorEnchantingItemBrush" MarginBottom="2" Command.Click="ExecuteSelectItem" IsSelected="@IsSelected">
+                                  <Children>
+                                    <InventoryImageIdentifierWidget Id="ImageIdentifier" DoNotAcceptEvents="true" DataSource="{ImageIdentifier}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="60" SuggestedHeight="30" VerticalAlignment="Center" MarginLeft="2" MarginTop="2" ImageId="@Id" ImageTypeCode="@ImageTypeCode" AdditionalArgs="@AdditionalArgs" LoadingIconWidget="LoadingIconWidget">
+                                      <Children>
+                                        <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="Inventory\tuple_shadow" AlphaFactor="0.7"/>
+                                        <Standard.CircleLoadingWidget HorizontalAlignment="Center" VerticalAlignment="Center" Id="LoadingIconWidget"/>
+                                      </Children>
+                                    </InventoryImageIdentifierWidget>
+                                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" MarginLeft="65" Text="@ItemName" Brush="TorEnchantingFontBrush" DoNotAcceptEvents="true"/>
+                                  </Children>
+                                </ButtonWidget>
+                              </ItemTemplate>
+                            </InventoryListPanel>
+
+                            <!--Bottom Margin Widget-->
+                            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="10"/>
+                          </Children>
+                        </ListPanel>
+
+                      </Children>
+                    </Widget>
+
+                  </Children>
+                </ScrollablePanel>
+
+                <Standard.VerticalScrollbar Id="Scrollbar" VerticalAlignment="Bottom" HeightSizePolicy="StretchToParent" />
+                <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Popup.Frame" IsEnabled="false" />
+
+              </Children>
+            </Widget>
+          </Children>
         </Widget>
 
-        <!--Left Panel-->
-        <ListPanel VisualDefinition="LeftPanel" WidthSizePolicy="Fixed" SuggestedWidth="1200" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="30">
+        <!--Center Panel-->
+        <Widget Id="CenterPanel" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="500" HorizontalAlignment="Center" MarginTop="160" MarginBottom="60" VerticalAlignment="Center">
           <Children>
+            <RichTextWidget Id="CenterPanelText" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="Enchantments" PositionYOffset="-45" HorizontalAlignment="Center" Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="36" />
+            <Widget Id="CenterPanelBackground" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="StdAssets\Popup\canvas">
+              <Children>
 
+                <ScrollablePanel Id="CenterInventoryListScrollablePanel" HeightSizePolicy="StretchToParent" WidthSizePolicy="StretchToParent" InnerPanel="MyCenterClipRect\CenterInnerPanelParent" ClipRect="MyCenterClipRect" VerticalScrollbar="..\Scrollbar\Scrollbar" AutoHideScrollBars="true" AcceptDrop="false" ClipContents="true">
+                  <Children>
+
+                    <Widget Id="MyCenterClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true" HorizontalAlignment="Center">
+                      <Children>
+
+                        <ListPanel Id="CenterInnerPanelParent" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
+                          <Children>
+
+                            <InventoryListPanel Id="CenterInnerPanel" DataSource="{Traits}" StackLayout.LayoutMethod="VerticalBottomToTop" WidthSizePolicy="StretchToParent" MarginLeft="20" HeightSizePolicy="CoverChildren" StepSize="10" EmptyNavigationWidget="..\..\..\MyCenterClipRect">
+                              <ItemTemplate>
+                                <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50" Brush="TorEnchantingItemBrush" MarginBottom="2" Command.Click="ExecuteSelectTrait" IsSelected="@IsSelected">
+                                  <Children>
+                                    <ImageWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="30" VerticalAlignment="Center" MarginLeft="15" MarginTop="2" Sprite="@IconName" />
+                                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" MarginLeft="65" Text="@TraitName" Brush="TorEnchantingFontBrush" DoNotAcceptEvents="true"/>
+                                    <HintWidget DataSource="{ItemTraitDescriptionHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                                  </Children>
+                                </ButtonWidget>
+                              </ItemTemplate>
+                            </InventoryListPanel>
+
+                            <!--Bottom Margin Widget-->
+                            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="10"/>
+                          </Children>
+                        </ListPanel>
+
+                      </Children>
+                    </Widget>
+
+                  </Children>
+                </ScrollablePanel>
+
+                <Standard.VerticalScrollbar Id="Scrollbar" VerticalAlignment="Bottom" HeightSizePolicy="StretchToParent" />
+                <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Popup.Frame" IsEnabled="false" />
+              </Children>
+            </Widget>
           </Children>
-        </ListPanel>
+        </Widget>
+
+        <!--Right Panel-->
+        <Widget VisualDefinition="RightPanel" Id="RightPanel" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="620" MarginTop="80" MarginBottom="60" HorizontalAlignment="Right" VerticalAlignment="Center">
+          <Children>
+            <Widget Id="UpperRightPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="600" MarginRight="20" IsVisible="@IsPreviewEnabled" VerticalAlignment="Top">
+              <Children>
+                <ItemTableauWidget DataSource="{ItemTableau}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="650" SuggestedHeight="650" MarginTop="15" HorizontalAlignment="Center" VerticalAlignment="Center" ItemModifierId="@ItemModifierId" StringId="@StringId" BannerCode="@BannerCode" InitialPanRotation="3" />
+              </Children>
+            </Widget>
+            <Widget Id="LowerRightPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="320" MarginRight="20" IsVisible="@IsPreviewEnabled" VerticalAlignment="Bottom" HorizontalAligment="Center" >
+              <Children>
+                <ListPanel DataSource="{SelectedTraits}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAligment="Center" DoNotAcceptEvents="true" MarginLeft="60" MarginRight="60">
+                  <ItemTemplate>
+                    <RichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Text="@ItemTraitDescription" Brush="TorEnchantingFontBrush" HorizontalAligment="Center" DoNotAcceptEvents="true" MarginBottom="10"/>
+                  </ItemTemplate>
+                </ListPanel>
+              </Children>
+            </Widget>
+            <Widget Id="CraftRightPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="80" IsVisible="@IsPreviewEnabled" VerticalAlignment="Bottom" MarginBottom="50">
+              <Children>
+                <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Popup.Done.Button" HorizontalAligment="Center" MarginLeft="120" MarginRight="120" Command.Click="ExecuteEnchant">
+                  <Children>
+                    <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Popup.Button.Text" Text="Enchant" HorizontalAligment="Center" DoNotAcceptEvents="true" />
+                  </Children>
+                </ButtonWidget>
+              </Children>
+            </Widget>
+          </Children>
+        </Widget>
 
         <!--Close Screen Button-->
         <Standard.DialogCloseButtons VisualDefinition="BottomMenu" HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="100" Parameter.DoneButtonAction="ExecuteClose" Parameter.DoneButtonText="Done" Parameter.ShowCancel="false" />

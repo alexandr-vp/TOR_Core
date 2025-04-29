@@ -11,6 +11,18 @@ namespace TOR_Core.Extensions
 {
     public static class ItemObjectExtensions
     {
+        public static bool IsMeleeWeapon(this ItemObject item)
+        {
+            return item.ItemType == ItemObject.ItemTypeEnum.OneHandedWeapon ||
+                item.ItemType == ItemObject.ItemTypeEnum.TwoHandedWeapon ||
+                item.ItemType == ItemObject.ItemTypeEnum.Polearm;
+        }
+
+        public static bool IsEnchantable(this ItemObject item)
+        {
+            return (item.HasArmorComponent || item.HasWeaponComponent) && !item.IsMagicalItem();
+        }
+
         public static bool IsInventoryUsable(this ItemObject item)
         {
             return item.GetTraits().Any(trait => trait.OnInventoryUseScript != null && !string.IsNullOrWhiteSpace(trait.OnInventoryUseScript.InventoryScriptName));
@@ -202,6 +214,7 @@ namespace TOR_Core.Extensions
             AccessTools.Property(typeof(ItemObject), "IsFood").SetValue(item, other.IsFood);
             AccessTools.Property(typeof(ItemObject), "ScaleFactor").SetValue(item, other.ScaleFactor);
             AccessTools.Property(typeof(ItemObject), "IsUniqueItem").SetValue(item, other.IsUniqueItem);
+            AccessTools.Property(typeof(ItemObject), "WeaponDesign").SetValue(item, other.WeaponDesign);
             item.Type = other.Type;
         }
     }

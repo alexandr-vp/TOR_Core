@@ -30,11 +30,11 @@ namespace TOR_Core.Utilities
                 int[] boneIndexes;
                 if (rootOnly)
                 {
-                    boneIndexes = new int[] { 1 };
+                    boneIndexes = [1];
                 }
                 else
                 {
-                    boneIndexes = new int[] { 0, 1, 2, 3, 5, 6, 7, 9, 12, 13, 15, 17, 22, 24 };
+                    boneIndexes = [0, 1, 2, 3, 5, 6, 7, 9, 12, 13, 15, 17, 22, 24];
                 }
                 for (byte i = 0; i < boneIndexes.Length / (int)intensity; i++)
                 {
