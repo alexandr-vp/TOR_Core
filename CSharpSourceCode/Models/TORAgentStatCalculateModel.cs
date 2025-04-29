@@ -48,7 +48,7 @@ namespace TOR_Core.Models
         {
             var result = base.GetWeaponInaccuracy(agent, weapon, weaponSkill);
             ExplainedNumber accuracy = new ExplainedNumber(result, false, null);
-            var captain = agent.GetPartyLeaderCharacter();
+            var captain = agent.GetCaptainCharacter();
             if (agent.Character is CharacterObject character)
             {
                 if (weapon.IsRangedWeapon && weapon.RelevantSkill == TORSkills.GunPowder)

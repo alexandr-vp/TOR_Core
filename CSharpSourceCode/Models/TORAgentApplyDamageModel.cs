@@ -4,6 +4,7 @@ using System.Linq;
 using Helpers;
 using SandBox.GameComponents;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.ViewModelCollection.CharacterDeveloper;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -16,6 +17,7 @@ using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace TOR_Core.Models
 {
@@ -23,16 +25,14 @@ namespace TOR_Core.Models
     {
         public override void DecideMissileWeaponFlags(Agent attackerAgent, MissionWeapon missileWeapon, ref WeaponFlags missileWeaponFlags)
         {
-            //doesn't matter if Agent is null here because the methods will do nothing if that's the case
             base.DecideMissileWeaponFlags(attackerAgent, missileWeapon, ref missileWeaponFlags);
             var character = attackerAgent.Character as CharacterObject;
             if (character != null && !missileWeapon.IsEmpty)
             {
                 //GetPartyLeaderCharacter can return a null and therefore a NRE on .GetPerkValue; I assume this occurs in the case of a gunpowder troop that's in a garrison
-                //declaring it here, then null and perk checking inside the conditional
                 CharacterObject partyLeader = attackerAgent.GetPartyLeaderCharacter();
-                //Gunpowder piercing weapon check needs : gunpowder weapon, and the shooter to have the piercing shots perk or the party leader to have the perk
-                //while the description states only troops, the conditional is less restrictive and allows other heroes in the party to pierce as long as the leader has the perk
+                //Piercing Shot states only troops, the conditional is less restrictive and allows other heroes in the party to pierce as long as the leader has the perk
+                //because this only checks for cartridges, a flamethrower or a launched grenade would also gain the flag; unsure if that even matters for those weapons
                 if (missileWeapon.CurrentUsageItem.WeaponClass == WeaponClass.Cartridge && character.GetPerkValue(TORPerks.GunPowder.PiercingShots) || (partyLeader != null && partyLeader.GetPerkValue(TORPerks.GunPowder.PiercingShots))) missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
 
                 if (attackerAgent.IsMainAgent && Hero.MainHero.HasAnyCareer())
@@ -77,6 +77,7 @@ namespace TOR_Core.Models
         {
             var attackerAgent = attackInformation.AttackerAgent;
             var result = base.CalculateDamage(attackInformation, collisionData, weapon, baseDamage);
+            //AttackInformation.XXXCaptainCharacter is null if character == captain
             var attacker = (attackInformation.IsAttackerAgentMount ? attackInformation.AttackerRiderAgentCharacter : attackInformation.AttackerAgentCharacter) as CharacterObject;
             var attackerCaptain = attackInformation.AttackerCaptainCharacter as CharacterObject;
             var defender = (attackInformation.IsVictimAgentMount ? attackInformation.VictimRiderAgentCharacter : attackInformation.VictimAgentCharacter) as CharacterObject;
@@ -104,22 +105,28 @@ namespace TOR_Core.Models
                     PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.DeadEye, attacker, true, ref resultDamage);
                 }
 
-                if (weapon.Item.IsSmallArmsAmmunition() && defender.GetPerkValue(TORPerks.GunPowder.BulletProof))
+                if (weapon.Item.IsSmallArmsAmmunition())
                 {
-                    PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.BulletProof, defender, true, ref resultDamage);
-                    if (defenderCaptain != null && defenderCaptain.GetPerkValue(TORPerks.GunPowder.BulletProof))
-                        PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.BulletProof, defenderCaptain, ref resultDamage);
+                    /*Personal bonus for heroes; the conditional isn't necessary because AddPerkBonusForCharacter will check that anyways before attempting to apply it, but it's here for clarity
+                     *idk why APBFC doesn't check for the perk immediately instead of going through every conditional; particularly because the method can be called for any agent with no prior checks for if they can have perks (ie. IsHero)*/
+                    if(defender.GetPerkValue(TORPerks.GunPowder.BulletProof))PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.BulletProof, defender, true, ref resultDamage);
+
+                    /*Captain bonus
+                     *AddPerkBonusFromCaptain has a null check and calls GetPerkValue; could call without the conditional*/
+                    if (defenderCaptain != null && defenderCaptain.GetPerkValue(TORPerks.GunPowder.BulletProof))PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.BulletProof, defenderCaptain, ref resultDamage);
                 }
 
-                if (weapon.Item.IsExplosiveAmmunition() && defender.GetPerkValue(TORPerks.GunPowder.BombingSuit))
+                if (weapon.Item.IsExplosiveAmmunition())
                 {
-                    PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.BombingSuit, defender, true, ref resultDamage);
+                    //Personal bonus
+                    if(defender.GetPerkValue(TORPerks.GunPowder.BombingSuit))PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.BombingSuit, defender, true, ref resultDamage);
+                    //Captain
                     if (defenderCaptain != null && defenderCaptain.GetPerkValue(TORPerks.GunPowder.BombingSuit))
                         PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.BombingSuit, defenderCaptain, ref resultDamage);
                 }
 
                 if (weapon.Item.IsExplosiveAmmunition() && attackerCaptain != null && attackerCaptain.GetPerkValue(TORPerks.GunPowder.PackItIn)) PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.PackItIn, attackerCaptain, ref resultDamage);
-
+                
                 var weaponComponentData = weapon.CurrentUsageItem;
 
                 if (attacker.IsHero && attacker.HeroObject == Hero.MainHero)
@@ -324,7 +331,7 @@ namespace TOR_Core.Models
                          {
                              foreach (var tuple in weaponProperty)
                              {
-                                 damageProportions[(int)tuple.DamageType] = 1f;
+                                 damageProportions[(int)tuple.DamageType] = tuple.Percent;
                              }
                          }
                      }

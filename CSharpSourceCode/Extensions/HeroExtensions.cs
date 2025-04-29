@@ -495,6 +495,7 @@ namespace TOR_Core.Extensions
 
 
         public static bool IsBretonnianKnight(this Hero hero)       //Potentially a cleaner way to check that
+            //this'll return true for mercenary and other future careers
         {
             return !hero.IsSpellCaster() && hero.Culture.StringId == TORConstants.Cultures.BRETONNIA;
         }

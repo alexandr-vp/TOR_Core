@@ -143,18 +143,18 @@ namespace TOR_Core.CharacterDevelopment
             _deadEye.Initialize("{=tor_perk_dead_eye_label_str}Dead Eye", TORSkills.GunPowder, 150, _closeQuarters,
                 "{=tor_perk_dead_eye_1_str}You deal 30% increased damage with longrifles.",
                 SkillEffect.PerkRole.Personal, 0.3f, SkillEffect.EffectIncrementType.AddFactor,
-                "{=tor_perk_dead_eye_2_str}Two-Handed gunpowder troops in your party have their accuracy increased by 20%.",
+                "{=tor_perk_dead_eye_2_str}Two-Handed gunpowder troops in your formation have their accuracy increased by 20%.",
                 SkillEffect.PerkRole.Captain, -0.2f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.Ranged);
 
             _bulletProof.Initialize("{=tor_perk_bullet_proof_label_str}Bullet Proof", TORSkills.GunPowder, 200, _bombingSuit,
                 "{=tor_perk_bullet_proof_1_str}You take 15% less damage from handheld ranged weapons.",
                 SkillEffect.PerkRole.Personal, -0.15f, SkillEffect.EffectIncrementType.AddFactor,
-                "{=tor_perk_bullet_proof_2_str}Troops in your party recieve 5% less damage from handheld ranged weapons.",
+                "{=tor_perk_bullet_proof_2_str}Troops in your formation receive 5% less damage from handheld ranged weapons.",
                 SkillEffect.PerkRole.Captain, -0.05f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
             _bombingSuit.Initialize("{=tor_perk_bomb_suit_label_str}Bomb Suit", TORSkills.GunPowder, 200, _bulletProof,
                 "{=tor_perk_bomb_suit_1_str}You take 25% less damage from siege artillery and explosions.",
                 SkillEffect.PerkRole.Personal, -0.25f, SkillEffect.EffectIncrementType.AddFactor,
-                "{=tor_perk_bomb_suit_2_str}Troops in your party recieve 10% less damage from siege artillery and explosions.",
+                "{=tor_perk_bomb_suit_2_str}Troops in your formation receive 10% less damage from siege artillery and explosions.",
                 SkillEffect.PerkRole.Captain, -0.1f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
 
             _packItIn.Initialize("{=tor_perk_pack_it_in_label_str}Pack It In", TORSkills.GunPowder, 250, _steelTerror,
@@ -163,8 +163,8 @@ namespace TOR_Core.CharacterDevelopment
                 "{=tor_perk_pack_it_in_2_str}Troops in your formation gain +10% bonus damage and the damage is converted to Fire Damage when they are using explosive gunpowder weapons.",
                 SkillEffect.PerkRole.Captain, 0.1f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
             _steelTerror.Initialize("{=tor_perk_steel_terror_label_str}Steel Terror", TORSkills.GunPowder, 250, _packItIn,
-                "{=tor_perk_steel_terror_1_str}Artillery and Heavy Gunpowder weapons deal +10% morale damage in battle.",
-                SkillEffect.PerkRole.Captain, 0.1f, SkillEffect.EffectIncrementType.AddFactor,
+                "{=tor_perk_steel_terror_1_str}Artillery and explosive weapons in your party deal +10% morale damage in battle.",
+                SkillEffect.PerkRole.PartyLeader, 0.1f, SkillEffect.EffectIncrementType.AddFactor,
                 "{=tor_perk_steel_terror_2_str}Artillery crews and engineers in your party become unbreakable due to morale loss.",
                 SkillEffect.PerkRole.PartyLeader, 1f, SkillEffect.EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.None);
 

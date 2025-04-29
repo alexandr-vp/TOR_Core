@@ -3,7 +3,9 @@ using SandBox.GameComponents;
 using System;
 using System.Runtime.CompilerServices;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment;
@@ -33,15 +35,16 @@ namespace TOR_Core.Models
         public override (float affectedSideMaxMoraleLoss, float affectorSideMaxMoraleGain) CalculateMaxMoraleChangeDueToAgentIncapacitated(Agent affectedAgent, AgentState affectedAgentState, Agent affectorAgent, in KillingBlow killingBlow)
         {
             var result = base.CalculateMaxMoraleChangeDueToAgentIncapacitated(affectedAgent, affectedAgentState, affectorAgent, killingBlow);
-            if(killingBlow.WeaponClass == (int)WeaponClass.Boulder || killingBlow.WeaponClass == (int)WeaponClass.Cartridge)
+            //bulky : unsure if there's a way to condense the WeaponClass check
+            if (affectorAgent != null && (killingBlow.WeaponClass == (int)WeaponClass.Boulder || killingBlow.WeaponClass == (int)WeaponClass.Cartridge || killingBlow.WeaponClass == (int)WeaponClass.Stone) && (killingBlow.WeaponRecordWeaponFlags.HasAnyFlag(WeaponFlags.AffectsArea | WeaponFlags.AffectsAreaBig)))
             {
-                var leader = affectorAgent.GetPartyLeaderCharacter();
-                if(leader != null && leader.GetPerkValue(TORPerks.GunPowder.SteelTerror))
-                {
-                    ExplainedNumber num = new ExplainedNumber(result.affectedSideMaxMoraleLoss);
-                    PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.SteelTerror, leader, ref num);
-                    result.affectedSideMaxMoraleLoss = num.ResultNumber;
-                }
+                //AddPerkBonusForParty has an immediate null check for the party and the partyLeader so skip them here
+                MobileParty affectorParty = affectorAgent.GetOriginMobileParty();
+
+                ExplainedNumber num = new ExplainedNumber(result.affectedSideMaxMoraleLoss);
+                //primary bonus is the morale damage
+                PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.SteelTerror, affectorParty, true, ref num);
+                result.affectedSideMaxMoraleLoss = num.ResultNumber;
             }
             return result;
         }

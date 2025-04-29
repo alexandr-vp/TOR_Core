@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Items;
@@ -82,15 +83,39 @@ namespace TOR_Core.Extensions
             return false;
         }
 
+        /// <summary>
+        /// True if the item is, or can have, ammo and its id contains "grenade" or is WeaponClass.Boulder
+        /// </summary>
+        /// <remarks>Has a usage in the dismemberment system to determine if the body parts need to be flung away from the impact point.</remarks>
+        /// <param name="itemObject"></param>
+        /// <returns></returns>
         public static bool IsExplosiveAmmunition(this ItemObject itemObject)
         {
             return IsAmmunitionItem(itemObject) && itemObject.StringId.Contains("grenade") ||
                 itemObject.WeaponComponent?.PrimaryWeapon.WeaponClass == WeaponClass.Boulder;
         }
 
+        /// <summary>
+        /// True if the item has a weapon component of IsRangedWeapon or IsAmmo and has one of the AffectsArea flags.
+        /// </summary>
+        /// <remarks>Introduced for the Bullet Proof gunpowder perk to exclude both grenades and flamethrowers as IsExplosiveAmmunition couldn't be adapted without affecting its usage in the dismemberment system and drakegun canisters are cartridge-typed ammos like musket balls.</remarks>
+        /// <param name="itemObject"></param>
+        /// <returns></returns>
+        public static bool IsAreaAffectingAmmunition(this ItemObject itemObject)
+        {
+            //IsAmmunitionItem has built-in null checks for itemObject, WeaponComponent, and PrimaryWeapon
+            return IsAmmunitionItem(itemObject) && itemObject.WeaponComponent.PrimaryWeapon.WeaponFlags.HasAnyFlag(WeaponFlags.AffectsArea | WeaponFlags.AffectsAreaBig);
+        }
+
+        /// <summary>
+        /// True if the the item is an arrow, bolt, or cartridge, and has no AffectArea flag.
+        /// </summary>
+        /// <remarks>Current usage is by TORAgentApplyDamageModel where !weapon.IsEmpty; may need to add IsAmmunitionItem in the future if its usage is expanded to include contexts that can have null items, components, etc...</remarks>
+        /// <param name="itemObject"></param>
+        /// <returns></returns>
         public static bool IsSmallArmsAmmunition(this ItemObject itemObject)
         {
-            return itemObject.WeaponComponent.PrimaryWeapon.IsSmallArmsAmmunition() && !itemObject.IsExplosiveAmmunition();
+            return itemObject.WeaponComponent.PrimaryWeapon.IsSmallArmsAmmunition() && !itemObject.IsAreaAffectingAmmunition();
         }
 
         private static bool IsSmallArmsAmmunition(this WeaponComponentData weapon)
@@ -127,7 +152,7 @@ namespace TOR_Core.Extensions
         }
 
         /// <summary>
-        /// Checks if the current weapon is shooting scatter shots or grenades, or is scatter/grenade ammunition
+        /// Checks if the current weapon is a blunderbuss, or is scatter/grenade ammunition
         /// </summary>
         /// <param name="itemObject"></param>
         /// <returns></returns>
