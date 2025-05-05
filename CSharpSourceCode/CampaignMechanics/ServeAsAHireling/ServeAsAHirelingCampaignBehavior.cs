@@ -88,7 +88,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
       /// Sets the player party to be untargetable by AI parties.
       /// </summary>
       /// <remarks>
-      /// <para>Setting MainParty to be ignored so that it can't have battles against it initiated</para>
+      /// <para>Refreshes the MainParty being ignored so that it can't have battles against it initiated; this is set initially in <see cref="EnlistPlayer"/>.</para>
       /// <para>The player party is sometimes targeted by an enemy party while they are hired which leads to the player being the LeaderHero for their map event side despite supposedly being "just a merc hired by the noble". This leads to the player having a conversation with the enemy LeaderHero as well as being able to choose if their side surrenders and having the default encounterAttack menu displayed. There is also a rare occurence where the followedNoble's party is attacked and engaged in a map event while the player's party is attacked and placed in a separate map event.</para>
       /// <para>The MainParty can instead be set to ignored periodically while in service which will prevent the AI parties from considering them a valid attack target and consequently only targetting the followedNoble. This is already used in OnTick to prevent the player party from being attacked while they are avoiding battle, but this can instead be expanded to apply generally while enlisted and at a lower frequency than every game tick.</para>
       /// <para>party.ShouldBeIgnored is used in 2 places :</para>
