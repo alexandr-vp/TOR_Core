@@ -1,7 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Helpers;
+using NAudio.SoundFont;
+using NAudio.Wave;
+using NLog.Layouts;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Conversation;
@@ -18,6 +22,7 @@ using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TaleWorlds.MountAndBlade.ViewModelCollection.FaceGenerator.FaceGenVM;
 
 namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 {
@@ -79,39 +84,29 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             CampaignEvents.OnQuarterDailyPartyTick.AddNonSerializedListener(this, IgnoreHirelingPartyRefresh);
         }
 
+      /// <summary>
+      /// Sets the player party to be untargetable by AI parties.
+      /// </summary>
+      /// <remarks>
+      /// <para>Setting MainParty to be ignored so that it can't have battles against it initiated</para>
+      /// <para>The player party is sometimes targeted by an enemy party while they are hired which leads to the player being the LeaderHero for their map event side despite supposedly being "just a merc hired by the noble". This leads to the player having a conversation with the enemy LeaderHero as well as being able to choose if their side surrenders and having the default encounterAttack menu displayed. There is also a rare occurence where the followedNoble's party is attacked and engaged in a map event while the player's party is attacked and placed in a separate map event.</para>
+      /// <para>The MainParty can instead be set to ignored periodically while in service which will prevent the AI parties from considering them a valid attack target and consequently only targetting the followedNoble. This is already used in OnTick to prevent the player party from being attacked while they are avoiding battle, but this can instead be expanded to apply generally while enlisted and at a lower frequency than every game tick.</para>
+      /// <para>party.ShouldBeIgnored is used in 2 places :</para>
+      /// <br>- MobilePartyAi.GetBestInitiativeBehavior which prevents the AI from targetting the ignored party (wanted behaviour)</br>
+      /// <br>- PlayerEncounter.FindNonAttachedNpcPartiesWhoWillJoinEvent which searches among parties around the player encounter location for allies of the player/enemies of the player's enemy; when it checks for !ShouldBeIgnored for parties on the player side, it also checks for !MainParty which means any nearby npc party can join the player encounter regardless of the ShouldBeIgnored state of the MainParty</br>
+      ///<para>So, no predictable impact on which parties participate in the battle when the StartBattleAction is used to create a map event that includes the player, and avoids any bugs related to the AI and the player party.
+      ///<br>Should have no persisting issue because it's set for limited duration at a time; if it does persist, that's a relatively easy-to-notice issue that indicates that enlistment is incorrectly being ended (which could be possible on 1.2.11 since there have been some reports about parties not recruiting despite the player having since left enlistment).</br>
+      ///<br>If the visual for the player party is also fixed at some point, it would avoid the incongruency of the player being attacked when they have no visual on the map and are "just part of the noble's party"</br>
+      ///</para>
+      ///<para>Tested with : army v army, army v siege camp, siege camp v army, bandits (cultist, outlaws, ungors), army v party, party v army, party v party, and instances where parties had allied armies in proximity.
+      ///<br>In all cases, the hireling player choosing to join the battle would include the noble's party, any nearby parties, and any parties attached to an army.</br>
+      ///</para>
+      /// </remarks>
+      /// <param name="mobileParty"></param>
         private void IgnoreHirelingPartyRefresh(MobileParty mobileParty)
         {
-            /* setting MainParty to be ignored so that it can't have battles against it initiated
-             * 
-             * the player party is sometimes targeted by an enemy party while they are hired which leads to the player being the LeaderHero for their map event side despite supposedly being "just a merc hired by the noble"
-             * this leads to the player having a conversation with the enemy LeaderHero as well as being able to choose if their side surrenders and having the default encounterAttack menu displayed
-             * there is also a rare occurence where the followedNoble's party is attacked and engaged in a map event while the player's party is attacked and placed in a separate map event
-             * 
-             * the MainParty can instead be set to ignored periodically while in service which will prevent the AI parties from considering them a valid attack target and consequently only targetting the followedNoble
-             * this is already used in OnTick to prevent the player party from being attacked while they are avoiding battle, but this can instead be expanded to apply while enlisted and at a lower frequency than every game tick
-             * 
-             * party.ShouldBeIgnored is used in 2 places :
-             * - MobilePartyAi.GetBestInitiativeBehavior which prevents the AI from targetting the ignored party (wanted behaviour)
-             * - PlayerEncounter.FindNonAttachedNpcPartiesWhoWillJoinEvent which searches among parties around the player encounter location for allies of the player/enemies of the player's enemy; when it checks for !ShouldBeIgnored for parties on the player side, it also checks for !MainParty which means any nearby npc party can join the player encounter regardless of the ShouldBeIgnored state of the MainParty
-             * 
-             * so, no predictable impact on which parties participate in the battle when the StartBattleAction is used to create a map event that includes the player, and avoids any bugs related to the AI and the player party
-             * should have no persisting issue because it's set for limited duration at a time; if it does persist, that's a relatively easy-to-notice issue that indicates that enlistment is incorrectly being ended (which is possible atm on live since there have been a variety of reports about parties not recruiting despite the player having since left enlistment)
-             * if the visual for the player party is also fixed at some point, it would avoid the incongruency of the player being attacked when they have no visual on the map and are "just part of the noble's party"
-             * 
-             * Tested with : 
-             * army v army
-             * army v siege camp
-             * siege camp v army
-             * bandits (cultist, outlaws, ungors)
-             * army v party
-             * party v army
-             * party v party
-             * and instances where parties had allied armies in proximity
-             * In all cases, the hireling player choosing to join the battle would include the noble's party, any nearby parties, and any parties attached to an army
-             */
             if (MobileParty.MainParty == mobileParty && _hirelingEnlisted)
             {
-                //InformationManager.DisplayMessage(new InformationMessage("Player party ignore refresh, hour in day : " + CampaignTime.Now.GetHourOfDay.ToString(), Colors.Magenta));
                 //the moment at which this runs can be between 5-7 hours apart, therefore using 8 to cover all possibilties
                 MobileParty.MainParty.IgnoreForHours(8f);
             }
