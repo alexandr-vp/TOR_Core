@@ -34,6 +34,15 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 
     public static MBReadOnlyList<Settlement> AllCustomSettlements { get; private set; } = [];
 
+   /// <summary>
+   /// Returns the value if it exists, otherwise returns 0.
+   /// </summary>
+   /// <remarks>With a start date of Summer 13, 2502, the first day of the game is 210 201. 0 should be far enough in the past that regardless of changes to the defile cooldown, the player won't be blocked from defiling on campaign start.
+   /// <para>Because this is called when the player enters a shrine, the previous implementation that would add CampaignTime.Now to the dictionary would be performed on the first time that a shrine was entered which would push the first defile in a campaign to (days until entered a shrine + defile cooldown).</para>
+   /// <para>A specific number was chosen rather than using member accesses to get the campaign start date and the defile cooldown.</para>
+   /// </remarks>
+   /// <param name="hero"></param>
+   /// <returns></returns>
     public int LastDefileTime(Hero hero)
     {
         if (_lastDefileTime.TryGetValue(hero.StringId, out int value))
@@ -41,7 +50,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
             return value;
         }
 
-        _lastDefileTime.Add(hero.StringId, (int)CampaignTime.Now.ToDays);
+        _lastDefileTime.Add(hero.StringId, 0);
         return _lastDefileTime[hero.StringId];
     }
 
