@@ -133,7 +133,7 @@ INCLUDE include.ink
         ~ SetTextVariable("InjuryText4",InjuryText4)
         
         ~ SetTextVariable("Profession",Profession)
-        ~ SetTextVariable("Settlemente",Settlement)
+        ~ SetTextVariable("Settlement",Settlement)
         ~ SetTextVariable("Notable",Notable)
         ~ SetTextVariable("RewardText",RewardText)
         
