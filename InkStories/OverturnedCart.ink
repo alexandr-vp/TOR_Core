@@ -312,7 +312,7 @@ INCLUDE include.ink
                 ->DeadReward
             *{PartyCanRaiseDead}[Raise him as a skeleton (+1 skeleton){RaiseDeadSkillCheckText}]
                 Since a dead man has no use for his body you decide to raise it as a skeleton. #STR_RewardDeadRiseDead 
-                Yout party makes an attempt and {RaiseDeadSkillCheckTest: succeeds| fails}. #STR_RewardRiseDead2
+                Your party makes an attempt and {RaiseDeadSkillCheckTest: succeeds| fails}. #STR_RewardRiseDead2
                 
                 {RaiseDeadSkillCheckTest:
                     -true: The man's body stands up and shambles off to join the rest of your army. #STR_RewardDeadRiseDeadSuccess
