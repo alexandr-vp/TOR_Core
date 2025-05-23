@@ -54,7 +54,8 @@ namespace TOR_Core.CampaignMechanics
                         if (possibleUpgradeTargets.Count > 0)
                         {
                             TORTroopUpgradeArgs upgradeArgs = SelectPossibleUpgrade(possibleUpgradeTargets);
-                            
+
+                            /*
                             if (party.IsMobile && party.MobileParty.IsLordParty)
                             {
                                 if (memberRoster.Contains(upgradeArgs.UpgradeTarget))
@@ -106,6 +107,8 @@ namespace TOR_Core.CampaignMechanics
                                     }
                                 }
                             }
+                            */
+                            
                             UpgradeTroop(party, i, upgradeArgs);
                            
                         }
