@@ -10,6 +10,7 @@ using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.ViewModelCollection.CharacterDeveloper;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 
@@ -54,9 +55,13 @@ namespace TOR_Core.CampaignMechanics
                         if (possibleUpgradeTargets.Count > 0)
                         {
                             TORTroopUpgradeArgs upgradeArgs = SelectPossibleUpgrade(possibleUpgradeTargets);
-                            
+                            /* this is removed atm due to bottlenecking troops at a tier if their upgrade target exceeds some ratio; because it doesn't account for troops of further upgrades, it might stop a t1->t2 upgrade despite t3+ having no troops because the t2 troops are too slow to upgrade
                             if (party.IsMobile && party.MobileParty.IsLordParty)
                             {
+                                if (party.LeaderHero == null)
+                                {
+                                    break;
+                                }
                                 if (memberRoster.Contains(upgradeArgs.UpgradeTarget))
                                 {
                                     var partyTemplate = party.LeaderHero.Clan.DefaultPartyTemplate; // either takes clan, or if not take the culture one
@@ -106,6 +111,7 @@ namespace TOR_Core.CampaignMechanics
                                     }
                                 }
                             }
+                            */
                             UpgradeTroop(party, i, upgradeArgs);
                            
                         }
@@ -118,36 +124,39 @@ namespace TOR_Core.CampaignMechanics
         {
             PartyWageModel partyWageModel = Campaign.Current.Models.PartyWageModel;
             List<TORTroopUpgradeArgs> list = [];
-            CharacterObject character = rosterElement.Character;
-            int num = rosterElement.Number - rosterElement.WoundedNumber;
-            if (num > 0)
+            CharacterObject troopCharacter = rosterElement.Character;
+            int numPossibleTroopsToUpgrade = rosterElement.Number - rosterElement.WoundedNumber;
+            if (numPossibleTroopsToUpgrade > 0)
             {
                 PartyTroopUpgradeModel partyTroopUpgradeModel = Campaign.Current.Models.PartyTroopUpgradeModel;
-                for(int i = 0; i < character.UpgradeTargets.Length; i++)
+                for(int i = 0; i < troopCharacter.UpgradeTargets.Length; i++)
                 {
-                    CharacterObject upgradeTargetObject = character.UpgradeTargets[i];
-                    int upgradeXpCost = character.GetUpgradeXpCost(party, i);
-                    if(upgradeXpCost <= 0 || num * rosterElement.Xp < upgradeXpCost)
+                    CharacterObject upgradeTargetCharacter = troopCharacter.UpgradeTargets[i];
+                    int upgradeXpCost = troopCharacter.GetUpgradeXpCost(party, i);
+                    if (upgradeXpCost > 0) { numPossibleTroopsToUpgrade = MathF.Min(numPossibleTroopsToUpgrade, rosterElement.Xp / upgradeXpCost); }
+                    //if(upgradeXpCost <= 0 || numPossibleTroopsToUpgrade * rosterElement.Xp < upgradeXpCost)
+
+                    int upgradeGoldCost = troopCharacter.GetUpgradeGoldCost(party, i);
+                    if (upgradeGoldCost > 0 && party.LeaderHero != null && numPossibleTroopsToUpgrade * upgradeGoldCost > party.LeaderHero.Gold)
                     {
-                        bool partyHasEnoughGold = false;
-                        int upgradeGoldCost = character.GetUpgradeGoldCost(party, i);
-                        if (upgradeGoldCost <= 0 || (party.LeaderHero != null && upgradeGoldCost != 0 && num * upgradeGoldCost <= party.LeaderHero.Gold)) partyHasEnoughGold = true;
-                        bool withinPaymentLimit = false;
-                        if(upgradeTargetObject.Tier > character.Tier && 
-                            party.MobileParty.PaymentLimit > 0 &&
-                            party.MobileParty.CanPayMoreWage() && 
-                            party.MobileParty.TotalWage + num * (partyWageModel.GetCharacterWage(upgradeTargetObject) - partyWageModel.GetCharacterWage(character)) <= party.MobileParty.PaymentLimit)
-                        {
-                            withinPaymentLimit = true;
-                        }
-                        if(partyHasEnoughGold && withinPaymentLimit)
-                        {
-                            if ((!party.Culture.IsBandit || upgradeTargetObject.Culture.IsBandit) && (character.Occupation != Occupation.Bandit || partyTroopUpgradeModel.CanPartyUpgradeTroopToTarget(party, character, upgradeTargetObject)))
-                            {
-                                float upgradeChanceForTroopUpgrade = Campaign.Current.Models.PartyTroopUpgradeModel.GetUpgradeChanceForTroopUpgrade(party, character, i);
-                                list.Add(new TORTroopUpgradeArgs(character, upgradeTargetObject, num, upgradeGoldCost, upgradeXpCost, upgradeChanceForTroopUpgrade));
-                            }
-                        }
+                        numPossibleTroopsToUpgrade = party.LeaderHero.Gold / upgradeGoldCost;
+                        if (numPossibleTroopsToUpgrade <= 1) { continue; }
+                    }
+
+                    //MaxWage for "unlimited" wages is 10k, but what does that matter? why would native call mobParty.HasLimitedWage which would ignore the conditional and allow an ai party to surpass the 10k limit anyways?
+                    if (upgradeTargetCharacter.Tier > troopCharacter.Tier &&
+                        party.MobileParty.HasLimitedWage() &&
+                        party.MobileParty.CanPayMoreWage() &&
+                        party.MobileParty.TotalWage + numPossibleTroopsToUpgrade * (partyWageModel.GetCharacterWage(upgradeTargetCharacter) - partyWageModel.GetCharacterWage(troopCharacter)) > party.MobileParty.PaymentLimit)
+                    {
+                        numPossibleTroopsToUpgrade =  (party.MobileParty.PaymentLimit - party.MobileParty.TotalWage) / (partyWageModel.GetCharacterWage(upgradeTargetCharacter) - partyWageModel.GetCharacterWage(troopCharacter));
+                        if (numPossibleTroopsToUpgrade <= 1) { continue; }
+                    }
+                    
+                    if ((!party.Culture.IsBandit || upgradeTargetCharacter.Culture.IsBandit) && (troopCharacter.Occupation != Occupation.Bandit || partyTroopUpgradeModel.CanPartyUpgradeTroopToTarget(party, troopCharacter, upgradeTargetCharacter)))
+                    {
+                        float upgradeChanceForTroopUpgrade = Campaign.Current.Models.PartyTroopUpgradeModel.GetUpgradeChanceForTroopUpgrade(party, troopCharacter, i);
+                        list.Add(new TORTroopUpgradeArgs(troopCharacter, upgradeTargetCharacter, numPossibleTroopsToUpgrade, upgradeGoldCost, upgradeXpCost, upgradeChanceForTroopUpgrade));
                     }
                 }
             }
@@ -183,12 +192,16 @@ namespace TOR_Core.CampaignMechanics
             TroopRoster memberRoster = party.MemberRoster;
             CharacterObject upgradeTarget = upgradeArgs.UpgradeTarget;
             int possibleUpgradeCount = upgradeArgs.PossibleUpgradeCount;
-            int num = upgradeArgs.UpgradeXpCost * possibleUpgradeCount;
-            memberRoster.SetElementXp(rosterIndex, memberRoster.GetElementXp(rosterIndex) - num);
-            //memberRoster.AddToCounts(upgradeArgs.Target, -possibleUpgradeCount, false, 0, 0, true, -1);
-            party.AddMember(upgradeArgs.Target, -possibleUpgradeCount, 0);
-            //memberRoster.AddToCounts(upgradeTarget, possibleUpgradeCount, false, 0, 0, true, -1);
-            party.AddMember(upgradeArgs.UpgradeTarget, possibleUpgradeCount, 0);
+            int xpToUpgradeCount = upgradeArgs.UpgradeXpCost * possibleUpgradeCount;
+            if (xpToUpgradeCount > 0)
+            {
+                memberRoster.SetElementXp(rosterIndex, memberRoster.GetElementXp(rosterIndex) - xpToUpgradeCount);
+                //memberRoster.AddToCounts(upgradeArgs.Target, -possibleUpgradeCount, false, 0, 0, true, -1);
+                party.AddMember(upgradeArgs.Target, -possibleUpgradeCount, 0);
+                //memberRoster.AddToCounts(upgradeTarget, possibleUpgradeCount, false, 0, 0, true, -1);
+                party.AddMember(upgradeArgs.UpgradeTarget, possibleUpgradeCount, 0);
+
+            /* removed because the ai doesn't care about items, and the player's upgrades never pass through this method
             if (party.Owner != null && party.Owner.Clan == Clan.PlayerClan && upgradeTarget.UpgradeRequiresItemFromCategory != null)
             {
                 int num2 = possibleUpgradeCount;
@@ -206,8 +219,8 @@ namespace TOR_Core.CampaignMechanics
                     }
                 }
             }
-            if (possibleUpgradeCount > 0)
-            {
+            */
+            
                 ApplyEffects(party, upgradeArgs);
             }
         }
